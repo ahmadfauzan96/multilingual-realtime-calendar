@@ -1,0 +1,8 @@
+h1 {
+  line-height: 1;
+}
+
+h1 time {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.87);
+}

@@ -1,0 +1,85 @@
+/* Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, Georgian */
+@import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+/* Armenian */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@100..900&display=swap");
+/* Japanese (Hiragana, Katakana, Kanji (CJK Ideographs)) */
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap");
+/* CJK Ideographs which are not contained in the Japanese typeface */
+@import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap");
+/* Hangul */
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
+/* Gurmukhi (Mukta Mahee), Gujarati (Mukta Vaani), Tamil (Mukta Malar)  */
+@import url("https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@200;300;400;500;600;700;800&family=Mukta+Malar:wght@200;300;400;500;600;700;800&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap");
+/* Malayalam */
+/* @import url("https://smc.org.in/fonts/manjari.css"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap"); */
+@import url("https://smc.org.in/fonts/meera.css");
+/* Telugu */
+@import url("https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap");
+/* Kannada */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400..800&display=swap");
+/* Bengali */
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+/* Oriya */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&display=swap");
+/* Myanmar */
+@import url("https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
+/* Lao */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@100..900&display=swap");
+/* Khmer */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@100..900&display=swap");
+/* Ethiopic */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wdth,wght@62.5..100,100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: "FiraGO", "Noto Sans Armenian", "BIZ UDGothic", "LXGW WenKai TC", "Nanum Gothic",
+    "Mukta Malar", "Mukta Mahee", "Mukta Vaani", "Meera", "Ramabhadra", "Baloo Tamma 2",
+    "Hind Siliguri", "Baloo Bhaina 2", "Padauk", "Noto Sans Lao", "Noto Sans Khmer",
+    "Noto Sans Ethiopic", sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Background settings from https://cssgradient.io/ */
+  background: rgb(2, 0, 36);
+  background: -moz-linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+}
