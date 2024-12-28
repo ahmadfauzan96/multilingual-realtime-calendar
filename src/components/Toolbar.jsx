@@ -86,7 +86,7 @@ export default function Toolbar({ calendar, setCalendar }) {
             </div>
           </div>
           <div className="col-75">
-            <button>Set Locale!</button>
+            <button>Apply</button>
           </div>
         </div>
       </form>
