@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { direction } from "../util";
 import Rabbit from "../rabbit";
 import "./Display.css";
 
@@ -42,7 +43,7 @@ export default function Display({ locale, hour12 }) {
   const timeUni2Zg4Zg = locale.includes("qaag") ? Rabbit.uni2zg(time) : time;
 
   return (
-    <section lang={locale} dir="auto">
+    <section lang={locale} dir={direction(locale)}>
       <h1>
         <time dateTime={dateUni2Zg4Zg}>{dateUni2Zg4Zg}</time>
       </h1>
