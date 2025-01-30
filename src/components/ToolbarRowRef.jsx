@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { forwardRef } from "react";
 
-const ToolbarRow = forwardRef(({ title, label, defaultValue, children }, ref) => {
+const ToolbarRowRef = forwardRef(({ title, label, defaultValue, children }, ref) => {
   return (
     <div className="row">
       <div className="col-25">
@@ -15,5 +15,5 @@ const ToolbarRow = forwardRef(({ title, label, defaultValue, children }, ref) =>
     </div>
   );
 });
-ToolbarRow.displayName = "ToolbarRow";
-export default ToolbarRow;
+ToolbarRowRef.displayName = "ToolbarRowRef";
+export default ToolbarRowRef;

@@ -13,12 +13,18 @@ export default function Footer() {
   return (
     <footer>
       <p>
-        Created with ❤️ by <a href="https://github.com/ahmadfauzan96">Ahmad Fauzan Bagaskoro</a> ©{" "}
-        {copyrightYear(2024)}
+        Created with ❤️ by{" "}
+        <a href="https://github.com/ahmadfauzan96" target="_blank">
+          Ahmad Fauzan Bagaskoro
+        </a>{" "}
+        © {copyrightYear(2024)}
       </p>
       <p>
         24-hours/12-hours toggle by{" "}
-        <a href="https://codepen.io/personable/pen/NWLZrV">Chris Hart</a> © {copyrightYear(2014)}
+        <a href="https://codepen.io/personable/pen/NWLZrV" target="_blank">
+          Chris Hart
+        </a>{" "}
+        © {copyrightYear(2014)}
       </p>
     </footer>
   );

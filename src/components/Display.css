@@ -1,8 +1,98 @@
-h1 {
+h1,
+h2 {
   line-height: 1;
 }
 
 h1 time {
   font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.87);
+}
+
+h2 time {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.display {
+  font-family: "FiraGO", sans-serif;
+}
+
+.display-hy {
+  font-family: "FiraGO", "Noto Sans Armenian", sans-serif;
+}
+
+.display-ja {
+  font-family: "FiraGO", "Klee One", "BIZ UDGothic", sans-serif;
+}
+
+.display-ko {
+  font-family: "FiraGO", "Nanum Gothic", sans-serif;
+}
+
+.display-zh-hans,
+.display-zh-hant {
+  font-family: "FiraGO", "LXGW WenKai TC", sans-serif;
+}
+
+.display-mn-mong {
+  font-family: "FiraGO", "Noto Sans Mongolian", sans-serif;
+}
+
+.display-bn,
+.display-as {
+  font-family: "FiraGO", "Hind Siliguri", sans-serif;
+}
+
+.display-gu {
+  font-family: "FiraGO", "Mukta Vaani", sans-serif;
+}
+
+.display-pa-guru {
+  font-family: "FiraGO", "Mukta Mahee", sans-serif;
+}
+
+.display-ta {
+  font-family: "FiraGO", "Mukta Malar", sans-serif;
+}
+
+.display-te {
+  font-family: "FiraGO", "Ramabhadra", sans-serif;
+}
+
+.display-kn {
+  font-family: "FiraGO", "Baloo Tamma 2", sans-serif;
+}
+
+.display-ml {
+  font-family: "FiraGO", "Manjari", "Meera", sans-serif;
+}
+
+.display-or {
+  font-family: "FiraGO", "Baloo Bhaina 2", sans-serif;
+}
+
+.display-si {
+  font-family: "FiraGO", "Noto Sans Sinhala", sans-serif;
+}
+
+.display-bo,
+.display-dz {
+  font-family: "FiraGO", "Jomolhari", sans-serif;
+}
+
+.display-lo {
+  font-family: "FiraGO", "Noto Sans Lao", sans-serif;
+}
+
+.display-km {
+  font-family: "FiraGO", "Noto Sans Khmer", sans-serif;
+}
+
+.display-my {
+  font-family: "FiraGO", "Padauk", "Noto Sans Myanmar", sans-serif;
+}
+
+.display-am,
+.display-ti {
+  font-family: "FiraGO", "Noto Sans Ethiopic", sans-serif;
 }

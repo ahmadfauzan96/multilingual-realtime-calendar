@@ -1,11 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
-import { CALENDAR_OPTIONS, getFlagEmoji, LANGUAGES, REGIONS } from "../util.js";
-import ToolbarRow from "./ToolbarRow.jsx";
+import { useRef, useState } from "react";
+import { CALENDAR_OPTIONS, getFlagEmoji, LANGUAGES, REGIONS, TIMEZONES } from "../util.js";
+import ToolbarRowRef from "./ToolbarRowRef.jsx";
+import ToolbarRowState from "./ToolbarRowState.jsx";
+import ToggleButton from "./ToggleButton.jsx";
 import "./Toolbar.css";
 
-export default function Toolbar({ calendar, setCalendar }) {
-  let [localeNoCalendarOption, localeCalendarOption] = calendar.locale.split("-u-");
+export default function Toolbar({
+  calendar,
+  setCalendar,
+  dateTimeIsSingleLine,
+  setDateTimeIsSingleLine,
+}) {
+  const { locale, hour12: is12Hours, timeZone } = calendar;
+  let [localeNoCalendarOption, localeCalendarOption] = locale.split("-u-");
   const localeArray = localeNoCalendarOption.split("-");
   const localeLang =
     localeArray.length === 2
@@ -13,17 +21,19 @@ export default function Toolbar({ calendar, setCalendar }) {
       : localeArray.slice(0, localeArray.length - 1).join("-");
   const localeReg = localeArray.slice(-1)[0];
   localeCalendarOption = localeCalendarOption ?? "";
-  const is12Hours = calendar.hour12;
+  const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(
+    timeZone === TIMEZONES.find(({ value }) => value === timeZone).value ? timeZone : "Asia/Jakarta"
+  );
 
   const languageRef = useRef();
   const regionRef = useRef();
   const calendarOptionRef = useRef();
   const hour12Ref = useRef();
 
-  function handleSaveLocale(e) {
+  function handleSaveCalendar(e) {
     e.preventDefault();
-    setCalendar(prevLocale => {
-      const newLocale = { ...prevLocale };
+    setCalendar(prevCalendar => {
+      const newCalendar = { ...prevCalendar };
       const newLanguage = languageRef.current.value;
       const newRegion = regionRef.current.value;
       const newCalendarOption =
@@ -31,33 +41,39 @@ export default function Toolbar({ calendar, setCalendar }) {
           ? "-u-" + calendarOptionRef.current.value
           : "";
 
-      newLocale.locale = newLanguage + "-" + newRegion + newCalendarOption;
-      newLocale.hour12 = hour12Ref.current.checked;
+      newCalendar.locale = newLanguage + "-" + newRegion + newCalendarOption;
+      newCalendar.hour12 = hour12Ref.current.checked;
+      newCalendar.timeZone = toBeSelectedTimeZone;
 
-      return newLocale;
+      return newCalendar;
     });
   }
 
   return (
-    <section className="container">
-      <form onSubmit={handleSaveLocale}>
-        <ToolbarRow ref={languageRef} title="Language" label="language" defaultValue={localeLang}>
+    <section className="toolbar">
+      <form onSubmit={handleSaveCalendar}>
+        <ToolbarRowRef
+          ref={languageRef}
+          title="Language"
+          label="language"
+          defaultValue={localeLang}
+        >
           {LANGUAGES.map(({ title, value }) => (
             <option key={value} value={value}>
               {title}
             </option>
           ))}
-        </ToolbarRow>
+        </ToolbarRowRef>
 
-        <ToolbarRow ref={regionRef} title="Region" label="region" defaultValue={localeReg}>
+        <ToolbarRowRef ref={regionRef} title="Region" label="region" defaultValue={localeReg}>
           {REGIONS.map(({ title, value }) => (
             <option key={value} value={value}>
               {title} {getFlagEmoji(value)}
             </option>
           ))}
-        </ToolbarRow>
+        </ToolbarRowRef>
 
-        <ToolbarRow
+        <ToolbarRowRef
           ref={calendarOptionRef}
           title="Calendar Option"
           label="calendar-option"
@@ -68,28 +84,46 @@ export default function Toolbar({ calendar, setCalendar }) {
               {title}
             </option>
           ))}
-        </ToolbarRow>
+        </ToolbarRowRef>
+
+        <ToolbarRowState
+          setState={setToBeSelectedTimeZone}
+          title="Time Zone"
+          label="timezone"
+          defaultValue={toBeSelectedTimeZone}
+        >
+          {TIMEZONES.map(({ title, value }) => (
+            <option key={value} value={value}>
+              {title}
+            </option>
+          ))}
+        </ToolbarRowState>
 
         <div className="row">
           <div className="col-25">
-            <div className="can-toggle can-toggle--size-small">
-              <input
-                id="hour12"
-                name="hour12"
-                type="checkbox"
-                defaultChecked={is12Hours}
-                ref={hour12Ref}
-              />
-              <label htmlFor="hour12">
-                <div className="can-toggle__switch" data-checked="12H" data-unchecked="24H"></div>
-              </label>
-            </div>
+            <ToggleButton
+              ref={hour12Ref}
+              label="hour12"
+              defaultChecked={is12Hours}
+              checkedTitle="12h"
+              uncheckedTitle="24h"
+            />
           </div>
           <div className="col-75">
-            <button>Apply</button>
+            <button>Apply Calendar Settings</button>
           </div>
         </div>
       </form>
+
+      <div className="row">
+        <div className="col-25"></div>
+        <div className="col-75">
+          <button onClick={() => setDateTimeIsSingleLine(isSingleLine => !isSingleLine)}>
+            View in {dateTimeIsSingleLine ? "Double" : "a Single"} Line
+            {dateTimeIsSingleLine && "s"}
+          </button>
+        </div>
+      </div>
     </section>
   );
 }

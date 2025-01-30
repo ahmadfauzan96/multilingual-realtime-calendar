@@ -16,7 +16,7 @@ select {
 label {
   padding: 12px 12px 12px 0;
   display: flex;
-  place-items: left;
+  place-items: start;
 }
 
 button {
@@ -30,7 +30,14 @@ button {
   color: lavenderblush;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+button:dir(ltr) {
   float: right;
+}
+
+button:dir(rtl) {
+  float: left;
 }
 
 button:hover {
@@ -53,20 +60,31 @@ li {
   list-style: none;
 }
 
-.container {
+.toolbar {
   padding: 20px;
 }
 
 .col-25 {
-  float: left;
   width: 25%;
-  margin-top: 6px;
 }
 
 .col-75 {
-  float: left;
   width: 75%;
+}
+
+.col-25,
+.col-75 {
   margin-top: 6px;
+}
+
+.col-25:dir(ltr),
+.col-75:dir(ltr) {
+  float: left;
+}
+
+.col-25:dir(rtl),
+.col-75:dir(rtl) {
+  float: right;
 }
 
 /* Clear floats after the columns */
@@ -76,9 +94,29 @@ li {
   clear: both;
 }
 
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  label {
+    display: flex;
+    place-items: center;
+  }
+
+  .col-25,
+  .col-75,
+  button {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  button {
+    margin-bottom: 1rem;
+  }
+}
+
 /* Toggle input */
 /* A super long snippet of codes due to being converted from SCSS*/
-/* by Chris Hart from https://codepen.io/personable/pen/NWLZrV (copied from https://www.sliderrevolution.com/resources/css-toggle-switch/) */
+/* by Chris Hart from https://codepen.io/personable/pen/NWLZrV */
+/* (copied from https://www.sliderrevolution.com/resources/css-toggle-switch/) */
 .can-toggle {
   position: relative;
 }
@@ -429,19 +467,4 @@ li {
 }
 .can-toggle.demo-rebrand-2 label .can-toggle__switch:hover:after {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  label {
-    display: flex;
-    place-items: center;
-  }
-
-  .col-25,
-  .col-75,
-  button {
-    width: 100%;
-    margin-top: 0;
-  }
 }
