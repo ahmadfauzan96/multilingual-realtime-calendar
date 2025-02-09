@@ -727,13 +727,13 @@ export const CALENDAR_OPTIONS = [
 ];
 
 export const direction = lang =>
-  !lang.includes("arab") ||
-  !lang.includes("Arab") ||
-  !lang.includes("hebr") ||
-  !lang.includes("Hebr") ||
-  !lang.startsWith("syc") ||
-  (!lang.startsWith("skr") && (!lang.includes("deva") || !lang.includes("Deva")))
-    ? getLangDir(lang)
-    : "rtl";
+  lang.includes("arab") ||
+  lang.includes("Arab") ||
+  lang.includes("hebr") ||
+  lang.includes("Hebr") ||
+  lang.startsWith("syc") ||
+  (lang.startsWith("skr") && (!lang.includes("deva") || !lang.includes("Deva")))
+    ? "rtl"
+    : getLangDir(lang);
 
 export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({ title: tz, value: tz }));
