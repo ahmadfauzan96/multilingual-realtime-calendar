@@ -13,13 +13,13 @@ export default function Toolbar({
   setDateTimeIsSingleLine,
 }) {
   const { locale, hour12: is12Hours, timeZone } = calendar;
-  let [localeNoCalendarOption, localeCalendarOption] = locale.split("-u-");
-  const localeArray = localeNoCalendarOption.split("-");
+  let [localeNoCalendarOption, localeCalendarOption] = locale ? locale.split("-u-") : ["id-ID", ""];
+  const localeLangReg = localeNoCalendarOption.split("-");
   const localeLang =
-    localeArray.length === 2
-      ? localeArray[0]
-      : localeArray.slice(0, localeArray.length - 1).join("-");
-  const localeReg = localeArray.slice(-1)[0];
+    localeLangReg.length === 2
+      ? localeLangReg[0]
+      : localeLangReg.slice(0, localeLangReg.length - 1).join("-");
+  const localeReg = localeLangReg.slice(-1)[0];
   localeCalendarOption = localeCalendarOption ?? "";
   const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(
     timeZone === TIMEZONES.find(({ value }) => value === timeZone).value ? timeZone : "Asia/Jakarta"

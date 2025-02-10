@@ -1,3 +1,4 @@
+import { getTimezoneOffset } from "date-fns-tz";
 import { getLangDir } from "rtl-detect";
 
 export const LANGUAGES = [
@@ -563,8 +564,10 @@ export const getFlagEmoji = countryCode =>
     ? countryCode
         .toUpperCase()
         .split("")
-        .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
-        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1F1A5))
+        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
+        // .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
+        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
+        .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
         .join("")
     : // .reduce((a, b) => `${a}${b}`)
       "(No flag for this region.)";
@@ -736,4 +739,36 @@ export const direction = lang =>
     ? "rtl"
     : getLangDir(lang);
 
-export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({ title: tz, value: tz }));
+const date = new Date();
+const timeZoneOffset = timeZone => {
+  const tzOffset = getTimezoneOffset(timeZone, date);
+  const tzHour =
+    tzOffset > 0
+      ? Math.floor(tzOffset / (60 * 60 * 1000))
+      : tzOffset < 0
+      ? Math.ceil(tzOffset / (60 * 60 * 1000))
+      : tzOffset / (60 * 60 * 1000);
+  const tzMinute = (tzOffset % (60 * 60 * 1000)) / (60 * 1000);
+  const absTzMinute = Math.abs(tzMinute);
+  return (
+    "UTC" +
+    (tzHour !== 0
+      ? (tzHour > 0 ? "+" : "") + tzHour + ":" + (absTzMinute < 10 ? "0" : "") + absTzMinute
+      : tzMinute !== 0
+      ? (tzMinute > 0 ? "+" : "-") + "0:" + (absTzMinute < 10 ? "0" : "") + absTzMinute
+      : "")
+  );
+};
+const timeZoneOffsetLong = timeZone =>
+  Intl.DateTimeFormat("en", { timeStyle: "long", timeZone })
+    .formatToParts(date)
+    .find(({ type }) => type === "timeZoneName").value;
+const timeZoneOffsetFull = timeZone =>
+  Intl.DateTimeFormat("en", { timeStyle: "full", timeZone })
+    .formatToParts(date)
+    .find(({ type }) => type === "timeZoneName").value;
+
+export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
+  title: `${tz} (${timeZoneOffset(tz)}/${timeZoneOffsetLong(tz)}/${timeZoneOffsetFull(tz)})`,
+  value: tz,
+}));
