@@ -1,3 +1,4 @@
+import { localeRegionData } from "../util.js";
 import "./Footer.css";
 
 export default function Footer() {
@@ -10,8 +11,24 @@ export default function Footer() {
       : "Not created yet.";
   }
 
+  const { name, code, flag, timeZones } = localeRegionData;
+  const timeZoneDoesExist = timeZones.length > 0;
+  const timeZonesArePlural = timeZones.length > 1;
+
   return (
     <footer>
+      <h2>
+        Your location data (based on locale timezone, <em>not</em> IP address)
+      </h2>
+      <p>
+        Region: {name}; Code: {code}; Flag: {flag}
+      </p>
+      <br />
+
+      <h2>Available timezone{timeZonesArePlural && "s"} in your region</h2>
+      <p>{timeZoneDoesExist ? timeZones.join(", ") : "No data"}</p>
+      <br />
+
       <p>
         Created with ❤️ by{" "}
         <a href="https://github.com/ahmadfauzan96" target="_blank">

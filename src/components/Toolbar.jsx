@@ -13,16 +13,25 @@ export default function Toolbar({
   setDateTimeIsSingleLine,
 }) {
   const { locale, hour12: is12Hours, timeZone } = calendar;
-  let [localeNoCalendarOption, localeCalendarOption] = locale ? locale.split("-u-") : ["id-ID", ""];
+  const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
+    ? locale.split("-u-")
+    : [locale, ""];
   const localeLangReg = localeNoCalendarOption.split("-");
   const localeLang =
-    localeLangReg.length === 2
-      ? localeLangReg[0]
+    localeLangReg.length <= 2
+      ? localeLangReg.length === 2 && localeLangReg[1].length === 2
+        ? localeLangReg[0]
+        : localeLangReg.join("-")
       : localeLangReg.slice(0, localeLangReg.length - 1).join("-");
-  const localeReg = localeLangReg.slice(-1)[0];
-  localeCalendarOption = localeCalendarOption ?? "";
+  const localeReg =
+    localeLangReg.length >= 2
+      ? localeLangReg.slice(-1)[0].length === 2
+        ? localeLangReg.slice(-1)[0]
+        : ""
+      : "";
+
   const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(
-    timeZone === TIMEZONES.find(({ value }) => value === timeZone).value ? timeZone : "Asia/Jakarta"
+    TIMEZONES.find(({ value }) => value === timeZone)?.value || "Asia/Jakarta"
   );
 
   const languageRef = useRef();
@@ -35,13 +44,14 @@ export default function Toolbar({
     setCalendar(prevCalendar => {
       const newCalendar = { ...prevCalendar };
       const newLanguage = languageRef.current.value;
-      const newRegion = regionRef.current.value;
+      const newRegion =
+        regionRef.current && regionRef.current.value !== "" ? "-" + regionRef.current.value : "";
       const newCalendarOption =
         calendarOptionRef.current && calendarOptionRef.current.value !== ""
           ? "-u-" + calendarOptionRef.current.value
           : "";
 
-      newCalendar.locale = newLanguage + "-" + newRegion + newCalendarOption;
+      newCalendar.locale = newLanguage + newRegion + newCalendarOption;
       newCalendar.hour12 = hour12Ref.current.checked;
       newCalendar.timeZone = toBeSelectedTimeZone;
 
@@ -116,7 +126,7 @@ export default function Toolbar({
       </form>
 
       <div className="row">
-        <div className="col-25"></div>
+        <div className="col-25" />
         <div className="col-75">
           <button onClick={() => setDateTimeIsSingleLine(isSingleLine => !isSingleLine)}>
             View in {dateTimeIsSingleLine ? "Double" : "a Single"} Line

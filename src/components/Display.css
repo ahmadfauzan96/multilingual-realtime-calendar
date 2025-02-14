@@ -22,18 +22,20 @@ h2 time {
 }
 
 .display-ja {
-  font-family: "FiraGO", "Klee One", "BIZ UDGothic", sans-serif;
+  font-family: "FiraGO", "BIZ UDGothic", "Klee One", sans-serif;
 }
 
 .display-ko {
   font-family: "FiraGO", "Nanum Gothic", sans-serif;
 }
 
+.display-zh,
 .display-zh-hans,
 .display-zh-hant {
   font-family: "FiraGO", "LXGW WenKai TC", sans-serif;
 }
 
+.display-mn,
 .display-mn-mong {
   font-family: "FiraGO", "Noto Sans Mongolian", sans-serif;
 }
@@ -47,6 +49,7 @@ h2 time {
   font-family: "FiraGO", "Mukta Vaani", sans-serif;
 }
 
+.display-pa,
 .display-pa-guru {
   font-family: "FiraGO", "Mukta Mahee", sans-serif;
 }
@@ -69,6 +72,11 @@ h2 time {
 
 .display-or {
   font-family: "FiraGO", "Baloo Bhaina 2", sans-serif;
+}
+
+.display-sat,
+.display-olck {
+  font-family: "FiraGO", "Noto Sans Ol Chiki", sans-serif;
 }
 
 .display-si {

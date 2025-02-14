@@ -56,8 +56,8 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     return () => clearInterval(interval);
   }, [locale, hour12, timeZone]);
 
-  // * convert Myanmar Unicode to Myanmar Zawgyi if locale="my-qaag-*"
-  const isZawgyi = locale.startsWith("my-qaag");
+  // * convert Myanmar Unicode to Myanmar Zawgyi if locale="my-qaag-*" or locale="my-Qaag-*"
+  const isZawgyi = locale.startsWith("my-qaag") || locale.startsWith("my-Qaag");
   const dateTimeUni2Zg4Zg = isZawgyi ? Rabbit.uni2zg(dateTime) : dateTime;
   const dateUni2Zg4Zg = isZawgyi ? Rabbit.uni2zg(date) : date;
   const timeUni2Zg4Zg = isZawgyi ? Rabbit.uni2zg(time) : time;
@@ -68,20 +68,36 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     ? "display-ja"
     : locale.startsWith("ko")
     ? "display-ko"
-    : locale.startsWith("zh-hans") || locale.startsWith("yue-hans") || locale.startsWith("nan-hans")
+    : locale.startsWith("zh-hans") ||
+      locale.startsWith("yue-hans") ||
+      locale.startsWith("nan-hans") ||
+      locale.startsWith("zh-Hans") ||
+      locale.startsWith("yue-Hans") ||
+      locale.startsWith("nan-Hans")
     ? "display-zh-hans"
-    : locale.startsWith("zh-hant") || locale.startsWith("yue-hant") || locale.startsWith("nan-hant")
+    : locale.startsWith("zh-hant") ||
+      locale.startsWith("yue-hant") ||
+      locale.startsWith("nan-hant") ||
+      locale.startsWith("zh-Hant") ||
+      locale.startsWith("yue-Hant") ||
+      locale.startsWith("nan-Hant")
     ? "display-zh-hant"
-    : locale.startsWith("mn-mong")
+    : locale.startsWith("zh") || locale.startsWith("yue") || locale.startsWith("nan")
+    ? "display-zh"
+    : locale.startsWith("mn-mong") || locale.startsWith("mn-Mong")
     ? "display-mn-mong"
+    : locale.startsWith("mn")
+    ? "display-mn"
     : locale.startsWith("bn")
     ? "display-bn"
     : locale.startsWith("as")
     ? "display-as"
     : locale.startsWith("gu")
     ? "display-gu"
-    : locale.startsWith("pa-guru")
+    : locale.startsWith("pa-guru") || locale.startsWith("pa-Guru")
     ? "display-pa-guru"
+    : locale.startsWith("pa")
+    ? "display-pa"
     : locale.startsWith("ta")
     ? "display-ta"
     : locale.startsWith("te")
@@ -92,6 +108,8 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     ? "display-ml"
     : locale.startsWith("or")
     ? "display-or"
+    : locale.startsWith("sat")
+    ? "display-sat"
     : locale.startsWith("si")
     ? "display-si"
     : locale.startsWith("bo")
@@ -109,6 +127,8 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     : locale.startsWith("ti")
     ? "display-ti"
     : "";
+  // * Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, and Georgian scripts
+  // * are already covered by default "display" class
   const cssClass = cssLocaleClass !== "" ? cssLocaleClass : "display";
 
   return (
