@@ -271,6 +271,11 @@ export const LANGUAGES = [
   { title: "Rwa", value: "rwk" },
   { title: "Sakha/Yakut", value: "sah" },
   { title: "Samburu", value: "saq" },
+  { title: "Sámi (Inari)", value: "smn" },
+  { title: "Sámi (Lule)", value: "smj" },
+  { title: "Sámi (Northern)", value: "se" },
+  { title: "Sámi (Southern)", value: "sma" },
+  { title: "Sámi (Skolt)", value: "sms" },
   { title: "Samoan", value: "sm" },
   { title: "Sango", value: "sg" },
   { title: "Sanskrit", value: "sa" },
@@ -318,11 +323,6 @@ export const LANGUAGES = [
   { title: "Swedish", value: "sv" },
   { title: "Swiss German", value: "gsw" },
   { title: "Syriac", value: "syc" },
-  { title: "Sámi (Inari)", value: "smn" },
-  { title: "Sámi (Lule)", value: "smj" },
-  { title: "Sámi (Northern)", value: "se" },
-  { title: "Sámi (Southern)", value: "sma" },
-  { title: "Sámi (Skolt)", value: "sms" },
   { title: "Tachelhit (Arabic)", value: "shi-arab" },
   { title: "Tachelhit (Arabic) (Mozilla)", value: "shi-Arab" },
   { title: "Tachelhit (Latin)", value: "shi-latn" },
@@ -333,6 +333,7 @@ export const LANGUAGES = [
   { title: "Tahitian", value: "ty" },
   { title: "Taita", value: "dav" },
   { title: "Tajik", value: "tg" },
+  { title: "Tamazight", value: "tzm" },
   { title: "Tamazight (Arabic)", value: "tzm-arab" },
   { title: "Tamazight (Arabic) (Mozilla)", value: "tzm-Arab" },
   { title: "Tamazight (Latin)", value: "tzm-latn" },
@@ -348,6 +349,7 @@ export const LANGUAGES = [
   { title: "Tigrinya", value: "ti" },
   { title: "Tongan", value: "to" },
   { title: "Tsonga", value: "ts" },
+  { title: "Tuareg", value: "tmh" },
   { title: "Tuareg (Arabic)", value: "tmh-arab" },
   { title: "Tuareg (Arabic) (Mozilla)", value: "tmh-Arab" },
   { title: "Tuareg (Latin)", value: "tmh-latn" },
@@ -390,7 +392,6 @@ export const LANGUAGES = [
 ];
 
 export const REGIONS = [
-  { title: "Unspecified", value: "" },
   { title: "Afghanistan", value: "AF" },
   { title: "Åland Island", value: "AX" },
   { title: "Albania", value: "AL" },
@@ -438,6 +439,7 @@ export const REGIONS = [
   { title: "Chad", value: "TD" },
   { title: "Chechnya", value: "CE" },
   { title: "Chile", value: "CL" },
+  { title: "China (Mainland) (People’s Republic of China)", value: "CN" },
   { title: "Christmas Islands", value: "CX" },
   { title: "Cocos (Keeling) Islands", value: "CC" },
   { title: "Colombia", value: "CO" },
@@ -446,12 +448,12 @@ export const REGIONS = [
   { title: "Congo (Kinshasa) (Democratic Republic of)", value: "CD" },
   { title: "Cook Islands", value: "CK" },
   { title: "Costa Rica", value: "CR" },
+  { title: "Côte d’Ivoire/Ivory Coast", value: "CI" },
   { title: "Croatia", value: "HR" },
   { title: "Cuba", value: "CU" },
   { title: "Curaçao", value: "CW" },
   { title: "Cyprus", value: "CY" },
   { title: "Czech Republic", value: "CZ" },
-  { title: "Côte d’Ivoire/Ivory Coast", value: "CI" },
   { title: "Denmark", value: "DK" },
   { title: "Djibouti", value: "DJ" },
   { title: "Dominica", value: "DM" },
@@ -471,8 +473,8 @@ export const REGIONS = [
   { title: "Finland", value: "FI" },
   { title: "France", value: "FR" },
   { title: "France (Saint Barthélemy)", value: "BL" },
-  { title: "French Guiana", value: "GF" },
-  { title: "French Polinesia", value: "PF" },
+  { title: "French Guyana", value: "GF" },
+  { title: "French Polynesia", value: "PF" },
   { title: "French Southern Territories", value: "TF" },
   { title: "Gabon", value: "GA" },
   { title: "Gambia", value: "GM" },
@@ -512,6 +514,8 @@ export const REGIONS = [
   { title: "Kazakhstan", value: "KZ" },
   { title: "Kenya", value: "KE" },
   { title: "Kiribati", value: "KI" },
+  { title: "Korea (North) (Democratic People’s Republic of)", value: "KP" },
+  { title: "Korea (South) (Republic of)", value: "KR" },
   { title: "Kosovo", value: "XK" },
   { title: "Kuwait", value: "KW" },
   { title: "Kyrgystan", value: "KG" },
@@ -528,7 +532,6 @@ export const REGIONS = [
   { title: "Macau Special Administrative Region", value: "MO" },
   { title: "Macedonia", value: "MK" },
   { title: "Madagascar", value: "MG" },
-  { title: "Mainland China (People’s Republic of China)", value: "CN" },
   { title: "Malawi", value: "MW" },
   { title: "Malaysia", value: "MY" },
   { title: "Maldives", value: "MV" },
@@ -560,7 +563,6 @@ export const REGIONS = [
   { title: "Nigeria", value: "NG" },
   { title: "Niue", value: "NU" },
   { title: "Norfolk Island", value: "NF" },
-  { title: "North Korea", value: "KP" },
   { title: "Northern Mariana Islands", value: "MP" },
   { title: "Norway", value: "NO" },
   { title: "Oman", value: "OM" },
@@ -577,10 +579,10 @@ export const REGIONS = [
   { title: "Portugal", value: "PT" },
   { title: "Puerto Rico", value: "PR" },
   { title: "Qatar", value: "QA" },
+  { title: "Réunion", value: "RE" },
   { title: "Romania", value: "RO" },
   { title: "Russia", value: "RU" },
   { title: "Rwanda", value: "RW" },
-  { title: "Réunion", value: "RE" },
   { title: "Saint Helena, Ascension and Tristan da Cunha", value: "SH" },
   { title: "Saint Kitts and Nevis", value: "KN" },
   { title: "Saint Lucia", value: "LC" },
@@ -603,7 +605,6 @@ export const REGIONS = [
   { title: "Somalia", value: "SO" },
   { title: "South Africa", value: "ZA" },
   { title: "South Georgia and the South Sandwich Islands", value: "GS" },
-  { title: "South Korea", value: "KR" },
   { title: "South Sudan", value: "SS" },
   { title: "Spain", value: "ES" },
   { title: "Sri Lanka", value: "LK" },
@@ -623,10 +624,10 @@ export const REGIONS = [
   { title: "Tonga", value: "TO" },
   { title: "Trinidad and Tobago", value: "TT" },
   { title: "Tunisia", value: "TN" },
+  { title: "Türkiye", value: "TR" },
   { title: "Turkmenistan", value: "TM" },
   { title: "Turks and Caicos Islands", value: "TC" },
   { title: "Tuvalu", value: "TV" },
-  { title: "Türkiye", value: "TR" },
   { title: "Uganda", value: "UG" },
   { title: "Ukraine", value: "UA" },
   { title: "United Arab Emirates", value: "AE" },
@@ -638,14 +639,15 @@ export const REGIONS = [
   { title: "Uzbekistan", value: "UZ" },
   { title: "Vanuatu", value: "VU" },
   { title: "Venezuela", value: "VE" },
+  { title: "Việt Nam", value: "VN" },
   { title: "Virgin Islands (British)", value: "VG" },
   { title: "Virgin Islands (U.S.)", value: "VI" },
-  { title: "Việt Nam", value: "VN" },
   { title: "Wallis and Futuna", value: "WF" },
   { title: "Western Sahara", value: "EH" },
   { title: "Yemen", value: "YE" },
   { title: "Zambia", value: "ZM" },
   { title: "Zimbabwe", value: "ZW" },
+  { title: "Unspecified", value: "" },
 ];
 
 export const getFlagEmoji = regionalCode =>
@@ -853,14 +855,46 @@ const timeZoneOffsetFull = timeZone =>
   Intl.DateTimeFormat("en", { timeStyle: "full", timeZone })
     .formatToParts(date)
     .find(({ type }) => type === "timeZoneName").value;
+const compatibilityTimeZone = [
+  { timeZone: "Africa/Asmera", regionalCode: "ER" },
+  { timeZone: "America/Buenos_Aires", regionalCode: "AR" },
+  { timeZone: "America/Catamarca", regionalCode: "AR" },
+  { timeZone: "America/Coral_Harbour", regionalCode: "CA" },
+  { timeZone: "America/Cordoba", regionalCode: "AR" },
+  { timeZone: "America/Godthab", regionalCode: "GL" },
+  { timeZone: "America/Indianapolis", regionalCode: "US" },
+  { timeZone: "America/Jujuy", regionalCode: "AR" },
+  { timeZone: "America/Louisville", regionalCode: "US" },
+  { timeZone: "America/Mendoza", regionalCode: "AR" },
+  { timeZone: "Asia/Calcutta", regionalCode: "IN" },
+  { timeZone: "Asia/Chongqing", regionalCode: "CN" },
+  { timeZone: "Asia/Harbin", regionalCode: "CN" },
+  { timeZone: "Asia/Katmandu", regionalCode: "NP" },
+  { timeZone: "Asia/Rangoon", regionalCode: "MM" },
+  { timeZone: "Asia/Saigon", regionalCode: "VN" },
+  { timeZone: "Atlantic/Faeroe", regionalCode: "FO" },
+  { timeZone: "Europe/Kiev", regionalCode: "UA" },
+  { timeZone: "Pacific/Enderbury", regionalCode: "KI" },
+  { timeZone: "Pacific/Ponape", regionalCode: "FM" },
+  { timeZone: "Pacific/Truk", regionalCode: "FM" },
+];
 const timeZoneRegion = timeZone => {
   const regionalCode = zones[timeZone]?.countries[0];
   // const region = regionalCode ? countries[regionalCode]?.name || "" : "";
   const region = regionalCode
     ? REGIONS.find(({ value }) => value === regionalCode)?.title || ""
     : "";
+
+  const timeZoneIsObsolete = compatibilityTimeZone.some(tz => tz.timeZone === timeZone);
+  const obsoleteTimeZoneRegionalCode =
+    compatibilityTimeZone.find(tz => tz.timeZone === timeZone)?.regionalCode || "";
+  const obsoleteTimeZoneRegion =
+    REGIONS.find(region => region.value === obsoleteTimeZoneRegionalCode)?.title || "";
+
   return region !== ""
     ? `${region} ${getFlagEmoji(regionalCode)}`
+    : timeZoneIsObsolete
+    ? `${obsoleteTimeZoneRegion} ${getFlagEmoji(obsoleteTimeZoneRegionalCode)}`
     : timeZone === "UTC"
     ? "Coordinated Universal Time"
     : "Unspecified Region";
@@ -873,17 +907,9 @@ export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
 }));
 
 const regionalCodeArray = zones[Intl.DateTimeFormat().resolvedOptions().timeZone]?.countries || [];
-export const localeRegionData =
-  regionalCodeArray.length !== 0
-    ? {
-        name: countries[regionalCodeArray[0]].name,
-        code: countries[regionalCodeArray[0]].abbr,
-        flag: getFlagEmoji(regionalCodeArray[0]),
-        timeZones: countries[regionalCodeArray[0]].zones,
-      }
-    : {
-        name: "No data",
-        code: "No data",
-        flag: "No data",
-        timeZones: [],
-      };
+export const localeRegionData = {
+  name: regionalCodeArray.length !== 0 ? countries[regionalCodeArray[0]].name : "No data",
+  code: regionalCodeArray.length !== 0 ? countries[regionalCodeArray[0]].abbr : "No data",
+  flag: regionalCodeArray.length !== 0 ? getFlagEmoji(regionalCodeArray[0]) : "No data",
+  timeZones: regionalCodeArray.length !== 0 ? countries[regionalCodeArray[0]].zones : [],
+};
