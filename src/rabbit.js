@@ -1,6 +1,15 @@
 // * Source : https://github.com/Rabbit-Converter/Rabbit/blob/master/other-lang/javascript/rabbit.js
 // * Simplified by ahmadfauzan96, rules are kept intact.
 
+function replaceWithRule(rule, output) {
+  for (const { from, to } of rule) {
+    const from_regex = new RegExp(from, "g");
+    output = output.replace(from_regex, to);
+  }
+
+  return output;
+}
+
 function uni2zg(output) {
   const rule = [
     {
@@ -803,15 +812,6 @@ function zg2uni(output) {
     },
   ];
   return replaceWithRule(rule, output);
-}
-
-function replaceWithRule(rule, output) {
-  for (const { from, to } of rule) {
-    const from_regex = new RegExp(from, "g");
-    output = output.replace(from_regex, to);
-  }
-
-  return output;
 }
 
 const Rabbit = { zg2uni, uni2zg };

@@ -18,15 +18,15 @@ export default function Footer() {
   return (
     <footer>
       <h2>
-        Your location data (based on locale timezone, <em>not</em> IP address)
+        Your location data (based on your locale timezone, <em>not</em> your IP address)
       </h2>
       <p>
-        Region: {name}; Code: {code}; Flag: {flag}
+        Region: {name}; Regional Code: {code}; Flag: {flag}
       </p>
       <br />
 
       <h2>Available timezone{timeZonesArePlural && "s"} in your region</h2>
-      <p>{timeZoneDoesExist ? timeZones.join(", ") : "No data"}</p>
+      <p>{timeZoneDoesExist ? timeZones.join(", ") : "No timezone data"}</p>
       <br />
 
       <p>

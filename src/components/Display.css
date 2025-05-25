@@ -13,6 +13,10 @@ h2 time {
   color: rgba(255, 255, 255, 0.87);
 }
 
+.single-line {
+  line-height: 5rem;
+}
+
 .display {
   font-family: "FiraGO", sans-serif;
 }
@@ -22,17 +26,17 @@ h2 time {
 }
 
 .display-ja {
-  font-family: "FiraGO", "BIZ UDGothic", "Klee One", sans-serif;
+  font-family: "Klee One", "BIZ UDGothic", "FiraGO", sans-serif;
 }
 
 .display-ko {
-  font-family: "FiraGO", "Nanum Gothic", sans-serif;
+  font-family: "Nanum Gothic", "FiraGO", sans-serif;
 }
 
 .display-zh,
 .display-zh-hans,
 .display-zh-hant {
-  font-family: "FiraGO", "LXGW WenKai TC", sans-serif;
+  font-family: "LXGW WenKai TC", "FiraGO", sans-serif;
 }
 
 .display-mn,

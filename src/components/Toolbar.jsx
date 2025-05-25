@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
-import { CALENDAR_OPTIONS, getFlagEmoji, LANGUAGES, REGIONS, TIMEZONES } from "../util.js";
+import { getFlagEmoji, TIMEZONES } from "../util.js";
+import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.js";
 import ToolbarRowRef from "./ToolbarRowRef.jsx";
 import ToolbarRowState from "./ToolbarRowState.jsx";
 import ToggleButton from "./ToggleButton.jsx";
@@ -9,20 +10,23 @@ import "./Toolbar.css";
 export default function Toolbar({
   calendar,
   setCalendar,
-  dateTimeIsSingleLine,
+  dateTimeIsSingleLine: isSingleLine,
   setDateTimeIsSingleLine,
 }) {
   const { locale, hour12: is12Hours, timeZone } = calendar;
   const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
     ? locale.split("-u-")
     : [locale, ""];
+
   const localeLangReg = localeNoCalendarOption.split("-");
+  // * Default Language
   const localeLang =
     localeLangReg.length <= 2
       ? localeLangReg.length === 2 && localeLangReg[1].length === 2
         ? localeLangReg[0]
         : localeLangReg.join("-")
       : localeLangReg.slice(0, localeLangReg.length - 1).join("-");
+  // * Default Region
   const localeReg =
     localeLangReg.length >= 2
       ? localeLangReg.slice(-1)[0].length === 2
@@ -30,27 +34,53 @@ export default function Toolbar({
         : ""
       : "";
 
+  const { CALENDARS, NUMBERS } = CALENDAR_OPTIONS;
+  const calendarOption = localeCalendarOption !== "" ? localeCalendarOption.split("-") : [];
+  // * Default Calendar
+  const localeCalendar = calendarOption.includes("ca")
+    ? calendarOption[2] !== "nu"
+      ? calendarOption.slice(0, -2).join("-")
+      : calendarOption.slice(0, 2).join("-")
+    : "";
+  // * Default Number
+  const localeNumber = calendarOption.includes("nu") ? calendarOption.slice(-2).join("-") : "";
+
   const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(
     TIMEZONES.find(({ value }) => value === timeZone)?.value || "Asia/Jakarta"
   );
 
   const languageRef = useRef();
   const regionRef = useRef();
-  const calendarOptionRef = useRef();
+  const calendarRef = useRef();
+  const numberRef = useRef();
   const hour12Ref = useRef();
 
   function handleSaveCalendar(e) {
     e.preventDefault();
     setCalendar(prevCalendar => {
       const newCalendar = { ...prevCalendar };
+      // TODO : Set new language and region
       const newLanguage = languageRef.current.value;
       const newRegion =
         regionRef.current && regionRef.current.value !== "" ? "-" + regionRef.current.value : "";
+
+      // TODO : Set new calendar and number
+      const calendarRefValue =
+        calendarRef.current && calendarRef.current.value !== "" ? calendarRef.current.value : "";
+      const numberRefValue =
+        numberRef.current && numberRef.current.value !== "" ? numberRef.current.value : "";
+
+      // TODO : Set new calendar option based on set calendar and number
       const newCalendarOption =
-        calendarOptionRef.current && calendarOptionRef.current.value !== ""
-          ? "-u-" + calendarOptionRef.current.value
+        calendarRefValue !== "" && numberRefValue !== ""
+          ? "-u-ca-" + calendarRefValue + "-nu-" + numberRefValue
+          : calendarRefValue === "" && numberRefValue !== ""
+          ? "-u-nu-" + numberRefValue
+          : calendarRefValue !== "" && numberRefValue === ""
+          ? "-u-ca-" + calendarRefValue
           : "";
 
+      // TODO : Set new locale
       newCalendar.locale = newLanguage + newRegion + newCalendarOption;
       newCalendar.hour12 = hour12Ref.current.checked;
       newCalendar.timeZone = toBeSelectedTimeZone;
@@ -84,13 +114,21 @@ export default function Toolbar({
         </ToolbarRowRef>
 
         <ToolbarRowRef
-          ref={calendarOptionRef}
-          title="Calendar Option"
-          label="calendar-option"
-          defaultValue={localeCalendarOption}
+          ref={calendarRef}
+          title="Calendar"
+          label="calendar"
+          defaultValue={localeCalendar}
         >
-          {CALENDAR_OPTIONS.map(({ title, value }) => (
-            <option key={title} value={value}>
+          {CALENDARS.map(({ title, value }) => (
+            <option key={value} value={value}>
+              {title}
+            </option>
+          ))}
+        </ToolbarRowRef>
+
+        <ToolbarRowRef ref={numberRef} title="Number" label="number" defaultValue={localeNumber}>
+          {NUMBERS.map(({ title, value }) => (
+            <option key={value} value={value}>
               {title}
             </option>
           ))}
@@ -129,8 +167,8 @@ export default function Toolbar({
         <div className="col-25" />
         <div className="col-75">
           <button onClick={() => setDateTimeIsSingleLine(isSingleLine => !isSingleLine)}>
-            View in {dateTimeIsSingleLine ? "Double" : "a Single"} Line
-            {dateTimeIsSingleLine && "s"}
+            View in {isSingleLine ? "Double" : "a Single"} Line
+            {isSingleLine && "s"}
           </button>
         </div>
       </div>

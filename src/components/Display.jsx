@@ -5,10 +5,8 @@ import Rabbit from "../rabbit.js";
 import "./Display.css";
 
 export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine }) {
+  // * Single Line DateTime
   const [dateTime, setDateTime] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-
   useEffect(() => {
     const interval = setInterval(() => {
       setDateTime(
@@ -24,6 +22,8 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     return () => clearInterval(interval);
   }, [locale, hour12, timeZone]);
 
+  // * Double Line for Separate Date and Time
+  const [date, setDate] = useState("");
   useEffect(() => {
     const interval = setInterval(() => {
       setDate(
@@ -40,6 +40,7 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     return () => clearInterval(interval);
   }, [locale, timeZone]);
 
+  const [time, setTime] = useState("");
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(
@@ -57,36 +58,27 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
   }, [locale, hour12, timeZone]);
 
   // * convert Myanmar Unicode to Myanmar Zawgyi if locale="my-qaag-*" or locale="my-Qaag-*"
-  const isZawgyi = locale.startsWith("my-qaag") || locale.startsWith("my-Qaag");
-  const dateTimeUni2Zg4Zg = isZawgyi ? Rabbit.uni2zg(dateTime) : dateTime;
-  const dateUni2Zg4Zg = isZawgyi ? Rabbit.uni2zg(date) : date;
-  const timeUni2Zg4Zg = isZawgyi ? Rabbit.uni2zg(time) : time;
+  const localeIsZawgyi = locale.startsWith("my-qaag") || locale.startsWith("my-Qaag");
+  const convert2Zawgyi = data => (localeIsZawgyi ? Rabbit.uni2zg(data) : data);
+  const dateTimeUni2Zg4Zg = convert2Zawgyi(dateTime);
+  const dateUni2Zg4Zg = convert2Zawgyi(date);
+  const timeUni2Zg4Zg = convert2Zawgyi(time);
 
-  const cssLocaleClass = locale.startsWith("hy")
+  const cssClass = locale.startsWith("hy")
     ? "display-hy"
     : locale.startsWith("ja")
     ? "display-ja"
     : locale.startsWith("ko")
     ? "display-ko"
-    : locale.startsWith("zh-hans") ||
-      locale.startsWith("yue-hans") ||
-      locale.startsWith("nan-hans") ||
-      locale.startsWith("zh-Hans") ||
-      locale.startsWith("yue-Hans") ||
-      locale.startsWith("nan-Hans")
+    : locale.includes("hans") || locale.includes("Hans")
     ? "display-zh-hans"
-    : locale.startsWith("zh-hant") ||
-      locale.startsWith("yue-hant") ||
-      locale.startsWith("nan-hant") ||
-      locale.startsWith("zh-Hant") ||
-      locale.startsWith("yue-Hant") ||
-      locale.startsWith("nan-Hant")
+    : locale.includes("hant") || locale.includes("Hant")
     ? "display-zh-hant"
     : locale.startsWith("zh") || locale.startsWith("yue") || locale.startsWith("nan")
     ? "display-zh"
     : locale.startsWith("mn-mong") || locale.startsWith("mn-Mong")
     ? "display-mn-mong"
-    : locale.startsWith("mn")
+    : locale.startsWith("mn") && locale.split("")[2] === "-"
     ? "display-mn"
     : locale.startsWith("bn")
     ? "display-bn"
@@ -110,6 +102,8 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     ? "display-or"
     : locale.startsWith("sat")
     ? "display-sat"
+    : locale.includes("olck") || locale.includes("Olck")
+    ? "display-olck"
     : locale.startsWith("si")
     ? "display-si"
     : locale.startsWith("bo")
@@ -120,21 +114,20 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
     ? "display-lo"
     : locale.startsWith("km")
     ? "display-km"
-    : locale.startsWith("my")
+    : locale.startsWith("my") || locale.includes("mymr") || locale.includes("Mymr")
     ? "display-my"
     : locale.startsWith("am")
     ? "display-am"
     : locale.startsWith("ti")
     ? "display-ti"
-    : "";
+    : "display";
   // * Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, and Georgian scripts
   // * are already covered by default "display" class
-  const cssClass = cssLocaleClass !== "" ? cssLocaleClass : "display";
 
   return (
     <section className={cssClass} lang={locale} dir={direction(locale)}>
       {dateTimeIsSingleLine ? (
-        <h1>
+        <h1 className="single-line">
           <time dateTime={dateTimeUni2Zg4Zg}>{dateTimeUni2Zg4Zg}</time>
         </h1>
       ) : (
