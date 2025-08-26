@@ -35,7 +35,6 @@ const right2LeftLanguages = [
   "he" /* 'עברית', Hebrew */,
   "jye" /* 'תימנית-יהודית', Judeo-Yemeni Arabic */,
   "ks" /* 'کٲشُر', Kashmiri */,
-  "ku" /* 'Kurdî / كوردی', Kurdish */,
   "mey" /* 'حسانية', Hassaniya Arabic */,
   "mid" /* 'ࡋࡉࡔࡀࡍࡀ ࡖ ࡌࡀࡍࡃࡀࡉࡉࡀ', Modern Mandaic */,
   "myz" /* 'ࡋࡉࡔࡀࡍࡀ ࡖ ࡌࡀࡍࡃࡀࡉࡉࡀ', Classical Mandaic */,
