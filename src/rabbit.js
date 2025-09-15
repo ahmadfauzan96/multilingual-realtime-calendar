@@ -1,16 +1,16 @@
 // * Source : https://github.com/Rabbit-Converter/Rabbit/blob/master/other-lang/javascript/rabbit.js
 // * Simplified by ahmadfauzan96, rules are kept intact.
 
-function replaceWithRule(rule, output) {
+function replaceWithRule(rule, input) {
+  let output = input;
   for (const { from, to } of rule) {
     const from_regex = new RegExp(from, "g");
     output = output.replace(from_regex, to);
   }
-
   return output;
 }
 
-function uni2zg(output) {
+function uni2zg(input) {
   const rule = [
     {
       from: "\u1004\u103a\u1039",
@@ -333,10 +333,10 @@ function uni2zg(output) {
       to: "\u101b",
     },
   ];
-  return replaceWithRule(rule, output);
+  return replaceWithRule(rule, input);
 }
 
-function zg2uni(output) {
+function zg2uni(input) {
   const rule = [
     {
       from: "([\u102D\u102E\u103D\u102F\u1037\u1095])\\1+",
@@ -811,9 +811,7 @@ function zg2uni(output) {
       to: "\u101b",
     },
   ];
-  return replaceWithRule(rule, output);
+  return replaceWithRule(rule, input);
 }
 
-const Rabbit = { zg2uni, uni2zg };
-
-export default Rabbit;
+export { zg2uni, uni2zg };

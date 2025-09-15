@@ -1,4 +1,4 @@
-export const compatibilityTimeZone = [
+export const compatibilityTimeZones = [
   { oldTimeZone: "Africa/Asmera", newTimeZone: "Africa/Asmara", regionalCode: "ER" },
   { oldTimeZone: "Africa/Timbuktu", newTimeZone: "Africa/Bamako", regionalCode: "ML" },
   {
@@ -86,6 +86,7 @@ export const compatibilityTimeZone = [
   { oldTimeZone: "Brazil/DeNoronha", newTimeZone: "America/Noronha", regionalCode: "BR" },
   { oldTimeZone: "Brazil/East", newTimeZone: "America/Sao_Paulo", regionalCode: "BR" },
   { oldTimeZone: "Brazil/West", newTimeZone: "America/Manaus", regionalCode: "BR" },
+  { oldTimeZone: "BST", newTimeZone: "Europe/London", regionalCode: "GB" },
   { oldTimeZone: "Canada/Atlantic", newTimeZone: "America/Halifax", regionalCode: "CA" },
   { oldTimeZone: "Canada/Central", newTimeZone: "America/Winnipeg", regionalCode: "CA" },
   { oldTimeZone: "Canada/Eastern", newTimeZone: "America/Toronto", regionalCode: "CA" },
@@ -100,6 +101,7 @@ export const compatibilityTimeZone = [
   { oldTimeZone: "Chile/EasterIsland", newTimeZone: "Pacific/Easter", regionalCode: "CL" },
   { oldTimeZone: "CST6CDT", newTimeZone: "America/Chicago", regionalCode: "US" },
   { oldTimeZone: "Cuba", newTimeZone: "America/Havana", regionalCode: "CU" },
+  { oldTimeZone: "DFT", newTimeZone: "Europe/Brussels", regionalCode: "BE" },
   { oldTimeZone: "EET", newTimeZone: "Europe/Athens", regionalCode: "GR" },
   { oldTimeZone: "Egypt", newTimeZone: "Africa/Cairo", regionalCode: "EG" },
   { oldTimeZone: "Eire", newTimeZone: "Europe/Dublin", regionalCode: "IE" },
@@ -108,18 +110,21 @@ export const compatibilityTimeZone = [
   { oldTimeZone: "Europe/Belfast", newTimeZone: "Europe/London", regionalCode: "GB" },
   { oldTimeZone: "Europe/Kiev", newTimeZone: "Europe/Kyiv", regionalCode: "UA" },
   { oldTimeZone: "Europe/Nicosia", newTimeZone: "Asia/Nicosia", regionalCode: "CY" },
-  { oldTimeZone: "Europe/Tiraspol", newTimeZone: "Asia/Chisinau", regionalCode: "MD" },
+  { oldTimeZone: "Europe/Tiraspol", newTimeZone: "Europe/Chisinau", regionalCode: "MD" },
   { oldTimeZone: "Europe/Uzhgorod", newTimeZone: "Europe/Kyiv", regionalCode: "UA" },
   { oldTimeZone: "Europe/Zaporozhye", newTimeZone: "Europe/Kyiv", regionalCode: "UA" },
   { oldTimeZone: "GB/Eire", newTimeZone: "Europe/London", regionalCode: "GB" },
   { oldTimeZone: "Hongkong", newTimeZone: "Asia/Hong_Kong", regionalCode: "HK" },
+  { oldTimeZone: "HST", newTimeZone: "Pacific/Honolulu", regionalCode: "US" },
   { oldTimeZone: "Iceland", newTimeZone: "Atlantic/Reykjavik", regionalCode: "IS" },
   { oldTimeZone: "Iran", newTimeZone: "Asia/Tehran", regionalCode: "IR" },
   { oldTimeZone: "Israel", newTimeZone: "Asia/Jerusalem", regionalCode: "IL" },
+  { oldTimeZone: "IST", newTimeZone: "Europe/Dublin", regionalCode: "IE" },
   { oldTimeZone: "Jamaica", newTimeZone: "America/Jamaica", regionalCode: "JM" },
   { oldTimeZone: "Japan", newTimeZone: "Asia/Tokyo", regionalCode: "JP" },
   { oldTimeZone: "Kwajalein", newTimeZone: "Pacific/Kwajalein", regionalCode: "MH" },
   { oldTimeZone: "Libya", newTimeZone: "Africa/Tripoli", regionalCode: "LY" },
+  { oldTimeZone: "MET", newTimeZone: "Europe/Brussels", regionalCode: "BE" },
   { oldTimeZone: "Mexico/BajaNorte", newTimeZone: "America/Tijuana", regionalCode: "MX" },
   { oldTimeZone: "Mexico/BajaSur", newTimeZone: "America/Mazatlan", regionalCode: "MX" },
   { oldTimeZone: "Mexico/General", newTimeZone: "America/Mexico_City", regionalCode: "MX" },
@@ -159,7 +164,31 @@ export const compatibilityTimeZone = [
   { oldTimeZone: "US/Pacific", newTimeZone: "America/Los_Angeles", regionalCode: "US" },
   { oldTimeZone: "US/Pacific-New", newTimeZone: "America/Los_Angeles", regionalCode: "US" },
   { oldTimeZone: "US/Samoa", newTimeZone: "Pacific/Pago_Pago", regionalCode: "AS" },
-  { oldTimeZone: "WSU", newTimeZone: "Europe/Moscow", regionalCode: "RU" },
+  { oldTimeZone: "WAT", newTimeZone: "Africa/Kinshasa", regionalCode: "CD" },
+  { oldTimeZone: "W-SU", newTimeZone: "Europe/Moscow", regionalCode: "RU" },
   { oldTimeZone: "WET", newTimeZone: "Europe/Lisbon", regionalCode: "PT" },
-  { oldTimeZone: "Zulu", newTimeZone: "UTC", regionalCode: "CI" },
+  { oldTimeZone: "WEST", newTimeZone: "Europe/Brussels", regionalCode: "BE" },
+  { oldTimeZone: "WEDT", newTimeZone: "Europe/Brussels", regionalCode: "BE" },
+];
+
+export const universalTimeZones = [
+  "UTC",
+  "Etc/UTC",
+  "Etc/UCT",
+  "Etc/Universal",
+  "Etc/Zulu",
+  "Zulu",
+];
+
+export const greenwichMeridianTimeZones = [
+  "GMT",
+  "GMT+0",
+  "GMT-0",
+  "GMT0",
+  "Greenwich",
+  "Etc/GMT",
+  "Etc/GMT+0",
+  "Etc/GMT0",
+  "Etc/Greenwich",
+  "Factory",
 ];

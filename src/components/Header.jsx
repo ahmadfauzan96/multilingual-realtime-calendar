@@ -8,7 +8,10 @@ export default function Header() {
         Maybe yours are (already) covered. So, give it a try 😉
       </p>
       <p>
-        <em>Note : Different web browsers may yield different results.</em>
+        <em>
+          Note : Different web browsers may yield different results, depending on which JavaScript
+          engine is used by the browser.
+        </em>
       </p>
     </header>
   );

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { forwardRef } from "react";
+import "./ToggleButton.css";
 
 const ToggleButton = forwardRef(({ label, defaultChecked, checkedTitle, uncheckedTitle }, ref) => {
   return (

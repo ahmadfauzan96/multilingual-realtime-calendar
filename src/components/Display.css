@@ -8,8 +8,8 @@ h1 time {
   color: rgba(255, 255, 255, 0.87);
 }
 
-h2 time {
-  font-size: 2rem;
+h3 {
+  font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.87);
 }
 
@@ -17,94 +17,124 @@ h2 time {
   line-height: 5rem;
 }
 
+/* Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, Georgian */
 .display {
   font-family: "FiraGO", sans-serif;
 }
 
+/* Armenian */
 .display-hy {
   font-family: "FiraGO", "Noto Sans Armenian", sans-serif;
 }
 
+/* Japanese (Hiragana, Katakana, Kanji) */
 .display-ja {
   font-family: "Klee One", "BIZ UDGothic", "FiraGO", sans-serif;
 }
 
+/* Hangul */
 .display-ko {
   font-family: "Nanum Gothic", "FiraGO", sans-serif;
 }
 
+/* Han Chinese (Traditional, but Simplified is also supported) */
 .display-zh,
 .display-zh-hans,
 .display-zh-hant {
   font-family: "LXGW WenKai TC", "FiraGO", sans-serif;
 }
 
+/* Mongolian */
 .display-mn,
 .display-mn-mong {
   font-family: "FiraGO", "Noto Sans Mongolian", sans-serif;
 }
 
+/* Bengali */
 .display-bn,
 .display-as {
-  font-family: "FiraGO", "Hind Siliguri", sans-serif;
+  font-family: "Hind Siliguri", sans-serif;
 }
 
+/* Gujarati  */
 .display-gu {
-  font-family: "FiraGO", "Mukta Vaani", sans-serif;
+  font-family: "Mukta Vaani", sans-serif;
 }
 
+/* Gurmukhi  */
 .display-pa,
 .display-pa-guru {
-  font-family: "FiraGO", "Mukta Mahee", sans-serif;
+  font-family: "Mukta Mahee", sans-serif;
 }
 
+/* Tamil  */
 .display-ta {
-  font-family: "FiraGO", "Mukta Malar", sans-serif;
+  font-family: "Mukta Malar", sans-serif;
 }
 
+/* Telugu */
 .display-te {
-  font-family: "FiraGO", "Ramabhadra", sans-serif;
+  font-family: "Baloo Tammudu 2", sans-serif;
 }
 
+/* Kannada */
 .display-kn {
-  font-family: "FiraGO", "Baloo Tamma 2", sans-serif;
+  font-family: "Baloo Tamma 2", sans-serif;
 }
 
+/* Malayalam */
 .display-ml {
-  font-family: "FiraGO", "Manjari", "Meera", sans-serif;
+  font-family: "Manjari", "Meera", sans-serif;
 }
 
+/* Oriya */
 .display-or {
-  font-family: "FiraGO", "Baloo Bhaina 2", sans-serif;
+  font-family: "Baloo Bhaina 2", sans-serif;
 }
 
+/* Meetei Mayek */
+.display-mni {
+  font-family: "Noto Sans Meetei Mayek", "Hind Siliguri", sans-serif;
+}
+
+/* Ol Chiki */
 .display-sat,
 .display-olck {
   font-family: "FiraGO", "Noto Sans Ol Chiki", sans-serif;
 }
 
+/* Sinhala */
 .display-si {
-  font-family: "FiraGO", "Noto Sans Sinhala", sans-serif;
+  font-family: "Noto Sans Sinhala", sans-serif;
 }
 
+/* Tibetan, Dzongkha */
 .display-bo,
 .display-dz {
-  font-family: "FiraGO", "Jomolhari", sans-serif;
+  font-family: "MiSans Tibetan", "FiraGO", "Jomolhari", sans-serif;
 }
 
+/* Lao */
 .display-lo {
   font-family: "FiraGO", "Noto Sans Lao", sans-serif;
 }
 
+/* Khmer */
 .display-km {
   font-family: "FiraGO", "Noto Sans Khmer", sans-serif;
 }
 
+/* Myanmar */
 .display-my {
-  font-family: "FiraGO", "Padauk", "Noto Sans Myanmar", sans-serif;
+  font-family: "Padauk", "Noto Sans Myanmar", sans-serif;
 }
 
+/* Amharic, Tigrinya */
 .display-am,
 .display-ti {
   font-family: "FiraGO", "Noto Sans Ethiopic", sans-serif;
+}
+
+.locale {
+  text-decoration: underline double;
 }

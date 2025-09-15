@@ -227,12 +227,16 @@ export const LANGUAGES = [
   { title: "Komi", value: "kv" },
   { title: "Kongo", value: "kg" },
   { title: "Konkani", value: "kok" },
+  { title: "Konkani (Devanagari)", value: "kok-deva" },
+  { title: "Konkani (Devanagari) (BCP 47)", value: "kok-Deva" },
+  { title: "Konkani (Kannada)", value: "kok-knda" },
+  { title: "Konkani (Kannada) (BCP 47)", value: "kok-Knda" },
   { title: "Korean", value: "ko" },
   { title: "Koyra Chiini", value: "khq" },
   { title: "Koyraboro Senni", value: "ses" },
   { title: "Kuanyama/Kwanyama", value: "kj" },
   { title: "Kurdish", value: "ku" },
-  { title: "Kurdish (Central/Sorani)", value: "ckb" },
+  { title: "Kurdish (Central)", value: "ckb" },
   { title: "Kurdish (Hawar)", value: "ku-latn" },
   { title: "Kurdish (Hawar) (BCP 47)", value: "ku-Latn" },
   { title: "Kurdish (Kurmanji)", value: "ku-cyrl" },
@@ -264,6 +268,12 @@ export const LANGUAGES = [
   { title: "Maltese", value: "mt" },
   { title: "Mandaic (Classical)", value: "myz" },
   { title: "Mandaic (Modern)", value: "mid" },
+  { title: "Manipuri", value: "mni" },
+  { title: "Manipuri (Bengali)", value: "mni-beng" },
+  { title: "Manipuri (Bengali) (BCP 47)", value: "mni-Beng" },
+  { title: "Manipuri (Meitei Mayek)", value: "mni-mtei" },
+  { title: "Manipuri (Meitei Mayek) (BCP 47)", value: "mni-Mtei" },
+  { title: "Manipuri (Old)", value: "omp" },
   { title: "Manx Gaelic", value: "gv" },
   { title: "Māori", value: "mi" },
   { title: "Marathi", value: "mr" },
@@ -413,7 +423,7 @@ export const LANGUAGES = [
   { title: "Tibetan", value: "bo" },
   { title: "Tigrinya", value: "ti" },
   { title: "Tongan", value: "to" },
-  { title: "Tsangla", value: "tsi" },
+  { title: "Tshangla", value: "tsj" },
   { title: "Tsonga", value: "ts" },
   { title: "Tuareg", value: "tmh" },
   { title: "Tuareg (Arabic)", value: "tmh-arab" },
@@ -457,6 +467,11 @@ export const LANGUAGES = [
   { title: "Zangskari", value: "zau" },
   { title: "Zulu", value: "zu" },
 ];
+
+export const LANGUAGE_MAP = LANGUAGES.reduce(
+  (acc, { title, value }) => ((acc[value] = title), acc),
+  {}
+);
 
 export const REGIONS = [
   { title: "Unspecified", value: "" },
@@ -512,8 +527,8 @@ export const REGIONS = [
   { title: "Cocos (Keeling) Islands", value: "CC" },
   { title: "Colombia", value: "CO" },
   { title: "Comoros", value: "KM" },
-  { title: "Congo (Brazzaville) (Republic of)", value: "CG" },
-  { title: "Congo (Kinshasa) (Democratic Republic of)", value: "CD" },
+  { title: "Congo (Brazzaville, Republic of)", value: "CG" },
+  { title: "Congo (Kinshasa and Lubumbashi, Democratic Republic of)", value: "CD" },
   { title: "Cook Islands", value: "CK" },
   { title: "Costa Rica", value: "CR" },
   { title: "Côte d’Ivoire/Ivory Coast", value: "CI" },
@@ -582,8 +597,8 @@ export const REGIONS = [
   { title: "Kazakhstan", value: "KZ" },
   { title: "Kenya", value: "KE" },
   { title: "Kiribati", value: "KI" },
-  { title: "Korea (North) (Democratic People’s Republic of)", value: "KP" },
-  { title: "Korea (South) (Republic of)", value: "KR" },
+  { title: "Korea (North, Democratic People’s Republic of)", value: "KP" },
+  { title: "Korea (South, Republic of)", value: "KR" },
   { title: "Kosovo", value: "XK" },
   { title: "Kuwait", value: "KW" },
   { title: "Kyrgystan", value: "KG" },
@@ -718,6 +733,11 @@ export const REGIONS = [
   { title: "Zimbabwe", value: "ZW" },
 ];
 
+export const REGION_MAP = REGIONS.reduce(
+  (acc, { title, value }) => ((acc[value] = title), acc),
+  {}
+);
+
 export const CALENDAR_OPTIONS = {
   CALENDARS: [
     { title: "None", value: "" },
@@ -851,3 +871,13 @@ export const CALENDAR_OPTIONS = {
     { title: "Wancho Numbers", value: "wcho" },
   ],
 };
+
+export const CALENDAR_MAP = CALENDAR_OPTIONS.CALENDARS.reduce(
+  (acc, { title, value }) => ((acc[value] = title), acc),
+  {}
+);
+
+export const NUMBER_MAP = CALENDAR_OPTIONS.NUMBERS.reduce(
+  (acc, { title, value }) => ((acc[value] = title), acc),
+  {}
+);

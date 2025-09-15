@@ -172,6 +172,12 @@ const left2RightScripts = [
   "Knda",
   "mlym",
   "Mlym",
+  "mtei",
+  "Mtei",
+  "olck",
+  "Olck",
+  "onao",
+  "Onao",
   "orya",
   "Orya",
   "sinh",
@@ -198,5 +204,9 @@ const isLeft2RightScript = lang => left2RightScripts.some(script => lang.split("
 // TODO: Getting direction automatically according to language used
 const getLanguageDirection = lang => (isRight2LeftLanguage(lang) ? "rtl" : "ltr");
 // TODO: Getting proper direction according to locale used
-export const getLocaleDirection = lang =>
-  isLeft2RightScript(lang) ? "ltr" : isRight2LeftScript(lang) ? "rtl" : getLanguageDirection(lang);
+export const getLocaleDirection = locale =>
+  isLeft2RightScript(locale)
+    ? "ltr"
+    : isRight2LeftScript(locale)
+    ? "rtl"
+    : getLanguageDirection(locale);

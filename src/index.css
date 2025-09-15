@@ -1,3 +1,4 @@
+/* * Embedded Fonts */
 /* Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, Georgian */
 @import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 /* Armenian */
@@ -17,14 +18,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@200;300;400;500;600;700;800&family=Mukta+Malar:wght@200;300;400;500;600;700;800&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap");
 /* Telugu */
 @import url("https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400..800&display=swap");
 /* Kannada */
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400..800&display=swap");
 /* Malayalam */
 /* @import url("https://smc.org.in/fonts/manjari.css"); */
 @import url("https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap");
-/* @import url("https://smc.org.in/fonts/meera.css"); */
+@import url("https://smc.org.in/fonts/meera.css");
 /* Oriya */
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&display=swap");
+/* Meetei Mayek */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Meetei+Mayek:wght@100..900&display=swap");
 /* Ol Chiki */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Ol+Chiki:wght@400..700&display=swap");
 /* Sinhala */
@@ -40,6 +44,69 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@100;200;300;400;500;600;700;800;900&display=swap");
 /* Amharic, Tigrinya */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wdth,wght@62.5..100,100..900&display=swap");
+
+/* * Web Fonts */
+/* ? WOFF2 for modern browsers, WOFF for older browsers */
+/* Tibetan, Dzongkha (MiSans Tibetan) */
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Thin.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-ExtraLight.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Light.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Normal.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Normal.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Medium.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Regular.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Semibold.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Semibold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Demibold.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Demibold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Bold.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src: url("../webfonts/woff2/MiSansTibetan-Heavy.woff2") format("woff2"),
+    url("../webfonts/woff/MiSansTibetan-Heavy.woff") format("woff");
+  font-weight: 900;
+}
 
 * {
   box-sizing: border-box;
@@ -62,7 +129,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  /* Background settings from https://cssgradient.io/ */
+  /* ? Background settings from https://cssgradient.io/ */
   background: rgb(2, 0, 36);
   background: -moz-linear-gradient(
     180deg,

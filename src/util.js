@@ -1,11 +1,15 @@
 import { getTimezoneOffset } from "date-fns-tz";
 import { countries, zones } from "moment-timezone/data/meta/latest.json";
-import { compatibilityTimeZone } from "./compatibility-timezone";
-import { getLocaleDirection } from "./languages-direction";
-import { REGIONS } from "./data";
+import { REGION_MAP } from "./data";
+import {
+  compatibilityTimeZones,
+  greenwichMeridianTimeZones,
+  universalTimeZones,
+} from "./timezones";
 
+// ? Flag Emoji
 export const getFlagEmoji = regionalCode =>
-  typeof regionalCode === "string"
+  typeof regionalCode === "string" && regionalCode.length === 2
     ? regionalCode
         .toUpperCase()
         .split("")
@@ -14,11 +18,18 @@ export const getFlagEmoji = regionalCode =>
         // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
         .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
         .join("")
-    : "(No flag for this region.)";
+    : typeof regionalCode === "string" && regionalCode === ""
+    ? ""
+    : typeof regionalCode === "number"
+    ? "(No flag for this region.)"
+    : undefined;
 
-const date = new Date();
-const timeZoneOffsetUTC = timeZone => {
-  const tzOffset = getTimezoneOffset(timeZone, date);
+// ? Timezones
+const firstTimeExecutedDateTime = new Date();
+
+function tzOffsetUTC(timeZone) {
+  // * timezone offset in milliseconds
+  const tzOffset = getTimezoneOffset(timeZone, firstTimeExecutedDateTime);
 
   // * Hour
   const tzHourResult = tzOffset / (60 * 60 * 1000);
@@ -33,78 +44,128 @@ const timeZoneOffsetUTC = timeZone => {
   return (
     "UTC" +
     (tzHour !== 0
-      ? (tzHour > 0 ? "+" : "") + tzHour + ":" + formattedTzMinute
+      ? (tzHour > 0 ? "+" : "") + tzHour + (tzMinute !== 0 ? ":" + formattedTzMinute : "")
       : tzMinute !== 0
       ? (tzMinute > 0 ? "+" : "-") + "0:" + formattedTzMinute
       : "")
   );
-};
-const timeZoneOffsetLong = timeZone =>
+}
+
+const tzNameLong = timeZone =>
   Intl.DateTimeFormat("en", { timeStyle: "long", timeZone })
-    .formatToParts(date)
+    .formatToParts(firstTimeExecutedDateTime)
     .find(({ type }) => type === "timeZoneName").value;
-const timeZoneOffsetFull = timeZone =>
+
+const tzNameFull = timeZone =>
   Intl.DateTimeFormat("en", { timeStyle: "full", timeZone })
-    .formatToParts(date)
+    .formatToParts(firstTimeExecutedDateTime)
     .find(({ type }) => type === "timeZoneName").value;
-const timeZoneRegion = timeZone => {
-  const activeTimeZoneRegionalCode = zones[timeZone]?.countries[0] || "";
+
+function tzRegion(timeZone) {
+  const activeTimeZoneRegionalCode = zones[timeZone]?.countries[0];
+
+  // * Original code
   // const activeTimeZoneRegion =
   //   activeTimeZoneRegionalCode !== "" ? countries[activeTimeZoneRegionalCode]?.name || "" : "";
-  const activeTimeZoneRegion =
-    activeTimeZoneRegionalCode !== ""
-      ? REGIONS.find(({ value }) => value === activeTimeZoneRegionalCode)?.title || ""
-      : "";
+  // const activeTimeZoneRegion =
+  //   activeTimeZoneRegionalCode !== ""
+  //     ? REGIONS.find(({ value }) => value === activeTimeZoneRegionalCode)?.title || ""
+  //     : "";
+  // * Improved performance by creating a map object (helped by IBM Granite AI)
+  // const activeTimeZoneRegion = countries[activeTimeZoneRegionalCode]?.name || "";
+  const activeTimeZoneRegion = REGION_MAP[activeTimeZoneRegionalCode];
 
-  const timeZoneIsDeprecated = compatibilityTimeZone.some(tz => tz.oldTimeZone === timeZone);
+  const timeZoneIsDeprecated = compatibilityTimeZones.some(tz => tz.oldTimeZone === timeZone);
+  const { newTimeZone: deprecatedTZToActiveTZ, regionalCode: deprecatedTimeZoneRegionalCode } =
+    compatibilityTimeZones.find(({ oldTimeZone }) => oldTimeZone === timeZone) || {
+      oldTimeZone: "unknown timezone",
+      newTimeZone: "unknown timezone",
+      regionalCode: undefined,
+    };
 
-  const deprecatedTimeZoneRegionalCode =
-    compatibilityTimeZone.find(tz => tz.oldTimeZone === timeZone)?.regionalCode || "";
+  // * Original code
   // const deprecatedTimeZoneRegion =
   //   deprecatedTimeZoneRegionalCode !== ""
   //     ? countries[deprecatedTimeZoneRegionalCode]?.name || ""
   //     : "";
-  const deprecatedTimeZoneRegion =
-    REGIONS.find(({ value }) => value === deprecatedTimeZoneRegionalCode)?.title || "";
+  // const deprecatedTimeZoneRegion =
+  //   REGIONS.find(({ value }) => value === deprecatedTimeZoneRegionalCode)?.title || "";
+  // * Improved performance by creating a map object (helped by IBM Granite AI)
+  // const deprecatedTimeZoneRegion = countries[deprecatedTimeZoneRegionalCode]?.name || "";
+  const deprecatedTimeZoneRegion = REGION_MAP[deprecatedTimeZoneRegionalCode];
 
-  const deprecatedTimeZoneToActiveTimeZone =
-    compatibilityTimeZone.find(tz => tz.oldTimeZone === timeZone)?.newTimeZone ||
-    "unknown timezone";
+  // * Improved performance by reducing the number of return statements (helped by IBM Granite AI)
+  let region;
+  if (activeTimeZoneRegion) {
+    region = `${activeTimeZoneRegion} ${getFlagEmoji(activeTimeZoneRegionalCode)}`;
+  } else if (timeZoneIsDeprecated && deprecatedTimeZoneRegion) {
+    region = `${deprecatedTimeZoneRegion} ${getFlagEmoji(
+      deprecatedTimeZoneRegionalCode
+    )} (link to ${deprecatedTZToActiveTZ})`;
+  } else {
+    region = universalTimeZones.includes(timeZone)
+      ? "Coordinated Universal Time"
+      : greenwichMeridianTimeZones.includes(timeZone)
+      ? "Greenwich Meridian Time"
+      : "Unspecified Region";
+  }
+  return region;
+}
 
-  return activeTimeZoneRegion !== ""
-    ? activeTimeZoneRegion + " " + getFlagEmoji(activeTimeZoneRegionalCode)
-    : timeZoneIsDeprecated
-    ? `${deprecatedTimeZoneRegion} ${getFlagEmoji(
-        deprecatedTimeZoneRegionalCode
-      )} (link to ${deprecatedTimeZoneToActiveTimeZone})`
-    : timeZone === "UTC" || timeZone === "Etc/UTC"
-    ? "Coordinated Universal Time"
-    : timeZone === "GMT" ||
-      timeZone === "GMT+0" ||
-      timeZone === "GMT-0" ||
-      timeZone === "GMT0" ||
-      timeZone === "Greenwich" ||
-      timeZone === "Etc/GMT" ||
-      timeZone === "Etc/GMT+0" ||
-      timeZone === "Etc/GMT0" ||
-      timeZone === "Etc/Greenwich"
-    ? "Greenwich Mean Time"
-    : "Unspecified Region";
-};
 export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
-  title:
-    `${tz} (${timeZoneOffsetUTC(tz)}|${timeZoneOffsetLong(tz)}|${timeZoneOffsetFull(tz)}), ` +
-    timeZoneRegion(tz),
+  title: `${tz} (${tzOffsetUTC(tz)} | ${tzNameLong(tz)} | ${tzNameFull(tz)}), ` + tzRegion(tz),
   value: tz,
 }));
 
-export const direction = lang => getLocaleDirection(lang);
+// ? Locale Region Data
+export function localeData(locale) {
+  const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
+    ? locale.split("-u-")
+    : [locale, ""];
 
-const regionalCodeArray = zones[Intl.DateTimeFormat().resolvedOptions().timeZone]?.countries || [];
-const regionalCodeDoesExist = regionalCodeArray.length > 0;
+  const localeLangScriptReg = localeNoCalendarOption.split("-");
+  const localeLang = localeLangScriptReg[0];
+  const localeScript =
+    localeLangScriptReg[1] && localeLangScriptReg[1].length === 4 ? localeLangScriptReg[1] : "";
+  const localeLangScript = localeLang + (localeScript !== "" ? "-" + localeScript : "");
+  const localeReg =
+    localeLangScriptReg[1] && localeLangScriptReg[1].length === 2
+      ? localeLangScriptReg[1]
+      : localeLangScriptReg[2] && localeLangScriptReg[2].length === 2
+      ? localeLangScriptReg[2]
+      : "";
+
+  const calendarOption = localeCalendarOption !== "" ? localeCalendarOption.split("-") : [];
+
+  const prefixLength = calendarOption.length >= 3 ? 3 : 2;
+  const localeCalendar = calendarOption.includes("ca")
+    ? calendarOption[2] !== "nu"
+      ? calendarOption.slice(1, prefixLength).join("-")
+      : calendarOption[2] === "nu" || calendarOption.length === 2
+      ? calendarOption[1]
+      : ""
+    : "";
+  const localeNumber = calendarOption.includes("nu") ? calendarOption.slice(-1)[0] : "";
+
+  return { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber };
+}
+
+const localeTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+// ! For testing purposes
+// const tzArray = Intl.supportedValuesOf("timeZone");
+// const localeTimeZone = tzArray[Math.floor(Math.random() * tzArray.length)];
+
+// const localeTimeZone = "Asia/Shanghai";
+
+const regionalCode = localeTimeZone
+  ? zones[localeTimeZone]?.countries[0] ||
+    compatibilityTimeZones.find(tz => tz.oldTimeZone === localeTimeZone)?.regionalCode
+  : "";
+
 export const localeRegionData = {
-  name: regionalCodeDoesExist ? countries[regionalCodeArray[0]].name : "No data",
-  code: regionalCodeDoesExist ? countries[regionalCodeArray[0]].abbr : "No data",
-  flag: regionalCodeDoesExist ? getFlagEmoji(regionalCodeArray[0]) : "No data",
-  timeZones: regionalCodeDoesExist ? countries[regionalCodeArray[0]].zones : [],
+  name: REGION_MAP[regionalCode] ?? "No region data",
+  code: regionalCode ?? "No regional code",
+  flag: getFlagEmoji(regionalCode) ?? "No flag data",
+  timeZones: countries[regionalCode]?.zones ?? [localeTimeZone],
 };

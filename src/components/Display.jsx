@@ -1,131 +1,139 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import { direction } from "../util.js";
-import Rabbit from "../rabbit.js";
+import { useEffect, useMemo, useState } from "react";
+import { getLocaleDirection } from "../languages-direction.js";
+import { localeData } from "../util.js";
+import { uni2zg } from "../rabbit.js";
 import "./Display.css";
 
 export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine }) {
   // * Single Line DateTime
-  const [dateTime, setDateTime] = useState("");
+  const dateTimeConfig = useMemo(
+    () => ({ dateStyle: "full", timeStyle: "full", hour12, timeZone }),
+    [hour12, timeZone]
+  );
+  const [dateTime, setDateTime] = useState(new Date().toLocaleString(locale, dateTimeConfig));
   useEffect(() => {
     const interval = setInterval(() => {
-      setDateTime(
-        new Date().toLocaleString(locale, {
-          dateStyle: "full",
-          timeStyle: "full",
-          hour12,
-          timeZone,
-        })
-      );
+      setDateTime(new Date().toLocaleString(locale, dateTimeConfig));
     }, 1000);
-
     return () => clearInterval(interval);
-  }, [locale, hour12, timeZone]);
+  }, [locale, dateTimeConfig]);
 
   // * Double Line for Separate Date and Time
-  const [date, setDate] = useState("");
+  // ? Date
+  const dateConfig = useMemo(
+    () => ({ weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone }),
+    [timeZone]
+  );
+  const [date, setDate] = useState(new Date().toLocaleDateString(locale, dateConfig));
   useEffect(() => {
     const interval = setInterval(() => {
-      setDate(
-        new Date().toLocaleDateString(locale, {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-          timeZone,
-        })
-      );
+      setDate(new Date().toLocaleDateString(locale, dateConfig));
     }, 1000);
-
     return () => clearInterval(interval);
-  }, [locale, timeZone]);
+  }, [locale, dateConfig]);
 
-  const [time, setTime] = useState("");
+  // ? Time
+  const timeConfig = useMemo(
+    () => ({ hour: "numeric", minute: "2-digit", second: "2-digit", hour12, timeZone }),
+    [hour12, timeZone]
+  );
+  const [time, setTime] = useState(new Date().toLocaleTimeString(locale, timeConfig));
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(
-        new Date().toLocaleTimeString(locale, {
-          hour: "numeric",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12,
-          timeZone,
-        })
-      );
+      setTime(new Date().toLocaleTimeString(locale, timeConfig));
     }, 1000);
-
     return () => clearInterval(interval);
-  }, [locale, hour12, timeZone]);
+  }, [locale, timeConfig]);
 
-  // * convert Myanmar Unicode to Myanmar Zawgyi if locale="my-qaag-*" or locale="my-Qaag-*"
-  const localeIsZawgyi = locale.startsWith("my-qaag") || locale.startsWith("my-Qaag");
-  const convert2Zawgyi = data => (localeIsZawgyi ? Rabbit.uni2zg(data) : data);
+  // TODO : obtain language and script from locale to set the display class and other functions
+  const { localeLang, localeScript } = localeData(locale);
+
+  // TODO : convert Myanmar Unicode to Myanmar Zawgyi if locale="my-qaag-*" or locale="my-Qaag-*"
+  const localeIsZawgyi =
+    localeLang === "my" && (localeScript === "qaag" || localeScript === "Qaag");
+  const convert2Zawgyi = data => (localeIsZawgyi ? uni2zg(data) : data);
   const dateTimeUni2Zg4Zg = convert2Zawgyi(dateTime);
   const dateUni2Zg4Zg = convert2Zawgyi(date);
   const timeUni2Zg4Zg = convert2Zawgyi(time);
 
-  const cssClass = locale.startsWith("hy")
-    ? "display-hy"
-    : locale.startsWith("ja")
-    ? "display-ja"
-    : locale.startsWith("ko")
-    ? "display-ko"
-    : locale.includes("hans") || locale.includes("Hans")
-    ? "display-zh-hans"
-    : locale.includes("hant") || locale.includes("Hant")
-    ? "display-zh-hant"
-    : locale.startsWith("zh") || locale.startsWith("yue") || locale.startsWith("nan")
-    ? "display-zh"
-    : locale.startsWith("mn-mong") || locale.startsWith("mn-Mong")
-    ? "display-mn-mong"
-    : locale.startsWith("mn") && locale.split("")[2] === "-"
-    ? "display-mn"
-    : locale.startsWith("bn")
-    ? "display-bn"
-    : locale.startsWith("as")
-    ? "display-as"
-    : locale.startsWith("gu")
-    ? "display-gu"
-    : locale.startsWith("pa-guru") || locale.startsWith("pa-Guru")
-    ? "display-pa-guru"
-    : locale.startsWith("pa")
-    ? "display-pa"
-    : locale.startsWith("ta")
-    ? "display-ta"
-    : locale.startsWith("te")
-    ? "display-te"
-    : locale.startsWith("kn")
-    ? "display-kn"
-    : locale.startsWith("ml")
-    ? "display-ml"
-    : locale.startsWith("or")
-    ? "display-or"
-    : locale.startsWith("sat")
-    ? "display-sat"
-    : locale.includes("olck") || locale.includes("Olck")
-    ? "display-olck"
-    : locale.startsWith("si")
-    ? "display-si"
-    : locale.startsWith("bo")
-    ? "display-bo"
-    : locale.startsWith("dz")
-    ? "display-dz"
-    : locale.startsWith("lo")
-    ? "display-lo"
-    : locale.startsWith("km")
-    ? "display-km"
-    : locale.startsWith("my") || locale.includes("mymr") || locale.includes("Mymr")
-    ? "display-my"
-    : locale.startsWith("am")
-    ? "display-am"
-    : locale.startsWith("ti")
-    ? "display-ti"
-    : "display";
+  const displayClass =
+    localeLang === "hy"
+      ? "display-hy"
+      : localeLang === "ja"
+      ? "display-ja"
+      : localeLang === "ko"
+      ? "display-ko"
+      : localeScript === "hans" || localeScript === "Hans"
+      ? "display-zh-hans"
+      : localeScript === "hant" || localeScript === "Hant"
+      ? "display-zh-hant"
+      : localeLang === "zh" || localeLang === "yue" || localeLang === "nan"
+      ? "display-zh"
+      : localeLang === "mn" && (localeScript === "mong" || localeScript === "Mong")
+      ? "display-mn-mong"
+      : localeLang === "bn" || localeScript === "beng" || localeScript === "Beng"
+      ? "display-bn"
+      : localeLang === "as"
+      ? "display-as"
+      : localeLang === "gu"
+      ? "display-gu"
+      : localeLang === "pa" && (localeScript === "guru" || localeScript === "Guru")
+      ? "display-pa-guru"
+      : localeLang === "pa" && (localeScript !== "arab" || localeScript !== "Arab")
+      ? "display-pa"
+      : localeLang === "ta"
+      ? "display-ta"
+      : localeLang === "te"
+      ? "display-te"
+      : localeLang === "kn"
+      ? "display-kn"
+      : localeLang === "ml"
+      ? "display-ml"
+      : localeLang === "or"
+      ? "display-or"
+      : localeLang === "mni"
+      ? "display-mni"
+      : localeLang === "sat"
+      ? "display-sat"
+      : localeScript === "olck" || localeScript === "Olck"
+      ? "display-olck"
+      : localeLang === "si"
+      ? "display-si"
+      : localeLang === "bo" ||
+        localeLang === "dz" ||
+        localeLang === "sip" ||
+        localeLang === "lbi" ||
+        localeLang === "zau" ||
+        localeLang === "scp" ||
+        localeLang === "tsj" ||
+        localeLang === "kkf" ||
+        (localeLang === "bft" && (localeScript === "tibt" || localeScript === "Tibt")) ||
+        (localeLang === "bft" && localeScript !== "arab" && localeScript !== "Arab") ||
+        (localeLang === "jul" && (localeScript === "tibt" || localeScript === "Tibt")) ||
+        (localeLang === "jul" && localeScript !== "deva" && localeScript !== "Deva") ||
+        (localeLang === "xsr" && (localeScript === "tibt" || localeScript === "Tibt")) ||
+        (localeLang === "xsr" && localeScript !== "deva" && localeScript !== "Deva")
+      ? "display-bo"
+      : localeLang === "lo"
+      ? "display-lo"
+      : localeLang === "km"
+      ? "display-km"
+      : localeLang === "my" || localeScript === "mymr" || localeScript === "Mymr"
+      ? "display-my"
+      : localeLang === "am"
+      ? "display-am"
+      : localeLang === "ti"
+      ? "display-ti"
+      : "display";
   // * Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, and Georgian scripts
   // * are already covered by default "display" class
 
   return (
-    <section className={cssClass} lang={locale} dir={direction(locale)}>
+    <section className={displayClass} lang={locale} dir={getLocaleDirection(locale)}>
+      <h3 className="display" lang="en" dir="ltr">
+        Locale is currently set to <span className="locale">{locale}</span>.
+      </h3>
       {dateTimeIsSingleLine ? (
         <h1 className="single-line">
           <time dateTime={dateTimeUni2Zg4Zg}>{dateTimeUni2Zg4Zg}</time>
