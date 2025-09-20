@@ -5,11 +5,11 @@ import { localeData } from "../util.js";
 import { uni2zg } from "../rabbit.js";
 import "./Display.css";
 
-export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine }) {
+export default function Display({ locale, is12Hours, timeZone, dateTimeIsSingleLine }) {
   // * Single Line DateTime
   const dateTimeConfig = useMemo(
-    () => ({ dateStyle: "full", timeStyle: "full", hour12, timeZone }),
-    [hour12, timeZone]
+    () => ({ dateStyle: "full", timeStyle: "full", hour12: is12Hours, timeZone }),
+    [is12Hours, timeZone]
   );
   const [dateTime, setDateTime] = useState(new Date().toLocaleString(locale, dateTimeConfig));
   useEffect(() => {
@@ -35,8 +35,8 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
 
   // ? Time
   const timeConfig = useMemo(
-    () => ({ hour: "numeric", minute: "2-digit", second: "2-digit", hour12, timeZone }),
-    [hour12, timeZone]
+    () => ({ hour: "numeric", minute: "2-digit", second: "2-digit", hour12: is12Hours, timeZone }),
+    [is12Hours, timeZone]
   );
   const [time, setTime] = useState(new Date().toLocaleTimeString(locale, timeConfig));
   useEffect(() => {
@@ -132,7 +132,7 @@ export default function Display({ locale, hour12, timeZone, dateTimeIsSingleLine
   return (
     <section className={displayClass} lang={locale} dir={getLocaleDirection(locale)}>
       <h3 className="display" lang="en" dir="ltr">
-        Locale is currently set to <span className="locale">{locale}</span>.
+        Browser’s locale is currently set to <span className="locale">{locale}</span>.
       </h3>
       {dateTimeIsSingleLine ? (
         <h1 className="single-line">

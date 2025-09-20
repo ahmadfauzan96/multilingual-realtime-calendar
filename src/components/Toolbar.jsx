@@ -9,7 +9,7 @@ import "./Toolbar.css";
 
 export default function Toolbar({
   locale,
-  hour12: is12Hours,
+  is12Hours,
   timeZone,
   setCalendar,
   dateTimeIsSingleLine: isSingleLine,
@@ -53,7 +53,7 @@ export default function Toolbar({
 
       // TODO : Set new calendar
       newCalendar.locale = newLanguageScript + newRegion + newCalendarOption;
-      newCalendar.hour12 = hour12Ref.current.checked;
+      newCalendar.is12Hours = hour12Ref.current.checked;
       newCalendar.timeZone = toBeSelectedTimeZone;
 
       return newCalendar;

@@ -159,7 +159,7 @@ const left2RightScripts = [
   "Rjng",
   "sund",
   "Sund",
-  // * Indian Scripts
+  // * South Asian Scripts
   "beng",
   "Beng",
   "deva",

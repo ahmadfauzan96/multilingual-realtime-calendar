@@ -1,5 +1,5 @@
 import { getTimezoneOffset } from "date-fns-tz";
-import { countries, zones } from "moment-timezone/data/meta/latest.json";
+import { zones } from "moment-timezone/data/meta/latest.json";
 import { REGION_MAP } from "./data";
 import {
   compatibilityTimeZones,
@@ -9,17 +9,17 @@ import {
 
 // ? Flag Emoji
 export const getFlagEmoji = regionalCode =>
-  typeof regionalCode === "string" && regionalCode.length === 2
-    ? regionalCode
-        .toUpperCase()
-        .split("")
-        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
-        // .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
-        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
-        .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
-        .join("")
-    : typeof regionalCode === "string" && regionalCode === ""
-    ? ""
+  typeof regionalCode === "string"
+    ? regionalCode.length === 2
+      ? regionalCode
+          .toUpperCase()
+          .split("")
+          // .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
+          // .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
+          // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
+          .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
+          .join("")
+      : ""
     : typeof regionalCode === "number"
     ? "(No flag for this region.)"
     : undefined;
@@ -127,7 +127,7 @@ export function localeData(locale) {
   const localeLang = localeLangScriptReg[0];
   const localeScript =
     localeLangScriptReg[1] && localeLangScriptReg[1].length === 4 ? localeLangScriptReg[1] : "";
-  const localeLangScript = localeLang + (localeScript !== "" ? "-" + localeScript : "");
+  const localeLangScript = localeLang + (localeScript ? "-" + localeScript : "");
   const localeReg =
     localeLangScriptReg[1] && localeLangScriptReg[1].length === 2
       ? localeLangScriptReg[1]
@@ -135,37 +135,16 @@ export function localeData(locale) {
       ? localeLangScriptReg[2]
       : "";
 
-  const calendarOption = localeCalendarOption !== "" ? localeCalendarOption.split("-") : [];
+  const calendarOption = localeCalendarOption ? localeCalendarOption.split("-") : [];
 
   const prefixLength = calendarOption.length >= 3 ? 3 : 2;
-  const localeCalendar = calendarOption.includes("ca")
-    ? calendarOption[2] !== "nu"
-      ? calendarOption.slice(1, prefixLength).join("-")
-      : calendarOption[2] === "nu" || calendarOption.length === 2
-      ? calendarOption[1]
-      : ""
-    : "";
-  const localeNumber = calendarOption.includes("nu") ? calendarOption.slice(-1)[0] : "";
+  const localeCalendar =
+    calendarOption[0] === "ca"
+      ? calendarOption.length === 2 || calendarOption[2] === "nu"
+        ? calendarOption[1]
+        : calendarOption.slice(1, prefixLength).join("-")
+      : "";
+  const localeNumber = calendarOption.some(str => str === "nu") ? calendarOption.slice(-1)[0] : "";
 
   return { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber };
 }
-
-const localeTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-// ! For testing purposes
-// const tzArray = Intl.supportedValuesOf("timeZone");
-// const localeTimeZone = tzArray[Math.floor(Math.random() * tzArray.length)];
-
-// const localeTimeZone = "Asia/Shanghai";
-
-const regionalCode = localeTimeZone
-  ? zones[localeTimeZone]?.countries[0] ||
-    compatibilityTimeZones.find(tz => tz.oldTimeZone === localeTimeZone)?.regionalCode
-  : "";
-
-export const localeRegionData = {
-  name: REGION_MAP[regionalCode] ?? "No region data",
-  code: regionalCode ?? "No regional code",
-  flag: getFlagEmoji(regionalCode) ?? "No flag data",
-  timeZones: countries[regionalCode]?.zones ?? [localeTimeZone],
-};
