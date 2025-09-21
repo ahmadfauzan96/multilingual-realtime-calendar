@@ -136,6 +136,7 @@ export const LANGUAGES = [
   { title: "Esperanto", value: "eo" },
   { title: "Estonian", value: "et" },
   { title: "Ewe", value: "ee" },
+  { title: "Extremaduran", value: "ext" },
   { title: "Faroese", value: "fo" },
   { title: "Farsi/Persian", value: "fa" },
   { title: "Fijian", value: "fj" },
