@@ -17,10 +17,10 @@ export default function App() {
     timeZone,
   } = Intl.DateTimeFormat().resolvedOptions();
 
-  const { localeLang, localeLangScript, localeScript, localeReg, localeCalendar, localeNumber } =
+  const { localeLang, localeLangScript, localeReg, localeCalendar, localeNumber } =
     localeData(userLocale);
   const locale =
-    (localeScript ? localeLangScript : localeLang) +
+    localeLangScript +
     (localeReg ? "-" + localeReg : "") +
     "-u-ca-" +
     (localeCalendar || userCalendar || "gregory") +

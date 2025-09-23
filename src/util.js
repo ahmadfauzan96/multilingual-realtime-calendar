@@ -1,5 +1,5 @@
 import { getTimezoneOffset } from "date-fns-tz";
-import { zones } from "moment-timezone/data/meta/latest.json";
+import { countries, zones } from "moment-timezone/data/meta/latest.json";
 import { REGION_MAP } from "./data";
 import {
   compatibilityTimeZones,
@@ -72,7 +72,7 @@ function tzRegion(timeZone) {
   //     ? REGIONS.find(({ value }) => value === activeTimeZoneRegionalCode)?.title || ""
   //     : "";
   // * Improved performance by creating a map object (helped by IBM Granite AI)
-  // const activeTimeZoneRegion = countries[activeTimeZoneRegionalCode]?.name || "";
+  // const activeTimeZoneRegion = countries[activeTimeZoneRegionalCode]?.name;
   const activeTimeZoneRegion = REGION_MAP[activeTimeZoneRegionalCode];
 
   const timeZoneIsDeprecated = compatibilityTimeZones.some(tz => tz.oldTimeZone === timeZone);
@@ -91,7 +91,7 @@ function tzRegion(timeZone) {
   // const deprecatedTimeZoneRegion =
   //   REGIONS.find(({ value }) => value === deprecatedTimeZoneRegionalCode)?.title || "";
   // * Improved performance by creating a map object (helped by IBM Granite AI)
-  // const deprecatedTimeZoneRegion = countries[deprecatedTimeZoneRegionalCode]?.name || "";
+  // const deprecatedTimeZoneRegion = countries[deprecatedTimeZoneRegionalCode]?.name;
   const deprecatedTimeZoneRegion = REGION_MAP[deprecatedTimeZoneRegionalCode];
 
   // * Improved performance by reducing the number of return statements (helped by IBM Granite AI)
@@ -118,6 +118,32 @@ export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
 }));
 
 // ? Locale Region Data
+export function localeRegionData(timeZone) {
+  // ! For testing purposes
+  // console.log(timeZone);
+  // ? This is just for testing purposes, to simulate different timezones
+  // ? In real usage, the timezone should be obtained from the user's locale or settings
+  // * To test a specific timezone, uncomment the following line and set the desired timezone
+  // const localeTimeZone = "Pacific/Auckland";
+  // * To get a random timezone from the list of supported timezones, uncomment the following lines
+  // const tzArray = Intl.supportedValuesOf("timeZone");
+  // const localeTimeZone = tzArray[Math.floor(Math.random() * tzArray.length)];
+
+  // * The code starts here
+  const localeTimeZone = timeZone;
+
+  const regionalCode =
+    zones[localeTimeZone]?.countries[0] ||
+    compatibilityTimeZones.find(tz => tz.oldTimeZone === localeTimeZone)?.regionalCode;
+
+  const name = REGION_MAP[regionalCode] ?? "No region data";
+  const code = regionalCode ?? "No regional code";
+  const flag = getFlagEmoji(regionalCode) ?? "No flag data";
+  const timeZones = countries[regionalCode]?.zones ?? (localeTimeZone ? [localeTimeZone] : [""]);
+
+  return { name, code, flag, timeZones };
+}
+
 export function localeData(locale) {
   const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
     ? locale.split("-u-")
