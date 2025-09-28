@@ -1,5 +1,6 @@
 export const LANGUAGES = [
   { title: "Abkhaizan", value: "ab" },
+  { title: "Adyghe", value: "ady" },
   { title: "Afar", value: "aa" },
   { title: "Afrikaans", value: "af" },
   { title: "Akan", value: "ak" },
@@ -265,6 +266,8 @@ export const LANGUAGES = [
   { title: "Malay", value: "ms" },
   { title: "Malay (Jawi)", value: "ms-arab" },
   { title: "Malay (Jawi) (BCP 47)", value: "ms-Arab" },
+  { title: "Malay (Rumi)", value: "ms-latn" },
+  { title: "Malay (Rumi) (BCP 47)", value: "ms-Latn" },
   { title: "Malayalam", value: "ml" },
   { title: "Maltese", value: "mt" },
   { title: "Mandaic (Classical)", value: "myz" },
@@ -306,7 +309,7 @@ export const LANGUAGES = [
   { title: "Norwegian Nynorsk", value: "nn" },
   { title: "Nuosu/Sichuan Yi", value: "ii" },
   { title: "Nyankole", value: "nyn" },
-  { title: "N’Ko'", value: "nqo" },
+  { title: "N’Ko", value: "nqo" },
   { title: "Occitan", value: "oc" },
   { title: "Oriya", value: "or" },
   { title: "Oromo", value: "om" },
@@ -344,6 +347,10 @@ export const LANGUAGES = [
   { title: "Sango", value: "sg" },
   { title: "Sanskrit", value: "sa" },
   { title: "Santali", value: "sat" },
+  { title: "Santali (Devanagari)", value: "sat-deva" },
+  { title: "Santali (Devanagari) (BCP 47)", value: "sat-Deva" },
+  { title: "Santali (Ol Chiki)", value: "sat-olck" },
+  { title: "Santali (Ol Chiki) (BCP 47)", value: "sat-Olck" },
   { title: "Saraiki", value: "skr" },
   { title: "Saraiki (Arabic)", value: "skr-arab" },
   { title: "Saraiki (Arabic) (BCP 47)", value: "skr-Arab" },
@@ -453,6 +460,7 @@ export const LANGUAGES = [
   { title: "Uzbek (Latin)", value: "uz-latn" },
   { title: "Uzbek (Latin) (BCP 47)", value: "uz-Latn" },
   { title: "Venda", value: "ve" },
+  { title: "Venetian", value: "vec" },
   { title: "Vietnamese/Tiếng Việt", value: "vi" },
   { title: "Volapük", value: "vo" },
   { title: "Vunjo", value: "vun" },
@@ -474,8 +482,67 @@ export const LANGUAGE_MAP = LANGUAGES.reduce(
   {}
 );
 
+export const languagesWith24HoursSystem = ["es", "fr", "id", "it", "nl", "pl"];
+
+// ? TEST : get default calendar and number for each languages
+// for (const { value } of LANGUAGES) {
+//   const { calendar, numberingSystem } = Intl.DateTimeFormat(value).resolvedOptions();
+//   console.log(value, "→", calendar, "|", numberingSystem);
+// }
+
+// ? TEST : put default calendar and number of each languages to respective arrays
+// let calendarsArray = [];
+// let numbersArray = [];
+// for (const { value } of LANGUAGES) {
+//   const { calendar, numberingSystem } = Intl.DateTimeFormat(value).resolvedOptions();
+//   if (!calendarsArray.includes(calendar)) {
+//     calendarsArray.push(calendar);
+//   }
+//   if (!numbersArray.includes(numberingSystem)) {
+//     numbersArray.push(numberingSystem);
+//   }
+// }
+// console.log(calendarsArray, numbersArray); // * both arrays are never empty
+
+// ? TEST : put UTC and GMT time zone names of each languages to respective arrays
+// let UTCTimeZones = [];
+// let GMTTimeZones = [];
+// for (const { value } of LANGUAGES) {
+//   const date = new Date();
+//   const tzName = timeZone =>
+//     new Intl.DateTimeFormat(value, { timeStyle: "long", timeZone })
+//       .formatToParts(date)
+//       .find(({ type }) => type === "timeZoneName")?.value;
+//   const UTCTzName = tzName("UTC");
+//   const GMTTzName1 = tzName("GMT");
+//   const GMTTzName2 = tzName("Africa/Abidjan");
+//   const GMTTzName3 = tzName("Atlantic/Reykjavik");
+
+//   if (!UTCTimeZones.includes(UTCTzName)) {
+//     UTCTimeZones.push(UTCTzName);
+//   } else if (!GMTTimeZones.includes(GMTTzName1)) {
+//     GMTTimeZones.push(GMTTzName1);
+//   } else if (!GMTTimeZones.includes(GMTTzName2)) {
+//     GMTTimeZones.push(GMTTzName2);
+//   } else if (!GMTTimeZones.includes(GMTTzName3)) {
+//     GMTTimeZones.push(GMTTzName3);
+//   }
+// }
+// console.log("UTC: ", UTCTimeZones);
+// console.log("GMT: ", GMTTimeZones);
+
+// ? TEST : Display UTC time zone names in each languages in long and full formats
+// for (const { title, value } of LANGUAGES) {
+//   const date = new Date();
+//   const UTCTzName = timeStyle =>
+//     new Intl.DateTimeFormat(value, { timeStyle, timeZone: "UTC" })
+//       .formatToParts(date)
+//       .find(({ type }) => type === "timeZoneName").value;
+//   console.log(value, "|", title, "|", UTCTzName("long"), "|", UTCTzName("full"));
+// }
+
 export const REGIONS = [
-  { title: "Unspecified", value: "" },
+  { title: " Unspecified", value: "" },
   { title: "Afghanistan", value: "AF" },
   { title: "Åland Island", value: "AX" },
   { title: "Albania", value: "AL" },
@@ -490,6 +557,7 @@ export const REGIONS = [
   { title: "Argentina", value: "AR" },
   { title: "Armenia", value: "AM" },
   { title: "Aruba", value: "AW" },
+  { title: "Ascension Island PD", value: "AC" },
   { title: "Australia", value: "AU" },
   { title: "Austria", value: "AT" },
   { title: "Azerbaijan", value: "AZ" },
@@ -739,12 +807,279 @@ export const REGION_MAP = REGIONS.reduce(
   {}
 );
 
+export const regionsAdoptingAR = [
+  "AE",
+  "BH",
+  "DJ",
+  "DZ",
+  "EG",
+  "EH",
+  "ER",
+  "IL",
+  "IQ",
+  "JO",
+  "KM",
+  "KW",
+  "LB",
+  "LY",
+  "MA",
+  "MR",
+  "OM",
+  "PS",
+  "QA",
+  "SA",
+  "SD",
+  "SO",
+  "SS",
+  "SY",
+  "TD",
+  "TN",
+  "UN",
+  "YE",
+]; // 28
+export const arabRegionsUsingWesternArabicNumbers = ["AE", "DZ", "EH", "LY", "MA", "TN"];
+export const regionsAdoptingFA = ["AF", "IR"];
+export const regionsAdoptingUR = ["IN", "PK"];
+export const regionsAdoptingHE = ["IL"];
+
+export const regionsAdoptingZH = ["CN", "HK", "MO", "MY", "SG", "TW", "UN"];
+export const regionsAdoptingKO = ["KR", "KP"];
+export const regionsAdoptingJA = ["JP"];
+export const regionsAdoptingMN = ["MN"];
+
+export const regionsAdoptingTA = ["IN", "LK", "MY", "SG"];
+export const regionsAdoptingBN = ["BD", "IN"];
+export const regionsAdoptingHI = ["IN"];
+
+export const regionsAdoptingMS = ["BN", "ID", "MY", "SG"];
+export const regionsAdoptingID = ["ID"];
+export const regionsAdoptingJV = ["ID", "NC", "SR"];
+export const regionsAdoptingSU = ["ID"];
+export const regionsAdoptingTL = ["PH"];
+export const regionsAdoptingTH = ["TH"];
+export const regionsAdoptingLO = ["LA"];
+export const regionsAdoptingKM = ["KH"];
+export const regionsAdoptingMY = ["MM"];
+export const regionsAdoptingVI = ["VN"];
+
+export const regionsAdoptingAM = ["ER", "ET"];
+export const regionsAdoptingTI = ["ER", "ET"];
+export const regionsAdoptingSW = ["KE", "TZ", "UG"];
+
+export const regionsAdoptingKA = ["GE"];
+export const regionsAdoptingHY = ["AM"];
+
+export const regionsAdoptingRU = ["BY", "KZ", "KG", "RU", "UA", "UN", "MD"]; // 7
+export const regionsAdoptingEL = ["GR", "CY"]; // 2
+
+export const regionsAdoptingEN = [
+  "AE",
+  "AG",
+  "AI",
+  "AS",
+  "AT",
+  "AU",
+  "BB",
+  "BE",
+  "BI",
+  "BM",
+  "BN",
+  "BS",
+  "BW",
+  "BZ",
+  "CA",
+  "CC",
+  "CH",
+  "CK",
+  "CM",
+  "CQ",
+  "CX",
+  "CY",
+  "CZ",
+  "DE",
+  "DK",
+  "DM",
+  "ER",
+  "ES",
+  "EU",
+  "FI",
+  "FJ",
+  "FK",
+  "FM",
+  "FR",
+  "GB",
+  "GD",
+  "GG",
+  "GH",
+  "GI",
+  "GM",
+  "GS",
+  "GU",
+  "GY",
+  "HK",
+  "HU",
+  "ID",
+  "IE",
+  "IL",
+  "IM",
+  "IN",
+  "IO",
+  "IT",
+  "JE",
+  "JM",
+  "KE",
+  "KI",
+  "KN",
+  "KY",
+  "LC",
+  "LR",
+  "LS",
+  "MF",
+  "MH",
+  "MO",
+  "MP",
+  "MS",
+  "MT",
+  "MU",
+  "MV",
+  "MW",
+  "MY",
+  "NA",
+  "NF",
+  "NG",
+  "NL",
+  "NO",
+  "NR",
+  "NU",
+  "NZ",
+  "PG",
+  "PH",
+  "PK",
+  "PL",
+  "PN",
+  "PR",
+  "PT",
+  "PW",
+  "RO",
+  "RW",
+  "SB",
+  "SC",
+  "SD",
+  "SE",
+  "SG",
+  "SH",
+  "SI",
+  "SK",
+  "SL",
+  "SS",
+  "SX",
+  "SZ",
+  "TC",
+  "TK",
+  "TO",
+  "TT",
+  "TV",
+  "TZ",
+  "UG",
+  "UM",
+  "UN",
+  "US",
+  "VC",
+  "VG",
+  "VI",
+  "VU",
+  "WS",
+  "ZA",
+  "ZM",
+  "ZW",
+]; // 119
+export const regionsAdoptingFR = [
+  "BE",
+  "BF",
+  "BJ",
+  "BL",
+  "CA",
+  "CG",
+  "CD",
+  "CF",
+  "CH",
+  "CI",
+  "CM",
+  "DJ",
+  "DZ",
+  "EU",
+  "FR",
+  "GA",
+  "GF",
+  "GN",
+  "GP",
+  "HT",
+  "KM",
+  "LU",
+  "MA",
+  "MC",
+  "MF",
+  "MG",
+  "ML",
+  "MQ",
+  "MR",
+  "MU",
+  "NC",
+  "NE",
+  "PF",
+  "RE",
+  "SC",
+  "SN",
+  "TD",
+  "TN",
+  "UN",
+  "WF",
+  "YT",
+]; // 41
+export const regionsAdoptingDE = ["AT", "BE", "CH", "DE", "EU", "LI", "LU"]; // 7
+export const regionsAdoptingIT = ["IT", "CH", "EU", "SM", "VA"]; // 5
+export const regionsAdoptingES = [
+  419,
+  "AR",
+  "BO",
+  "CL",
+  "CO",
+  "CR",
+  "CU",
+  "DO",
+  "EC",
+  "ES",
+  "EU",
+  "GQ",
+  "GT",
+  "HN",
+  "MX",
+  "NI",
+  "PA",
+  "PE",
+  "PH",
+  "PR",
+  "PY",
+  "SV",
+  "UN",
+  "US",
+  "UY",
+  "VE",
+]; // 26
+export const regionsAdoptingPT = ["AO", "BR", "CV", "EU", "GW", "MO", "MZ", "PT", "ST", "TL"]; // 10
+export const regionsAdoptingNL = ["AW", "BE", "BQ", "CW", "EU", "NL", "SR", "SX"]; // 8
+
+// console.log(regionsAdoptingAR.length);
+// console.log(REGIONS.filter(({ value }) => regionsAdoptingES.some(region => region === value)));
+// console.log(Intl.Collator("zh-TW-u-co-big5han", { collation: "big5han" }).resolvedOptions());
+
 export const CALENDAR_OPTIONS = {
   CALENDARS: [
-    { title: "None", value: "" },
+    { title: " None", value: "" },
     { title: "Balinese Hindu/Indian Calendar", value: "indian" },
     { title: "Buddhist Calendar", value: "buddhist" },
-    { title: "Coptic Calendar", value: "copt" },
+    { title: "Civil (Algorithmic) Arabic Calendar", value: "islamicc" },
+    { title: "Coptic Calendar", value: "coptic" },
     { title: "Ethiopic Amete Alem Calendar (Epoch Approx. 5493 B.C.E)", value: "ethioaa" },
     { title: "Ethiopic Amete Mihret Calendar (Epoch Approx, 8 C.E.)", value: "ethiopic" },
     { title: "Gregorian Calendar", value: "gregory" },
@@ -753,7 +1088,6 @@ export const CALENDAR_OPTIONS = {
     { title: "Hijri Calendar, Astronomical Epoch", value: "islamic-tbla" },
     { title: "Hijri Calendar, Civil Epoch", value: "islamic-civil" },
     { title: "Hijri Calendar, Saudi Arabia Sighting", value: "islamic-rgsa" },
-    { title: "Islamic Civil Calendar", value: "islamicc" },
     { title: "ISO 8601 Calendar", value: "iso8601" },
     { title: "Japanese Imperial Calendar", value: "japanese" },
     { title: "Persian Calendar", value: "persian" },
@@ -763,9 +1097,9 @@ export const CALENDAR_OPTIONS = {
     { title: "Traditional Korean Calendar", value: "dangi" },
     { title: "Tibetan Calendar", value: "tibetan" },
     { title: "Ugaritic Calendar", value: "ugaritic" },
-  ],
+  ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
   NUMBERS: [
-    { title: "None", value: "" },
+    { title: " None", value: "" },
     { title: "ASCII/Western Arabic Numbers", value: "latn" },
     { title: "Adlam Numbers", value: "adlm" },
     { title: "Ahom Numbers", value: "ahom" },
@@ -778,23 +1112,23 @@ export const CALENDAR_OPTIONS = {
     { title: "Chakma Numbers", value: "cakm" },
     { title: "Cham Numbers", value: "cham" },
     { title: "Chisoi Numbers", value: "chis" },
-    { title: "Cyrillic Numbers", value: "cyrl" },
+    { title: "Cyrillic Algorithmic Numbers", value: "cyrl" },
+    { title: "Dari, Farsi, Kashmir, Mazanderani, Pashto, and Urdu Numbers", value: "arabext" },
     { title: "Devanagari Numbers", value: "deva" },
     { title: "Dives Akuru Numbers", value: "diak" },
     { title: "Eastern Arabic Numbers", value: "arab" },
-    { title: "Eastern Arabic Numbers (Farsi, Urdu)", value: "arabext" },
-    { title: "Ethiopian Numbers", value: "ethi" },
+    { title: "Ethiopian Algorithmic Numbers", value: "ethi" },
     { title: "Financial Numeral", value: "finance" },
-    { title: "Full-Width Numbers", value: "fullwide" },
+    { title: "Full-Width Numbers (CJK)", value: "fullwide" },
     { title: "Garay Numbers", value: "gara" },
-    { title: "Georgian Numbers", value: "geor" },
+    { title: "Georgian Algorithmic Numbers", value: "geor" },
     { title: "Greek Upper Case Numbers", value: "grek" },
     { title: "Greek Lower Case Numbers", value: "greklow" },
     { title: "Gujarati Numbers", value: "gujr" },
     { title: "Gunjala Gondi Numbers", value: "gong" },
     { title: "Gurung Khema Numbers", value: "gukh" },
     { title: "Gurmukhi Numbers", value: "guru" },
-    { title: "Han Decimal Numbers", value: "hanidec" },
+    { title: "Han Decimal Ideographical Numbers", value: "hanidec" },
     { title: "Han Numbers (Lunar Calendar)", value: "hanidays" },
     { title: "Hanifi Rohingya Numbers", value: "rohg" },
     { title: "Hebrew Upper Case Numbers", value: "hebr" },
@@ -813,6 +1147,8 @@ export const CALENDAR_OPTIONS = {
     { title: "Kirat Rai Numbers", value: "krai" },
     { title: "Korean Hangul Numbers", value: "hang" },
     { title: "Lao Numbers", value: "laoo" },
+    { title: "Legacy Computing Outlined Numbers", value: "outlined" },
+    { title: "Legacy Computing Segmented Numbers", value: "segment" },
     { title: "Lepcha Numbers", value: "lepc" },
     { title: "Limbu Numbers", value: "limb" },
     { title: "Lisu Numbers", value: "lisudec" },
@@ -825,6 +1161,11 @@ export const CALENDAR_OPTIONS = {
     { title: "Mandaic Upper Case Numbers", value: "mand" },
     { title: "Mandaic Lower Case Numbers", value: "mandlow" },
     { title: "Masaram Gondi Numbers", value: "gonm" },
+    { title: "Mathematical Bold Numbers", value: "mathbold" },
+    { title: "Mathematical Double-Struck Numbers", value: "mathdbl" },
+    { title: "Mathematical Monospace Numbers", value: "mathmono" },
+    { title: "Mathematical Sans-Serif Bold Numbers", value: "mathsanb" },
+    { title: "Mathematical Sans-Serif Numbers", value: "mathsans" },
     { title: "Modi Numbers", value: "modi" },
     { title: "Mongolian Numbers", value: "mong" },
     { title: "Mro Numbers", value: "mroo" },
@@ -835,6 +1176,7 @@ export const CALENDAR_OPTIONS = {
     { title: "Myanmar Shan Numbers", value: "mymrshan" },
     { title: "Myanmar Tai Laing Numbers", value: "mymrtlng" },
     { title: "Nag Mundari Numbers", value: "nagm" },
+    { title: "Native Numbers", value: "native" },
     { title: "New Tai Lüe Numbers", value: "talu" },
     { title: "Newa Numbers", value: "newa" },
     { title: "Nyiakeng Puachue Hmong Numbers", value: "hmnp" },
@@ -862,15 +1204,60 @@ export const CALENDAR_OPTIONS = {
     { title: "Tangsa Numbers", value: "tnsa" },
     { title: "Telugu Numbers", value: "telu" },
     { title: "Thai Numbers", value: "thai" },
-    { title: "Tirhuta Numbers", value: "tirh" },
     { title: "Tibetan Numbers", value: "tibt" },
+    { title: "Tirhuta Numbers", value: "tirh" },
     { title: "Tolong Siki Numbers", value: "tols" },
+    { title: "Traditional Numbers", value: "traditio" },
     { title: "Traditional Chinese Numbers", value: "hant" },
     { title: "Traditional Chinese Financial Numbers", value: "hantfin" },
     { title: "Vai Numbers", value: "vaii" },
     { title: "Warang Citi Numbers", value: "wara" },
     { title: "Wancho Numbers", value: "wcho" },
-  ],
+  ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
+  COLLATIONS: [
+    { title: " None", value: "" },
+    { title: "Binary Code-Point Collation (Hindi)", value: "direct" },
+    { title: "Compatibility Collation", value: "compat" },
+    { title: "Default Collation", value: "standard" },
+    { title: "Default Unicode Collation Element Table Order", value: "ducet" },
+    { title: "Dictionary-style Collation (Sinhala)", value: "dict" },
+    { title: "Emoji Collation", value: "emoji" },
+    { title: "European Collation", value: "eor" },
+    { title: "Korean Initial Consonant Collation", value: "searchjl" },
+    {
+      title:
+        "Pinyin Collation for Latin, Big5 Character Set Collation for CJK characters (Traditional Chinese)",
+      value: "big5han",
+    },
+    {
+      title:
+        "Pinyin Collation for Latin, GB2312 Character Set Collation for CJK characters (Simplified Chinese)",
+      value: "gb2312",
+    },
+    {
+      title: "Pinyin Collation for Latin, Stroke Order Collation for CJK characters (Chinese)",
+      value: "stroke",
+    },
+    {
+      title:
+        "Pinyin Collation for Latin, Unihan Radical Stroke Order Collation for CJK characters (Chinese)",
+      value: "unihan",
+    },
+    {
+      title:
+        "Pinyin Collation for Latin, Zhuyin Order for Bopomofo and CJK characters (Primarily Traditional Chinese)",
+      value: "zhuyin",
+    },
+    {
+      title: "Pinyin Collation for Latin and CJK characters (Primarily Simplified Chinese)",
+      value: "pinyin",
+    },
+    { title: "Phonebook-style Collation (German)", value: "phonebk" },
+    { title: "Phonetic Collation", value: "phonetic" },
+    { title: "Reformed Collation (Swedish)", value: "reformed" },
+    { title: "String-Search Collation", value: "search" },
+    { title: "Traditional Collation (Spanish)", value: "trad" },
+  ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
 };
 
 export const CALENDAR_MAP = CALENDAR_OPTIONS.CALENDARS.reduce(
@@ -882,3 +1269,53 @@ export const NUMBER_MAP = CALENDAR_OPTIONS.NUMBERS.reduce(
   (acc, { title, value }) => ((acc[value] = title), acc),
   {}
 );
+
+export const COLLATION_MAP = CALENDAR_OPTIONS.COLLATIONS.reduce(
+  (acc, { title, value }) => ((acc[value] = title), acc),
+  {}
+);
+
+// console.log(LANGUAGE_MAP);
+// for (const key in LANGUAGE_MAP) {
+//   if (!Object.hasOwn(LANGUAGE_MAP, key)) continue;
+
+//   const element = LANGUAGE_MAP[key];
+
+//   console.log(element);
+// }
+
+// console.log(REGION_MAP);
+// for (const key in REGION_MAP) {
+//   if (!Object.hasOwn(REGION_MAP, key)) continue;
+
+//   const element = REGION_MAP[key];
+
+//   console.log(element);
+// }
+
+// console.log(CALENDAR_MAP);
+// for (const key in CALENDAR_MAP) {
+//   if (!Object.hasOwn(CALENDAR_MAP, key)) continue;
+
+//   const element = CALENDAR_MAP[key];
+
+//   console.log(element);
+// }
+
+// console.log(NUMBER_MAP);
+// for (const key in NUMBER_MAP) {
+//   if (!Object.hasOwn(NUMBER_MAP, key)) continue;
+
+//   const element = NUMBER_MAP[key];
+
+//   console.log(element);
+// }
+
+// console.log(COLLATION_MAP);
+// for (const key in COLLATION_MAP) {
+//   if (!Object.hasOwn(COLLATION_MAP, key)) continue;
+
+//   const element = COLLATION_MAP[key];
+
+//   console.log(element);
+// }

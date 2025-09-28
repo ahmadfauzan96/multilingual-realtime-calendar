@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
+import { bcp47Normalize } from "bcp-47-normalize";
 import { getLocaleDirection } from "../languages-direction.js";
-import { localeData } from "../util.js";
+import { firstTimeExecutedDateTime, localeData } from "../util.js";
 import { uni2zg } from "../rabbit.js";
 import "./Display.css";
 
@@ -11,7 +12,9 @@ export default function Display({ locale, is12Hours, timeZone, dateTimeIsSingleL
     () => ({ dateStyle: "full", timeStyle: "full", hour12: is12Hours, timeZone }),
     [is12Hours, timeZone]
   );
-  const [dateTime, setDateTime] = useState(new Date().toLocaleString(locale, dateTimeConfig));
+  const [dateTime, setDateTime] = useState(
+    firstTimeExecutedDateTime.toLocaleString(locale, dateTimeConfig)
+  );
   useEffect(() => {
     const interval = setInterval(() => {
       setDateTime(new Date().toLocaleString(locale, dateTimeConfig));
@@ -25,7 +28,9 @@ export default function Display({ locale, is12Hours, timeZone, dateTimeIsSingleL
     () => ({ weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone }),
     [timeZone]
   );
-  const [date, setDate] = useState(new Date().toLocaleDateString(locale, dateConfig));
+  const [date, setDate] = useState(
+    firstTimeExecutedDateTime.toLocaleDateString(locale, dateConfig)
+  );
   useEffect(() => {
     const interval = setInterval(() => {
       setDate(new Date().toLocaleDateString(locale, dateConfig));
@@ -38,7 +43,9 @@ export default function Display({ locale, is12Hours, timeZone, dateTimeIsSingleL
     () => ({ hour: "numeric", minute: "2-digit", second: "2-digit", hour12: is12Hours, timeZone }),
     [is12Hours, timeZone]
   );
-  const [time, setTime] = useState(new Date().toLocaleTimeString(locale, timeConfig));
+  const [time, setTime] = useState(
+    firstTimeExecutedDateTime.toLocaleTimeString(locale, timeConfig)
+  );
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString(locale, timeConfig));
@@ -78,10 +85,10 @@ export default function Display({ locale, is12Hours, timeZone, dateTimeIsSingleL
       ? "display-as"
       : localeLang === "gu"
       ? "display-gu"
-      : localeLang === "pa" && (localeScript === "guru" || localeScript === "Guru")
-      ? "display-pa-guru"
       : localeLang === "pa" && (localeScript !== "arab" || localeScript !== "Arab")
       ? "display-pa"
+      : localeScript === "guru" || localeScript === "Guru"
+      ? "display-pa-guru"
       : localeLang === "ta"
       ? "display-ta"
       : localeLang === "te"
@@ -132,7 +139,10 @@ export default function Display({ locale, is12Hours, timeZone, dateTimeIsSingleL
   return (
     <section className={displayClass} lang={locale} dir={getLocaleDirection(locale)}>
       <h3 className="display" lang="en" dir="ltr">
-        Browser’s locale is currently set to <span className="locale">{locale}</span>.
+        Browser’s locale :{" "}
+        <span className="locale">
+          {locale + (bcp47Normalize(locale) !== locale ? " → " + bcp47Normalize(locale) : "")}
+        </span>
       </h3>
       {dateTimeIsSingleLine ? (
         <h1 className="single-line">

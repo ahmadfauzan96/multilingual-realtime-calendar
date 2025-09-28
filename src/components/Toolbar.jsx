@@ -7,6 +7,20 @@ import ToolbarRowState from "./ToolbarRowState.jsx";
 import ToggleButton from "./ToggleButton.jsx";
 import "./Toolbar.css";
 
+// import { firstTimeExecutedDateTime, getFlagEmoji, localeData, TIMEZONES } from "../util.js";
+// import { CALENDAR_OPTIONS, LANGUAGE_MAP, LANGUAGES, REGIONS } from "../data.js";
+// import { getLocaleDirection } from "../languages-direction.js";
+// import "./Display.css";
+
+// const timeZoneLongName = (locale, timeZone) =>
+//   Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone })
+//     .formatToParts(firstTimeExecutedDateTime)
+//     .find(({ type }) => type === "timeZoneName")?.value;
+// const timeZoneFullName = (locale, timeZone) =>
+//   Intl.DateTimeFormat(locale, { timeStyle: "full", timeZone })
+//     .formatToParts(firstTimeExecutedDateTime)
+//     .find(({ type }) => type === "timeZoneName")?.value;
+
 export default function Toolbar({
   locale,
   is12Hours,
@@ -142,6 +156,122 @@ export default function Toolbar({
           </button>
         </div>
       </div>
+
+      {/* // ? Testing LXGW Wenkai TC font to Simplified Chinese */}
+      {/* <h2>Timezone Names in Simplified Chinese</h2>
+      <table className="display-zh" style={{ textAlign: "start" }}>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>English (Short)</th>
+            <th>English (Long)</th>
+            <th lang="zh-Hans">简体中文 (Short)</th>
+            <th lang="zh-Hans">简体中文 (Long)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {TIMEZONES.map(({ value }) => (
+            <tr key={value}>
+              <td>{value}</td>
+              <td>{timeZoneLongName("en", value)}</td>
+              <td>{timeZoneFullName("en", value)}</td>
+              <td lang="zh-Hans">{timeZoneLongName("zh-Hans", value)}</td>
+              <td lang="zh-Hans">{timeZoneFullName("zh-Hans", value)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+
+      {/* // ? Testing LXGW Wenkai TC font to Traditional Chinese */}
+      {/* <h2>Timezone Names in Traditional Chinese</h2>
+      <table className="display-zh" style={{ textAlign: "start" }}>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>English (Short)</th>
+            <th>English (Long)</th>
+            <th lang="zh-Hant">繁體中文 (Short)</th>
+            <th lang="zh-Hant">繁體中文 (Long)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {TIMEZONES.map(({ value }) => (
+            <tr key={value}>
+              <td>{value}</td>
+              <td>{timeZoneLongName("en", value)}</td>
+              <td>{timeZoneFullName("en", value)}</td>
+              <td lang="zh-Hant">{timeZoneLongName("zh-Hant", value)}</td>
+              <td lang="zh-Hant">{timeZoneFullName("zh-Hant", value)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+
+      {/* // ? Testing Klee One font to Japanese */}
+      {/* <h2>Timezone Names in Japanese</h2>
+      <table className="display-ja" style={{ textAlign: "start" }}>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>English (Short)</th>
+            <th>English (Long)</th>
+            <th lang="ja">日本語 (Short)</th>
+            <th lang="ja">日本語 (Long)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {TIMEZONES.map(({ value }) => (
+            <tr key={value}>
+              <td>{value}</td>
+              <td>{timeZoneLongName("en", value)}</td>
+              <td>{timeZoneFullName("en", value)}</td>
+              <td lang="ja">{timeZoneLongName("ja", value)}</td>
+              <td lang="ja">{timeZoneFullName("ja", value)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+
+      {/* // ? Testing various languages */}
+      {/* <h2>Timezone Names in {LANGUAGE_MAP[localeLangScript]}</h2>
+      <table style={{ textAlign: "start" }}>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>English (Short)</th>
+            <th>English (Long)</th>
+            {localeLangScript !== "en" && (
+              <>
+                <th lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
+                  {LANGUAGE_MAP[localeLangScript]} (Short)
+                </th>
+                <th lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
+                  {LANGUAGE_MAP[localeLangScript]} (Long)
+                </th>
+              </>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {TIMEZONES.map(({ value }) => (
+            <tr key={value}>
+              <td>{value}</td>
+              <td>{timeZoneLongName("en", value)}</td>
+              <td>{timeZoneFullName("en", value)}</td>
+              {localeLangScript !== "en" && (
+                <>
+                  <td lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
+                    {timeZoneLongName(localeLangScript, value)}
+                  </td>
+                  <td lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
+                    {timeZoneFullName(localeLangScript, value)}
+                  </td>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
     </section>
   );
 }
