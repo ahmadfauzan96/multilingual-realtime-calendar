@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { firstTimeExecutedDateTime, localeData, TIMEZONES } from "./util.js";
-import { greenwichMeridianTimeZones, universalTimeZones } from "./timezones.js";
+import {
+  greenwichMeridianTimeZoneNames as GMT,
+  universalTimeZoneNames as UTC,
+} from "./timezones.js";
 import { languagesWith24HoursSystem } from "./data.js";
 
 import Header from "./components/Header.jsx";
-import Toolbar from "./components/Toolbar.jsx";
-import Display from "./components/Display.jsx";
-import RegionData from "./components/RegionData.jsx";
+const Toolbar = lazy(() => import("./components/Toolbar.jsx"));
+const Display = lazy(() => import("./components/Display.jsx"));
+const RegionData = lazy(() => import("./components/RegionData.jsx"));
 import Footer from "./components/Footer.jsx";
 
 import "./App.css";
@@ -31,15 +34,14 @@ export default function App() {
 
   // TODO : Default to UTC, GMT, or the last element of the TIMEZONES array if timeZone is undefined
   if (!TIMEZONES.some(({ value }) => value === timeZone)) {
-    const timeZoneShortName = timeZone =>
+    const timeZoneLongName = timeZone =>
       new Intl.DateTimeFormat(userLocale, { timeStyle: "long", timeZone })
         .formatToParts(firstTimeExecutedDateTime)
         .find(({ type }) => type === "timeZoneName")?.value;
 
     timeZone =
-      TIMEZONES.find(({ value }) => universalTimeZones.includes(timeZoneShortName(value)))?.value ??
-      TIMEZONES.find(({ value }) => greenwichMeridianTimeZones.includes(timeZoneShortName(value)))
-        ?.value ??
+      TIMEZONES.find(({ value }) => UTC.includes(timeZoneLongName(value)))?.value ??
+      TIMEZONES.find(({ value }) => GMT.includes(timeZoneLongName(value)))?.value ??
       TIMEZONES.slice(-1)[0].value;
   }
 

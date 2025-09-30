@@ -6,15 +6,15 @@ footer {
 footer p {
   margin: 0;
   font-size: 1.25rem;
-  color: #03013b;
+  color: oklch(16.497% 0.10646 268.307);
 }
 
 footer a {
   font-weight: 500;
-  color: #151ebb;
+  color: oklch(38.359% 0.23071 266.977);
   text-decoration: inherit;
 }
 
 footer a:hover {
-  color: #090fac;
+  color: oklch(34.757% 0.22556 265.538);
 }

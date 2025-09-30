@@ -213,6 +213,15 @@ export const universalTimeZones = [
   "Etc/UCT",
   "Etc/Universal",
   "Etc/Zulu",
+  "Zulu",
+];
+
+export const universalTimeZoneNames = [
+  "UTC",
+  "Etc/UTC",
+  "Etc/UCT",
+  "Etc/Universal",
+  "Etc/Zulu",
   "SGH",
   "TCU",
   "Waqtiga UTC",
@@ -221,6 +230,19 @@ export const universalTimeZones = [
 ];
 
 export const greenwichMeridianTimeZones = [
+  "Etc/GMT",
+  "Etc/GMT+0",
+  "Etc/GMT0",
+  "Etc/Greenwich",
+  "Factory",
+  "GMT",
+  "GMT+0",
+  "GMT-0",
+  "GMT0",
+  "Greenwich",
+];
+
+export const greenwichMeridianTimeZoneNames = [
   "[GMT]",
   "Etc/GMT",
   "Etc/GMT+0",

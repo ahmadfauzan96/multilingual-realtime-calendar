@@ -51,61 +51,61 @@
 /* Tibetan, Dzongkha (MiSans Tibetan) */
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Thin.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Thin.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Thin.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Thin.woff") format("woff");
   font-weight: 100;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-ExtraLight.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-ExtraLight.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-ExtraLight.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-ExtraLight.woff") format("woff");
   font-weight: 200;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Light.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Light.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Light.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Light.woff") format("woff");
   font-weight: 300;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Normal.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Normal.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Normal.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Normal.woff") format("woff");
   font-weight: 400;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Medium.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Medium.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Medium.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Medium.woff") format("woff");
   font-weight: 500;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Regular.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Regular.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Regular.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Regular.woff") format("woff");
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Semibold.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Semibold.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Semibold.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Semibold.woff") format("woff");
   font-weight: 600;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Demibold.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Demibold.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Demibold.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Demibold.woff") format("woff");
   font-weight: 600;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Bold.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Bold.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Bold.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Bold.woff") format("woff");
   font-weight: 700;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("../webfonts/woff2/MiSansTibetan-Heavy.woff2") format("woff2"),
-    url("../webfonts/woff/MiSansTibetan-Heavy.woff") format("woff");
+  src: url("./assets/webfonts/woff2/MiSansTibetan-Heavy.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Heavy.woff") format("woff");
   font-weight: 900;
 }
 
@@ -131,24 +131,24 @@ body {
   min-width: 320px;
   min-height: 100vh;
   /* ? Background settings from https://cssgradient.io/ */
-  background: rgb(2, 0, 36);
+  background: oklch(12.157% 0.07907 270.925);
   background: -moz-linear-gradient(
     180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 50%,
-    rgba(0, 212, 255, 1) 100%
+    oklch(12.157% 0.07907 270.925) 0%,
+    oklch(27.235% 0.17226 267) 50%,
+    oklch(80.427% 0.146 219.548) 100%
   );
   background: -webkit-linear-gradient(
     180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 50%,
-    rgba(0, 212, 255, 1) 100%
+    oklch(12.157% 0.07907 270.925) 0%,
+    oklch(27.235% 0.17226 267) 50%,
+    oklch(80.427% 0.146 219.548) 100%
   );
   background: linear-gradient(
     180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 50%,
-    rgba(0, 212, 255, 1) 100%
+    oklch(12.157% 0.07907 270.925) 0%,
+    oklch(27.235% 0.17226 267) 50%,
+    oklch(80.427% 0.146 219.548) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
 }

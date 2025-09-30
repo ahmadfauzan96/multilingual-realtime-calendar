@@ -8,7 +8,7 @@ select {
   font-family: "FiraGO", sans-serif;
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid oklch(84.522% 0.0001 271.152);
   border-radius: 4px;
   resize: vertical;
 }
@@ -26,23 +26,16 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #695656;
+  background-color: oklch(47.219% 0.02515 17.964);
   color: lavenderblush;
   cursor: pointer;
+  float: inline-end;
   transition: border-color 0.25s;
 }
 
-button:dir(ltr) {
-  float: right;
-}
-
-button:dir(rtl) {
-  float: left;
-}
-
 button:hover {
-  border-color: #646cff;
-  background-color: #4249d7;
+  border-color: oklch(60.698% 0.21466 275.613);
+  background-color: oklch(49.419% 0.21277 273.376);
   color: navy;
 }
 
@@ -75,16 +68,7 @@ li {
 .col-25,
 .col-75 {
   margin-top: 6px;
-}
-
-.col-25:dir(ltr),
-.col-75:dir(ltr) {
-  float: left;
-}
-
-.col-25:dir(rtl),
-.col-75:dir(rtl) {
-  float: right;
+  float: inline-start;
 }
 
 /* Clear floats after the columns */
