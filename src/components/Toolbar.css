@@ -2,12 +2,14 @@ h1,
 p,
 select {
   color: lavender;
+  color: oklch(93.09% 0.02705 285.814);
 }
 
 select {
   font-family: "FiraGO", sans-serif;
   width: 100%;
   padding: 12px;
+  border: 1px solid #ccc;
   border: 1px solid oklch(84.522% 0.0001 271.152);
   border-radius: 4px;
   resize: vertical;
@@ -26,17 +28,22 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
+  background-color: #695656;
   background-color: oklch(47.219% 0.02515 17.964);
   color: lavenderblush;
+  color: oklch(96.834% 0.01742 354.741);
   cursor: pointer;
   float: inline-end;
   transition: border-color 0.25s;
 }
 
 button:hover {
+  border-color: #646cff;
   border-color: oklch(60.698% 0.21466 275.613);
+  background-color: #4249d7;
   background-color: oklch(49.419% 0.21277 273.376);
   color: navy;
+  color: oklch(27.116% 0.18794 264.073);
 }
 
 button:focus,

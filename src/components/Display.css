@@ -3,13 +3,15 @@ h2 {
   line-height: 1;
 }
 
-h1 time {
+h1 > time {
   font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.871);
   color: oklch(100% 0.00011 271.152 / 0.87);
 }
 
 h3 {
   font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.87);
   color: oklch(100% 0.00011 271.152 / 0.87);
 }
 
