@@ -6,13 +6,17 @@ h2 {
 h1 > time {
   font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.871);
-  color: oklch(100% 0.00011 271.152 / 0.87);
+  @supports (color: oklch(0% 0 0)) {
+    color: oklch(100% 0.00011 271.152 / 0.87);
+  }
 }
 
 h3 {
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.87);
-  color: oklch(100% 0.00011 271.152 / 0.87);
+  @supports (color: oklch(0% 0 0)) {
+    color: oklch(100% 0.00011 271.152 / 0.87);
+  }
 }
 
 .single-line {

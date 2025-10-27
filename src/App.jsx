@@ -1,10 +1,10 @@
 import { lazy, useState } from "react";
 import { firstTimeExecutedDateTime, localeData, TIMEZONES } from "./util.js";
 import {
-  greenwichMeridianTimeZoneNames as GMT,
-  universalTimeZoneNames as UTC,
-} from "./timezones.js";
-import { languagesWith24HoursSystem } from "./data.js";
+  languagesWith12HoursSystem,
+  UTCTimeZoneLongNames as UTC,
+  GMTTimeZoneLongNames as GMT,
+} from "./data.js";
 
 import Header from "./components/Header.jsx";
 const Toolbar = lazy(() => import("./components/Toolbar.jsx"));
@@ -40,14 +40,14 @@ export default function App() {
         .find(({ type }) => type === "timeZoneName")?.value;
 
     timeZone =
-      TIMEZONES.find(({ value }) => UTC.includes(timeZoneLongName(value)))?.value ??
-      TIMEZONES.find(({ value }) => GMT.includes(timeZoneLongName(value)))?.value ??
+      TIMEZONES.find(({ value: tz }) => UTC.includes(timeZoneLongName(tz)))?.value ??
+      TIMEZONES.find(({ value: tz }) => GMT.includes(timeZoneLongName(tz)))?.value ??
       TIMEZONES.slice(-1)[0].value;
   }
 
   const [calendar, setCalendar] = useState({
     locale,
-    is12Hours: !languagesWith24HoursSystem.includes(localeLangScript),
+    is12Hours: languagesWith12HoursSystem.some(({ value: locale }) => userLocale === locale),
     timeZone,
   });
   const [dateTimeIsSingleLine, setDateTimeIsSingleLine] = useState(true);

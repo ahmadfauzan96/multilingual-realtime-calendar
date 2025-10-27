@@ -122,6 +122,7 @@
 
 html {
   font-family: "FiraGO", sans-serif;
+  font-feature-settings: "calt", "liga", "dlig", "clig", "kern", "rlig";
 }
 
 body {
@@ -133,16 +134,21 @@ body {
   /* ? Background settings from https://cssgradient.io/ */
   background: #020024;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
-  background: -moz-linear-gradient(180deg, #020024 0%, #090979 50%,#00d4ff 100%);
-  background: -webkit-linear-gradient(180deg, #020024 0%, #090979 50%,#00d4ff 100%);
-  background: linear-gradient(180deg, #020024 0%, #090979 50%,#00d4ff 100%);
+  background: -webkit-linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
+  background: -moz-linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
+  background: linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
 
   /* ? Improved by Deepseek AI */
   /* * Modern version with OKLCH - for supporting browsers */
-@supports (color: oklch(0% 0 0)) {
-  background: oklch(12.157% 0.07907 270.925);
-  background: linear-gradient(180deg, oklch(12.157% 0.07907 270.925) 0%, oklch(27.235% 0.17226 267) 50%, oklch(80.427% 0.146 219.548) 100%);
-}
+  @supports (color: oklch(0% 0 0)) {
+    background: oklch(12.157% 0.07907 270.925);
+    background: linear-gradient(
+      180deg,
+      oklch(12.157% 0.07907 270.925) 0%,
+      oklch(27.235% 0.17226 267) 50%,
+      oklch(80.427% 0.146 219.548) 100%
+    );
+  }
 }
 
 h1 {

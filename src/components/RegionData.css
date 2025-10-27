@@ -8,7 +8,9 @@
   font-size: 1.25rem;
   font-weight: 500;
   color: #03013b;
-  color: oklch(16.497% 0.10646 268.307);
+  @supports (color: oklch(0% 0 0)) {
+    color: oklch(16.497% 0.10646 268.307);
+  }
   text-decoration: underline;
 }
 
@@ -16,5 +18,7 @@
   margin: 0;
   font-size: 1.25rem;
   color: #03013b;
-  color: oklch(16.497% 0.10646 268.307);
+  @supports (color: oklch(0% 0 0)) {
+    color: oklch(16.497% 0.10646 268.307);
+  }
 }
