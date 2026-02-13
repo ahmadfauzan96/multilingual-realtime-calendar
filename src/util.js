@@ -22,10 +22,12 @@ export const getFlagEmoji = regionalCode =>
           // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
           .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
           .join("")
-      : ""
+      : regionalCode === ""
+        ? ""
+        : ""
     : typeof regionalCode === "number"
       ? "(No flag for this region.)"
-      : undefined;
+      : "";
 
 // ? Timezones
 export const firstTimeExecutedDateTime = new Date();
@@ -58,15 +60,18 @@ function tzOffsetFromUTC(timeZone) {
   );
 }
 
-const tzLongName = timeZone =>
-  new Intl.DateTimeFormat("en", { timeStyle: "long", timeZone })
+export const tzLongNameIntl = (locale, timeZone) =>
+  new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone })
     .formatToParts(firstTimeExecutedDateTime)
     .find(({ type }) => type === "timeZoneName").value;
 
-const tzFullName = timeZone =>
-  new Intl.DateTimeFormat("en", { timeStyle: "full", timeZone })
+export const tzFullNameIntl = (locale, timeZone) =>
+  new Intl.DateTimeFormat(locale, { timeStyle: "full", timeZone })
     .formatToParts(firstTimeExecutedDateTime)
     .find(({ type }) => type === "timeZoneName").value;
+
+const tzLongName = tzLongNameIntl.bind(null, "en");
+const tzFullName = tzFullNameIntl.bind(null, "en");
 
 function tzRegion(timeZone) {
   const activeTimeZoneRegionalCode = zones[timeZone]?.countries[0];

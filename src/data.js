@@ -573,13 +573,13 @@ export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => 
 // console.log(languagesWith12HoursSystem.length);
 
 // ? TEST : get default calendar, number, and hour cycles for each languages
-for (const { title, value } of LANGUAGES) {
-  const { calendar, numberingSystem, hourCycle, hour12 } = Intl.DateTimeFormat(value, {
-    dateStyle: "full",
-    timeStyle: "full",
-  }).resolvedOptions();
-  console.log(value, "|", title, "->", calendar, "|", numberingSystem, "|", hourCycle, "|", hour12);
-}
+// for (const { title, value } of LANGUAGES) {
+//   const { calendar, numberingSystem, hourCycle, hour12 } = Intl.DateTimeFormat(value, {
+//     dateStyle: "full",
+//     timeStyle: "full",
+//   }).resolvedOptions();
+//   console.log(value, "|", title, "->", calendar, "|", numberingSystem, "|", hourCycle, "|", hour12);
+// }
 
 // ? TEST : put default calendar and number of each languages to respective arrays
 // let calendarsArray = [];

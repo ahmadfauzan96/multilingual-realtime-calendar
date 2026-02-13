@@ -1,25 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
+
 import { getFlagEmoji, localeData, TIMEZONES } from "../util.js";
 import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.js";
+// ? for testing timezone names in various languages
+// import { tzLongNameIntl, tzFullNameIntl, getFlagEmoji, localeData, TIMEZONES } from "../util.js";
+// import { CALENDAR_OPTIONS, LANGUAGE_MAP, LANGUAGES, REGIONS } from "../data.js";
+// import { getLocaleDirection } from "../languages-direction.js";
+
 import ToolbarRowRef from "./ToolbarRowRef.jsx";
 import ToolbarRowState from "./ToolbarRowState.jsx";
 import ToggleButton from "./ToggleButton.jsx";
+
 import "./Toolbar.css";
-
-// import { firstTimeExecutedDateTime, getFlagEmoji, localeData, TIMEZONES } from "../util.js";
-// import { CALENDAR_OPTIONS, LANGUAGE_MAP, LANGUAGES, REGIONS } from "../data.js";
-// import { getLocaleDirection } from "../languages-direction.js";
+// ? for testing timezone names in various languages
 // import "./Display.css";
-
-// const timeZoneLongName = (locale, timeZone) =>
-//   Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone })
-//     .formatToParts(firstTimeExecutedDateTime)
-//     .find(({ type }) => type === "timeZoneName")?.value;
-// const timeZoneFullName = (locale, timeZone) =>
-//   Intl.DateTimeFormat(locale, { timeStyle: "full", timeZone })
-//     .formatToParts(firstTimeExecutedDateTime)
-//     .find(({ type }) => type === "timeZoneName")?.value;
 
 export default function Toolbar({
   locale,
@@ -30,6 +25,79 @@ export default function Toolbar({
   setDateTimeIsSingleLine: setIsSingleLine,
 }) {
   const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(locale);
+  // ? for testing timezone names in various languages
+  // const { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber } =
+  //   localeData(locale);
+  //   const displayClass =
+  //   localeLang === "hy"
+  //     ? "display-hy"
+  //     : localeLang === "ja"
+  //     ? "display-ja"
+  //     : localeLang === "ko"
+  //     ? "display-ko"
+  //     : localeScript === "hans" || localeScript === "Hans"
+  //     ? "display-zh-hans"
+  //     : localeScript === "hant" || localeScript === "Hant"
+  //     ? "display-zh-hant"
+  //     : localeLang === "zh" || localeLang === "yue" || localeLang === "nan"
+  //     ? "display-zh"
+  //     : localeLang === "mn" && (localeScript === "mong" || localeScript === "Mong")
+  //     ? "display-mn-mong"
+  //     : localeLang === "bn" || localeScript === "beng" || localeScript === "Beng"
+  //     ? "display-bn"
+  //     : localeLang === "as"
+  //     ? "display-as"
+  //     : localeLang === "gu"
+  //     ? "display-gu"
+  //     : localeLang === "pa" && (localeScript !== "arab" || localeScript !== "Arab")
+  //     ? "display-pa"
+  //     : localeScript === "guru" || localeScript === "Guru"
+  //     ? "display-pa-guru"
+  //     : localeLang === "ta"
+  //     ? "display-ta"
+  //     : localeLang === "te"
+  //     ? "display-te"
+  //     : localeLang === "kn"
+  //     ? "display-kn"
+  //     : localeLang === "ml"
+  //     ? "display-ml"
+  //     : localeLang === "or"
+  //     ? "display-or"
+  //     : localeLang === "mni"
+  //     ? "display-mni"
+  //     : localeLang === "sat"
+  //     ? "display-sat"
+  //     : localeScript === "olck" || localeScript === "Olck"
+  //     ? "display-olck"
+  //     : localeLang === "si"
+  //     ? "display-si"
+  //     : localeLang === "bo" ||
+  //       localeLang === "dz" ||
+  //       localeLang === "sip" ||
+  //       localeLang === "lbi" ||
+  //       localeLang === "zau" ||
+  //       localeLang === "scp" ||
+  //       localeLang === "tsj" ||
+  //       localeLang === "kkf" ||
+  //       (localeLang === "bft" && (localeScript === "tibt" || localeScript === "Tibt")) ||
+  //       (localeLang === "bft" && localeScript !== "arab" && localeScript !== "Arab") ||
+  //       (localeLang === "jul" && (localeScript === "tibt" || localeScript === "Tibt")) ||
+  //       (localeLang === "jul" && localeScript !== "deva" && localeScript !== "Deva") ||
+  //       (localeLang === "xsr" && (localeScript === "tibt" || localeScript === "Tibt")) ||
+  //       (localeLang === "xsr" && localeScript !== "deva" && localeScript !== "Deva")
+  //     ? "display-bo"
+  //     : localeLang === "lo"
+  //     ? "display-lo"
+  //     : localeLang === "km"
+  //     ? "display-km"
+  //     : localeLang === "my" || localeScript === "mymr" || localeScript === "Mymr"
+  //     ? "display-my"
+  //     : localeLang === "am"
+  //     ? "display-am"
+  //     : localeLang === "ti"
+  //     ? "display-ti"
+  //     : "display";
+
   const { CALENDARS, NUMBERS } = CALENDAR_OPTIONS;
 
   const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(timeZone);
@@ -60,10 +128,10 @@ export default function Toolbar({
         calendarRefValue !== "" && numberRefValue !== ""
           ? "-u-ca-" + calendarRefValue + "-nu-" + numberRefValue
           : calendarRefValue === "" && numberRefValue !== ""
-          ? "-u-nu-" + numberRefValue
-          : calendarRefValue !== "" && numberRefValue === ""
-          ? "-u-ca-" + calendarRefValue
-          : "";
+            ? "-u-nu-" + numberRefValue
+            : calendarRefValue !== "" && numberRefValue === ""
+              ? "-u-ca-" + calendarRefValue
+              : "";
 
       // TODO : Set new calendar
       newCalendar.locale = newLanguageScript + newRegion + newCalendarOption;
@@ -165,18 +233,18 @@ export default function Toolbar({
             <th>Value</th>
             <th>English (Short)</th>
             <th>English (Long)</th>
-            <th lang="zh-Hans">简体中文 (Short)</th>
-            <th lang="zh-Hans">简体中文 (Long)</th>
+            <th lang="zh-Hans">简体中文 (短)</th>
+            <th lang="zh-Hans">简体中文 (长)</th>
           </tr>
         </thead>
         <tbody>
           {TIMEZONES.map(({ value }) => (
             <tr key={value}>
               <td>{value}</td>
-              <td>{timeZoneLongName("en", value)}</td>
-              <td>{timeZoneFullName("en", value)}</td>
-              <td lang="zh-Hans">{timeZoneLongName("zh-Hans", value)}</td>
-              <td lang="zh-Hans">{timeZoneFullName("zh-Hans", value)}</td>
+              <td>{tzLongNameIntl("en", value)}</td>
+              <td>{tzFullNameIntl("en", value)}</td>
+              <td lang="zh-Hans">{tzLongNameIntl("zh-Hans", value)}</td>
+              <td lang="zh-Hans">{tzFullNameIntl("zh-Hans", value)}</td>
             </tr>
           ))}
         </tbody>
@@ -190,18 +258,18 @@ export default function Toolbar({
             <th>Value</th>
             <th>English (Short)</th>
             <th>English (Long)</th>
-            <th lang="zh-Hant">繁體中文 (Short)</th>
-            <th lang="zh-Hant">繁體中文 (Long)</th>
+            <th lang="zh-Hant">繁體中文 (短)</th>
+            <th lang="zh-Hant">繁體中文 (長)</th>
           </tr>
         </thead>
         <tbody>
           {TIMEZONES.map(({ value }) => (
             <tr key={value}>
               <td>{value}</td>
-              <td>{timeZoneLongName("en", value)}</td>
-              <td>{timeZoneFullName("en", value)}</td>
-              <td lang="zh-Hant">{timeZoneLongName("zh-Hant", value)}</td>
-              <td lang="zh-Hant">{timeZoneFullName("zh-Hant", value)}</td>
+              <td>{tzLongNameIntl("en", value)}</td>
+              <td>{tzFullNameIntl("en", value)}</td>
+              <td lang="zh-Hant">{tzLongNameIntl("zh-Hant", value)}</td>
+              <td lang="zh-Hant">{tzFullNameIntl("zh-Hant", value)}</td>
             </tr>
           ))}
         </tbody>
@@ -215,18 +283,18 @@ export default function Toolbar({
             <th>Value</th>
             <th>English (Short)</th>
             <th>English (Long)</th>
-            <th lang="ja">日本語 (Short)</th>
-            <th lang="ja">日本語 (Long)</th>
+            <th lang="ja">日本語 (低)</th>
+            <th lang="ja">日本語 (長)</th>
           </tr>
         </thead>
         <tbody>
           {TIMEZONES.map(({ value }) => (
             <tr key={value}>
               <td>{value}</td>
-              <td>{timeZoneLongName("en", value)}</td>
-              <td>{timeZoneFullName("en", value)}</td>
-              <td lang="ja">{timeZoneLongName("ja", value)}</td>
-              <td lang="ja">{timeZoneFullName("ja", value)}</td>
+              <td>{tzLongNameIntl("en", value)}</td>
+              <td>{tzFullNameIntl("en", value)}</td>
+              <td lang="ja">{tzLongNameIntl("ja", value)}</td>
+              <td lang="ja">{tzFullNameIntl("ja", value)}</td>
             </tr>
           ))}
         </tbody>
@@ -234,7 +302,7 @@ export default function Toolbar({
 
       {/* // ? Testing various languages */}
       {/* <h2>Timezone Names in {LANGUAGE_MAP[localeLangScript]}</h2>
-      <table style={{ textAlign: "start" }}>
+      <table className={displayClass} style={{ textAlign: "start" }}>
         <thead>
           <tr>
             <th>Value</th>
@@ -242,12 +310,8 @@ export default function Toolbar({
             <th>English (Long)</th>
             {localeLangScript !== "en" && (
               <>
-                <th lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
-                  {LANGUAGE_MAP[localeLangScript]} (Short)
-                </th>
-                <th lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
-                  {LANGUAGE_MAP[localeLangScript]} (Long)
-                </th>
+                <th>{localeLangScript}</th>
+                <th>{LANGUAGE_MAP[localeLangScript]}</th>
               </>
             )}
           </tr>
@@ -256,15 +320,15 @@ export default function Toolbar({
           {TIMEZONES.map(({ value }) => (
             <tr key={value}>
               <td>{value}</td>
-              <td>{timeZoneLongName("en", value)}</td>
-              <td>{timeZoneFullName("en", value)}</td>
+              <td>{tzLongNameIntl("en", value)}</td>
+              <td>{tzFullNameIntl("en", value)}</td>
               {localeLangScript !== "en" && (
                 <>
                   <td lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
-                    {timeZoneLongName(localeLangScript, value)}
+                    {tzLongNameIntl(localeLangScript, value)}
                   </td>
                   <td lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
-                    {timeZoneFullName(localeLangScript, value)}
+                    {tzFullNameIntl(localeLangScript, value)}
                   </td>
                 </>
               )}
