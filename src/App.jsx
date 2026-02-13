@@ -16,15 +16,15 @@ import "./App.css";
 
 export default function App() {
   let {
-    locale: userLocale,
+    locale,
     calendar: userCalendar,
     numberingSystem: userNumber,
     timeZone,
   } = new Intl.DateTimeFormat().resolvedOptions();
 
   // TODO : Construct a locale string based on the userLocale’s default calendar and number
-  const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(userLocale);
-  const locale =
+  const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(locale);
+  locale =
     localeLangScript +
     (localeReg ? "-" + localeReg : "") +
     "-u-ca-" +
@@ -35,7 +35,7 @@ export default function App() {
   // TODO : Default to UTC, GMT, or the last element of the TIMEZONES array if timeZone is undefined
   if (!TIMEZONES.some(({ value }) => value === timeZone)) {
     const timeZoneLongName = timeZone =>
-      new Intl.DateTimeFormat(userLocale, { timeStyle: "long", timeZone })
+      new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone })
         .formatToParts(firstTimeExecutedDateTime)
         .find(({ type }) => type === "timeZoneName")?.value;
 
@@ -47,7 +47,7 @@ export default function App() {
 
   const [calendar, setCalendar] = useState({
     locale,
-    is12Hours: languagesWith12HoursSystem.some(({ value: locale }) => userLocale === locale),
+    is12Hours: languagesWith12HoursSystem.some(({ language }) => language === localeLangScript),
     timeZone,
   });
   const [dateTimeIsSingleLine, setDateTimeIsSingleLine] = useState(true);

@@ -113,6 +113,7 @@ export const LANGUAGES = [
   { title: "Buginese (Lontara) (BCP 47)", value: "bug-Bugi" },
   { title: "Buginese (Aksara Makassar Kuno)", value: "bug-maka" },
   { title: "Buginese (Aksara Makassar Kuno) (BCP 47)", value: "bug-Maka" },
+  { title: "Buksa", value: "tkb" },
   { title: "Bulgarian", value: "bg" },
   { title: "Burmese (Unicode)", value: "my" },
   { title: "Burmese (Zawgyi)", value: "my-qaag" },
@@ -280,6 +281,7 @@ export const LANGUAGES = [
   { title: "Koyra Chiini", value: "khq" },
   { title: "Koyraboro Senni", value: "ses" },
   { title: "Kuanyama/Kwanyama", value: "kj" },
+  { title: "Kudmali/কুড়মালি/কুর্মালী/कुड़मालि/कुरमालि", value: "kyw" },
   { title: "Kumhali/कुमाल भाषा/कुमाले कुरा", value: "kra" },
   { title: "Kurdish", value: "ku" },
   { title: "Kurdish (Central)/کوردی سورانی", value: "ckb" },
@@ -380,6 +382,7 @@ export const LANGUAGES = [
   { title: "Oromo", value: "om" },
   { title: "Ossetian", value: "os" },
   { title: "Pāli", value: "pi" },
+  { title: "Panchpargania", value: "tdb" },
   { title: "Papiamento", value: "pap" },
   { title: "Pashto/پښتو", value: "ps" },
   { title: "Piedmontese", value: "pms" },
@@ -455,6 +458,7 @@ export const LANGUAGES = [
   { title: "Slovenian", value: "sl" },
   { title: "Soga", value: "xog" },
   { title: "Somali", value: "so" },
+  { title: "Sonha", value: "soi" },
   { title: "Sorbian (Lower)", value: "dsb" },
   { title: "Sorbian (Upper)", value: "hsb" },
   { title: "Sotho (Northern/Pedi/Sesotho sa Leboa)", value: "st" },
@@ -500,6 +504,11 @@ export const LANGUAGES = [
   { title: "Tetum", value: "tet" },
   { title: "Teso", value: "teo" },
   { title: "Thai/ภาษาไทย", value: "th" },
+  { title: "Tharu (Chitwania)", value: "the" },
+  { title: "Tharu (Dangaura)", value: "thl" },
+  { title: "Tharu (Kathariya)", value: "tkt" },
+  { title: "Tharu (Kochila)", value: "thq" },
+  { title: "Tharu (Rana)", value: "thr" },
   { title: "Tibetan", value: "bo" },
   { title: "Tigrinya", value: "ti" },
   { title: "Tongan", value: "to" },
@@ -552,7 +561,7 @@ export const LANGUAGES = [
 
 export const LANGUAGE_MAP = LANGUAGES.reduce(
   (acc, { title, value }) => ((acc[value] = title), acc),
-  {}
+  {},
 );
 
 export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => {
@@ -564,13 +573,13 @@ export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => 
 // console.log(languagesWith12HoursSystem.length);
 
 // ? TEST : get default calendar, number, and hour cycles for each languages
-// for (const { title, value } of LANGUAGES) {
-//   const { calendar, numberingSystem, hourCycle, hour12 } = Intl.DateTimeFormat(value, {
-//     dateStyle: "full",
-//     timeStyle: "full",
-//   }).resolvedOptions();
-//   console.log(value, "|", title, "->", calendar, "|", numberingSystem, "|", hourCycle, "|", hour12);
-// }
+for (const { title, value } of LANGUAGES) {
+  const { calendar, numberingSystem, hourCycle, hour12 } = Intl.DateTimeFormat(value, {
+    dateStyle: "full",
+    timeStyle: "full",
+  }).resolvedOptions();
+  console.log(value, "|", title, "->", calendar, "|", numberingSystem, "|", hourCycle, "|", hour12);
+}
 
 // ? TEST : put default calendar and number of each languages to respective arrays
 // let calendarsArray = [];
@@ -952,7 +961,7 @@ export const REGIONS = [
 
 export const REGION_MAP = REGIONS.reduce(
   (acc, { title, value }) => ((acc[value] = title), acc),
-  {}
+  {},
 );
 
 export const regionsAdoptingAR = [
@@ -1410,17 +1419,17 @@ export const CALENDAR_OPTIONS = {
 
 export const CALENDAR_MAP = CALENDAR_OPTIONS.CALENDARS.reduce(
   (acc, { title, value }) => ((acc[value] = title), acc),
-  {}
+  {},
 );
 
 export const NUMBER_MAP = CALENDAR_OPTIONS.NUMBERS.reduce(
   (acc, { title, value }) => ((acc[value] = title), acc),
-  {}
+  {},
 );
 
 export const COLLATION_MAP = CALENDAR_OPTIONS.COLLATIONS.reduce(
   (acc, { title, value }) => ((acc[value] = title), acc),
-  {}
+  {},
 );
 
 // console.log(LANGUAGE_MAP);

@@ -1,6 +1,7 @@
 /* * Embedded Fonts */
 /* Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, Georgian */
-@import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+/* ! the following embedded font link is disabled by the fonts author */
+/* @import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"); */
 /* Armenian */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@100..900&display=swap");
 /* Japanese (Hiragana, Katakana, Kanji) */
@@ -21,6 +22,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400..800&display=swap");
 /* Kannada */
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&display=swap");
 /* Malayalam */
 /* @import url("https://smc.org.in/fonts/manjari.css"); */
 @import url("https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap");
@@ -48,65 +50,357 @@
 
 /* * Web Fonts */
 /* ? WOFF2 for modern browsers, WOFF for older browsers */
+/* Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, Georgian (FiraGO) */
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Two.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Two.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-TwoItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-TwoItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Four.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Four.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-FourItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-FourItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Eight.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Eight.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-EightItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-EightItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Hair.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Hair.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-HairItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-HairItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Thin.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-ThinItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-UltraLight.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-UltraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-UltraLightItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-UltraLightItalic.woff") format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-ExtraLight.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-ExtraLightItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-ExtraLightItalic.woff") format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Light.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-LightItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Book.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Book.woff") format("woff");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-BookItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-BookItalic.woff") format("woff");
+  font-weight: 350;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Regular.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Italic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Medium.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-MediumItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-SemiBold.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-SemiBoldItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Bold.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-BoldItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-ExtraBold.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-ExtraBoldItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-ExtraBoldItalic.woff") format("woff");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-Heavy.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-Heavy.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FiraGO";
+  src:
+    url("./assets/webfonts/woff2/FiraGO-HeavyItalic.woff2") format("woff2"),
+    url("./assets/webfonts/woff/FiraGO-HeavyItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
 /* Tibetan, Dzongkha (MiSans Tibetan) */
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Thin.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Thin.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Thin.woff") format("woff");
   font-weight: 100;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-ExtraLight.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-ExtraLight.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-ExtraLight.woff") format("woff");
   font-weight: 200;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Light.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Light.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Light.woff") format("woff");
   font-weight: 300;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Normal.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Normal.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Normal.woff") format("woff");
   font-weight: 400;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Medium.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Regular.woff2") format("woff2"),
+    url("./assets/webfonts/woff/MiSansTibetan-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "MiSans Tibetan";
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Medium.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Medium.woff") format("woff");
   font-weight: 500;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Regular.woff2") format("woff2"),
-    url("./assets/webfonts/woff/MiSansTibetan-Regular.woff") format("woff");
-}
-@font-face {
-  font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Semibold.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Semibold.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Semibold.woff") format("woff");
   font-weight: 600;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Demibold.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Demibold.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Demibold.woff") format("woff");
   font-weight: 600;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Bold.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Bold.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Bold.woff") format("woff");
   font-weight: 700;
+  font-display: swap;
 }
 @font-face {
   font-family: "MiSans Tibetan";
-  src: url("./assets/webfonts/woff2/MiSansTibetan-Heavy.woff2") format("woff2"),
+  src:
+    url("./assets/webfonts/woff2/MiSansTibetan-Heavy.woff2") format("woff2"),
     url("./assets/webfonts/woff/MiSansTibetan-Heavy.woff") format("woff");
   font-weight: 900;
+  font-display: swap;
 }
 
 * {

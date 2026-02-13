@@ -24,8 +24,8 @@ export const getFlagEmoji = regionalCode =>
           .join("")
       : ""
     : typeof regionalCode === "number"
-    ? "(No flag for this region.)"
-    : undefined;
+      ? "(No flag for this region.)"
+      : undefined;
 
 // ? Timezones
 export const firstTimeExecutedDateTime = new Date();
@@ -40,8 +40,8 @@ function tzOffsetFromUTC(timeZone) {
     tzOffset > 0
       ? Math.floor(tzOffsetHour).toString()
       : tzOffset < 0
-      ? Math.ceil(tzOffsetHour).toString()
-      : tzOffsetHour.toString();
+        ? Math.ceil(tzOffsetHour).toString()
+        : tzOffsetHour.toString();
 
   // * Minute
   const tzOffsetMinute = (tzOffset % HOURS_IN_MILLISECONDS) / MINUTES_IN_MILLISECONDS;
@@ -53,8 +53,8 @@ function tzOffsetFromUTC(timeZone) {
     (tzOffsetHour !== 0
       ? (tzOffsetHour > 0 ? "+" : "") + tzHour + (tzOffsetMinute !== 0 ? ":" + tzMinute : "")
       : tzOffsetMinute !== 0
-      ? (tzOffsetMinute > 0 ? "+" : "-") + "0:" + tzMinute
-      : "")
+        ? (tzOffsetMinute > 0 ? "+" : "-") + "0:" + tzMinute
+        : "")
   );
 }
 
@@ -106,14 +106,14 @@ function tzRegion(timeZone) {
     region = `${activeTimeZoneRegion} ${getFlagEmoji(activeTimeZoneRegionalCode)}`;
   } else if (timeZoneIsDeprecated && deprecatedTimeZoneRegion) {
     region = `${deprecatedTimeZoneRegion} ${getFlagEmoji(
-      deprecatedTimeZoneRegionalCode
+      deprecatedTimeZoneRegionalCode,
     )} (link to ${deprecatedTZToActiveTZ})`;
   } else {
     region = universalTimeZones.includes(timeZone)
       ? "Coordinated Universal Time"
       : greenwichMeridianTimeZones.includes(timeZone)
-      ? "Greenwich Meridian Time"
-      : "Unspecified Region";
+        ? "Greenwich Meridian Time"
+        : "Unspecified Region";
   }
   return region;
 }
@@ -123,7 +123,7 @@ export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
   value: tz,
 }));
 
-// ? Locale Region Data
+// ? Locale Region Data from given Timezone
 export function localeRegionData(timeZone) {
   // ! For testing purposes
   // console.log(timeZone);
@@ -165,8 +165,8 @@ export function localeData(locale) {
     localeLangScriptReg[1] && localeLangScriptReg[1].length === 2
       ? localeLangScriptReg[1]
       : localeLangScriptReg[2] && localeLangScriptReg[2].length === 2
-      ? localeLangScriptReg[2]
-      : "";
+        ? localeLangScriptReg[2]
+        : "";
 
   const calendarOption = localeCalendarOption ? localeCalendarOption.split("-") : [];
 
