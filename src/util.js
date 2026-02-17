@@ -90,8 +90,7 @@ function tzRegion(timeZone) {
   const timeZoneIsDeprecated = compatibilityTimeZones.some(tz => tz.oldTimeZone === timeZone);
   const { newTimeZone: deprecatedTZToActiveTZ, regionalCode: deprecatedTimeZoneRegionalCode } =
     compatibilityTimeZones.find(({ oldTimeZone }) => oldTimeZone === timeZone) ?? {
-      newTimeZone:
-        Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone ?? "unknown timezone",
+      newTimeZone: Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone,
     };
 
   // * Original code
@@ -118,7 +117,9 @@ function tzRegion(timeZone) {
       ? "Coordinated Universal Time"
       : greenwichMeridianTimeZones.includes(timeZone)
         ? "Greenwich Meridian Time"
-        : "Unspecified Region";
+        : timeZone.startsWith("Etc/GMT")
+          ? "POSIX-style Signs of Timezone Name"
+          : "Unspecified Region";
   }
   return region;
 }
@@ -144,7 +145,7 @@ export function localeRegionData(timeZone) {
   const localeTimeZone = timeZone;
 
   const regionalCode =
-    zones[localeTimeZone]?.countries[0] ||
+    zones[localeTimeZone]?.countries[0] ??
     compatibilityTimeZones.find(tz => tz.oldTimeZone === localeTimeZone)?.regionalCode;
 
   const name = REGION_MAP[regionalCode] ?? "No region data";

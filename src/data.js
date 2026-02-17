@@ -8,6 +8,7 @@ export const LANGUAGES = [
   { title: "Adyghe", value: "ady" },
   { title: "Afar", value: "aa" },
   { title: "Afrikaans", value: "af" },
+  { title: "Akha", value: "ahk" },
   { title: "Akan", value: "ak" },
   { title: "Albanian", value: "sq" },
   { title: "Albanian (Arvanitika)", value: "aat" },
@@ -60,6 +61,7 @@ export const LANGUAGES = [
   { title: "Asu", value: "asa" },
   { title: "Avaric", value: "av" },
   { title: "Avestan", value: "ae" },
+  { title: "Awa", value: "vwa" },
   { title: "Aymara", value: "ay" },
   { title: "Azerbaijani", value: "az" },
   { title: "Azerbaijani (Cyrillic)", value: "az-cyrl" },
@@ -96,9 +98,12 @@ export const LANGUAGES = [
   { title: "Berber (Latin) (BCP 47)", value: "ber-Latn" },
   { title: "Berber (Tifinagh)", value: "ber-tfng" },
   { title: "Berber (Tifinagh) (BCP 47)", value: "ber-Tfng" },
+  { title: "Bghai/Bwe", value: "bwe" },
   { title: "Bhojpuri/भोजपुरी", value: "bho" },
   { title: "Bihari/बिहारी", value: "bh" },
   { title: "Bislama", value: "bi" },
+  { title: "Bisu", value: "bzi" },
+  { title: "Blang", value: "blr" },
   { title: "Bosnian", value: "bs" },
   { title: "Bosnian (Cyrillic)", value: "bs-cyrl" },
   { title: "Bosnian (Cyrillic) (BCP 47)", value: "bs-Cyrl" },
@@ -106,6 +111,8 @@ export const LANGUAGES = [
   { title: "Bosnian (Latin) (BCP 47)", value: "bs-Latn" },
   { title: "Bote-Majhi", value: "bmj" },
   { title: "Breton", value: "br" },
+  { title: "Bru (Eastern)", value: "bru" },
+  { title: "Bru (Western)", value: "brv" },
   { title: "Buginese", value: "bug" },
   { title: "Buginese (Latin)", value: "bug-latn" },
   { title: "Buginese (Latin) (BCP 47)", value: "bug-Latn" },
@@ -125,6 +132,7 @@ export const LANGUAGES = [
   { title: "Cantonese (Traditional Han) (BCP 47)", value: "yue-Hant" },
   { title: "Catalan/Valencian", value: "ca" },
   { title: "Chamorro", value: "ch" },
+  { title: "Chao-bon/ชาวบน/Nyah Kur/ญัฮกุร", value: "cbn" },
   { title: "Chechen", value: "ce" },
   { title: "Cherokee", value: "chr" },
   { title: "Chicewa/Chewa/Nyanja", value: "ny" },
@@ -134,6 +142,7 @@ export const LANGUAGES = [
   { title: "Chinese (Simplified Han) (BCP 47)", value: "zh-Hans" },
   { title: "Chinese (Traditional Han)", value: "zh-hant" },
   { title: "Chinese (Traditional Han) (BCP 47)", value: "zh-Hant" },
+  { title: "Chong/Samre/ภาษาชอง", value: "cog" },
   { title: "Church Slavonic", value: "cu" },
   { title: "Chuvash", value: "cv" },
   { title: "Cornish", value: "kw" },
@@ -173,6 +182,7 @@ export const LANGUAGES = [
   { title: "German", value: "de" },
   { title: "Gikuyu/Kikuyu", value: "ki" },
   { title: "Gilaki/گیلکی", value: "glk" },
+  { title: "Gong", value: "ugo" },
   { title: "Greek (Ancient)", value: "grc" },
   { title: "Greek (Modern)", value: "el" },
   { title: "Greenlandic/Kalaallisut", value: "kl" },
@@ -191,6 +201,7 @@ export const LANGUAGES = [
   { title: "Herero", value: "hz" },
   { title: "Hindi/हिन्दी", value: "hi" },
   { title: "Hiri Motu/Police Motu", value: "ho" },
+  { title: "Hmong", value: "hmn" },
   { title: "Hmong Daw", value: "mww" },
   { title: "Hokkien/Min Nan", value: "nan" },
   { title: "Hokkien/Min Nan (Simplified Han)", value: "nan-hans" },
@@ -211,6 +222,7 @@ export const LANGUAGES = [
   { title: "Inuktitut (Latin) (BCP 47)", value: "iu-Latn" },
   { title: "Inupiaq", value: "ik" },
   { title: "Irish Gaelic", value: "ga" },
+  { title: "Isan", value: "tts" },
   { title: "Istriot", value: "ist" },
   { title: "Istro-Romanian", value: "ruo" },
   { title: "Italian", value: "it" },
@@ -222,6 +234,7 @@ export const LANGUAGES = [
   { title: "Javanese (Latin) (BCP 47)", value: "jv-Latn" },
   { title: "Javanese (Pégon)", value: "jv-arab" },
   { title: "Javanese (Pégon) (BCP 47)", value: "jv-Arab" },
+  { title: "Jinghpaw/Jinghpo/Kachin", value: "kac" },
   { title: "Jirel", value: "jul" },
   { title: "Jirel (Devanagari)", value: "jul-deva" },
   { title: "Jirel (Devanagari) (BCP 47)", value: "jul-Deva" },
@@ -240,6 +253,13 @@ export const LANGUAGES = [
   { title: "Kamba", value: "kam" },
   { title: "Kannada", value: "kn" },
   { title: "Kanuri", value: "kr" },
+  { title: "Karen", value: "kar" },
+  { title: "Karen (Mopwa)", value: "jkm" },
+  { title: "Karen (Paku)", value: "jkp" },
+  { title: "Karen (S'gaw)", value: "ksw" },
+  { title: "Karen (S'gaw, Myanmar)", value: "ksw-mymr" },
+  { title: "Karen (S'gaw, Myanmar) (BCP 47)", value: "ksw-Mymr" },
+  { title: "Karen (Wewaw)", value: "wea" },
   { title: "Kashmiri/कॉशुर/کٲشُر", value: "ks" },
   { title: "Kashmiri (Arabic)/کٲشُر", value: "ks-arab" },
   { title: "Kashmiri (Arabic) (BCP 47)/کٲشُر", value: "ks-Arab" },
@@ -248,17 +268,30 @@ export const LANGUAGES = [
   { title: "Kashmiri (Latin)", value: "ks-latn" },
   { title: "Kashmiri (Latin) (BCP 47)", value: "ks-Latn" },
   { title: "Kashubian", value: "csb" },
+  { title: "Katang (Northern)", value: "ncq" },
+  { title: "Katang (Southern)", value: "sct" },
   { title: "Kazakh", value: "kk" },
   { title: "Kazakh (Cyrillic)", value: "kk-cyrl" },
   { title: "Kazakh (Cyrillic) (BCP 47)", value: "kk-Cyrl" },
   { title: "Kazakh (Latin)", value: "kk-latn" },
   { title: "Kazakh (Latin) (BCP 47)", value: "kk-Latn" },
+  { title: "Kensiu", value: "kns" },
+  { title: "Khamet/Lamet", value: "lbn" },
   { title: "Khasi", value: "kha" },
   { title: "Khasi (Bengali-Assamese)", value: "kha-beng" },
   { title: "Khasi (Bengali-Assamese) (BCP 47)", value: "kha-Beng" },
   { title: "Khasi (Latin)", value: "kha-latn" },
   { title: "Khasi (Latin) (BCP 47)", value: "kha-Latn" },
   { title: "Khmer", value: "km" },
+  { title: "Khmer Surin", value: "kxm" },
+  { title: "Khmu", value: "kjg" },
+  { title: "Khmu (Buddhist)", value: "khf" },
+  { title: "Khua", value: "xhv" },
+  { title: "Khün/ไทเขิน", value: "kkh" },
+  { title: "Khün (Tai Tham)", value: "kkh-lana" },
+  { title: "Khün (Tai Tham) (BCP 47)", value: "kkh-Lana" },
+  { title: "Khün (Thai)/ไทเขิน", value: "kkh-thai" },
+  { title: "Khün (Thai) (BCP 47)/ไทเขิน", value: "kkh-Thai" },
   { title: "Kinyarwanda", value: "rw" },
   { title: "Kirundi/Rundi", value: "rn" },
   { title: "Kiswahili/Swahili", value: "sw" },
@@ -292,16 +325,23 @@ export const LANGUAGES = [
   { title: "Kurdish (Northern)", value: "kmr" },
   { title: "Kurdish (Sorani)", value: "ku-arab" },
   { title: "Kurdish (Sorani) (BCP 47)", value: "ku-Arab" },
+  { title: "Kuy/Kuay/ภาษากูย", value: "kdt" },
   { title: "Kyrgyz", value: "ky" },
   { title: "K’iche", value: "quc" },
   { title: "Ladakhi", value: "lbi" },
+  { title: "Lahu", value: "lhu" },
+  { title: "Lahu Kucong", value: "lkc" },
+  { title: "Lahu Shi", value: "lhi" },
   { title: "Langi", value: "lag" },
   { title: "Lao", value: "lo" },
   { title: "Latin", value: "la" },
+  { title: "Lawa (Eastern)", value: "lwl" },
+  { title: "Lawa (Western)", value: "lcp" },
   { title: "Latvian", value: "lv" },
   { title: "Ligurian", value: "lij" },
   { title: "Limburgan/Limburger/Limburgish", value: "li" },
   { title: "Lingala", value: "ln" },
+  { title: "Lisu", value: "lis" },
   { title: "Lithuanian", value: "lt" },
   { title: "Livonian", value: "liv" },
   { title: "Luba-Katanga/Luba-Shaba", value: "lu" },
@@ -317,6 +357,7 @@ export const LANGUAGES = [
   { title: "Malay", value: "ms" },
   { title: "Malay (Jawi)", value: "ms-arab" },
   { title: "Malay (Jawi) (BCP 47)", value: "ms-Arab" },
+  { title: "Malay (Pattani)", value: "mfa" },
   { title: "Malay (Rumi)", value: "ms-latn" },
   { title: "Malay (Rumi) (BCP 47)", value: "ms-Latn" },
   { title: "Malayalam", value: "ml" },
@@ -340,10 +381,14 @@ export const LANGUAGES = [
   { title: "Meru", value: "mer" },
   { title: "Mirandese", value: "mwl" },
   { title: "Mizo", value: "lus" },
+  { title: "Mlabri/Yumbri", value: "mra" },
   { title: "Mohawk", value: "moh" },
+  { title: "Moken", value: "mwt" },
   { title: "Moldavian/Moldovan (Deprecated)", value: "mo" },
-  { title: "Mon (Myanmar)", value: "mnw-mymr" },
-  { title: "Mon (Myanmar) (BCP 47)", value: "mnw-Mymr" },
+  { title: "Mon (Modern)", value: "mnw" },
+  { title: "Mon (Modern, Myanmar)", value: "mnw-mymr" },
+  { title: "Mon (Modern, Myanmar) (BCP 47)", value: "mnw-Mymr" },
+  { title: "Mon (Old)", value: "omx" },
   { title: "Mongolian", value: "mn" },
   { title: "Mongolian (Cyrillic)", value: "mn-cyrl" },
   { title: "Mongolian (Cyrillic) (BCP 47)", value: "mn-Cyrl" },
@@ -355,6 +400,7 @@ export const LANGUAGES = [
   { title: "Montenegrin (Latin)", value: "cnr-latn" },
   { title: "Montenegrin (Latin) (BCP 47)", value: "cnr-Latn" },
   { title: "Morisyen", value: "mfe" },
+  { title: "Mpi", value: "mpz" },
   { title: "Nagpuri (Sadri)/नगपुरी", value: "sck" },
   { title: "Nagpuri (Oraon Sadri)/सादरी", value: "sdr" },
   { title: "Nama", value: "naq" },
@@ -371,6 +417,7 @@ export const LANGUAGES = [
   { title: "Norwegian Nynorsk", value: "nn" },
   { title: "Nuosu/Sichuan Yi", value: "ii" },
   { title: "Nyankole", value: "nyn" },
+  { title: "Nyeu/Yoe", value: "nyl" },
   { title: "N’Ko", value: "nqo" },
   { title: "Occitan (post-1500)", value: "oc" },
   { title: "Occitan (Auvergnat)", value: "auv" },
@@ -381,10 +428,24 @@ export const LANGUAGES = [
   { title: "Oriya", value: "or" },
   { title: "Oromo", value: "om" },
   { title: "Ossetian", value: "os" },
+  { title: "Padaung", value: "pdu" },
+  { title: "Palaung (Ruching)", value: "pce" },
+  { title: "Palaung (Rumai)", value: "rbb" },
+  { title: "Palaung (Shwe)", value: "pll" },
   { title: "Pāli", value: "pi" },
   { title: "Panchpargania", value: "tdb" },
   { title: "Papiamento", value: "pap" },
+  { title: "Parauk", value: "prk" },
   { title: "Pashto/پښتو", value: "ps" },
+  { title: "Pa'O/Taungthu'", value: "blk" },
+  { title: "Phu Thai/ภาษาผู้ไท", value: "pht" },
+  { title: "Phuan/พวน", value: "phu" },
+  { title: "Phuan (Lao)/ພວນ", value: "phu-laoo" },
+  { title: "Phuan (Lao) (BCP 47)/ພວນ", value: "phu-Laoo" },
+  { title: "Phuan (Tai Tham)", value: "phu-lana" },
+  { title: "Phuan (Tai Tham) (BCP 47)", value: "phu-Lana" },
+  { title: "Phuan (Thai)/พวน", value: "phu-thai" },
+  { title: "Phuan (Thai) (BCP 47)/พวน", value: "phu-Thai" },
   { title: "Piedmontese", value: "pms" },
   { title: "Polish", value: "pl" },
   { title: "Portuguese", value: "pt" },
@@ -395,6 +456,10 @@ export const LANGUAGES = [
   { title: "Punjabi (Shahmukhi)/", value: "pa-arab" },
   { title: "Punjabi (Shahmukhi) (BCP 47)", value: "pa-Arab" },
   { title: "Punjabi (Western)/پنجابی", value: "pnb" },
+  { title: "Pwo (Eastern)", value: "kjp" },
+  { title: "Pwo (Northern)", value: "pww" },
+  { title: "Pwo (Phrae)", value: "kjt" },
+  { title: "Pwo (Western)", value: "pwo" },
   { title: "Quechua", value: "qu" },
   { title: "Queretaro Otomi", value: "otq" },
   { title: "Rejang", value: "rej" },
@@ -408,6 +473,8 @@ export const LANGUAGES = [
   { title: "Rombo", value: "rof" },
   { title: "Russian", value: "ru" },
   { title: "Rwa", value: "rwk" },
+  { title: "Sa'och'", value: "scq" },
+  { title: "Saek/ภาษาแสก/แถร̄ก", value: "skb" },
   { title: "Sakha/Yakut", value: "sah" },
   { title: "Samburu", value: "saq" },
   { title: "Sámi (Arjeplog/Pite)", value: "sje" },
@@ -418,6 +485,7 @@ export const LANGUAGES = [
   { title: "Sámi (Skolt)", value: "sms" },
   { title: "Sámi (Ume)", value: "sju" },
   { title: "Samoan", value: "sm" },
+  { title: "Samtao", value: "stu" },
   { title: "Sango", value: "sg" },
   { title: "Sanskrit", value: "sa" },
   { title: "Santali", value: "sat" },
@@ -437,8 +505,9 @@ export const LANGUAGES = [
   { title: "Serbian (Latin) (BCP 47)", value: "sr-Latn" },
   { title: "Serbo-Croatian", value: "sh" },
   { title: "Setswana/Tswana", value: "tn" },
-  { title: "Sgaw Karen (Myanmar)", value: "ksw-mymr" },
-  { title: "Sgaw Karen (Myanmar) (BCP 47)", value: "ksw-Mymr" },
+  { title: "Shan", value: "shn" },
+  { title: "Shan (Myanmar)", value: "shn-mymr" },
+  { title: "Shan (Myanmar) (BCP 47)", value: "shn-Mymr" },
   { title: "Sherpa", value: "xsr" },
   { title: "Sherpa (Devanagari)", value: "xsr-deva" },
   { title: "Sherpa (Devanagari) (BCP 47)", value: "xsr-Deva" },
@@ -452,10 +521,12 @@ export const LANGUAGES = [
   { title: "Sindhi (Arabic) (BCP 47)/سنڌي", value: "sd-Arab" },
   { title: "Sindhi (Devanagari)/सिन्धी", value: "sd-deva" },
   { title: "Sindhi (Devanagari) (BCP 47)/सिन्धी", value: "sd-Deva" },
+  { title: "Singpho", value: "sgp" },
   { title: "Sinhala", value: "si" },
   { title: "Siswati/Swati", value: "ss" },
   { title: "Slovak", value: "sk" },
   { title: "Slovenian", value: "sl" },
+  { title: "Sô", value: "sss" },
   { title: "Soga", value: "xog" },
   { title: "Somali", value: "so" },
   { title: "Sonha", value: "soi" },
@@ -485,12 +556,28 @@ export const LANGUAGES = [
   { title: "Tachelhit (Tifinagh) (BCP 47)", value: "shi-Tfng" },
   { title: "Tagalog", value: "tl" },
   { title: "Tahitian", value: "ty" },
+  { title: "Tai Cung/Tai Ya", value: "cuu" },
+  { title: "Tai Dam/ภาษาไทดำ", value: "blt" },
+  { title: "Tai Dam (Tai Viet)", value: "blt-tavt" },
+  { title: "Tai Dam (Tai Viet) (BCP 47)", value: "blt-Tavt" },
+  { title: "Tai Dam (Thai)/ภาษาไทดำ", value: "blt-thai" },
+  { title: "Tai Dam (Thai) (BCP 47)/ภาษาไทดำ", value: "blt-Thai" },
+  { title: "Tai Lue/ภาษาไทลื้อ", value: "khb" },
+  { title: "Tai Lue (New Tai Lü)", value: "khb-talu" },
+  { title: "Tai Lue (New Tai Lü) (BCP 47)", value: "khb-Talu" },
+  { title: "Tai Lue (Tai Tham)", value: "khb-lana" },
+  { title: "Tai Lue (Tai Tham) (BCP 47)", value: "khb-Lana" },
+  { title: "Tai Lue (Thai)/ภาษาไทลื้อ", value: "khb-thai" },
+  { title: "Tai Lue (Thai)/ภาษาไทลื้อ (BCP 47)", value: "khb-Thai" },
+  { title: "Tai Nyaw/ไทญ้อ", value: "nyw" },
+  { title: "Tai Yo/ไทญ้อ", value: "tyj" },
   { title: "Taita", value: "dav" },
   { title: "Tajik", value: "tg" },
   { title: "Tajik (Cyrillic)", value: "tg-cyrl" },
   { title: "Tajik (Cyrillic) (BCP 47)", value: "tg-Cyrl" },
   { title: "Tajik (Latin)", value: "tg-latn" },
   { title: "Tajik (Latin) (BCP 47)", value: "tg-Latn" },
+  { title: "Taman", value: "tcl" },
   { title: "Tamazight", value: "tzm" },
   { title: "Tamazight (Arabic)", value: "tzm-arab" },
   { title: "Tamazight (Arabic) (BCP 47)", value: "tzm-Arab" },
@@ -504,11 +591,18 @@ export const LANGUAGES = [
   { title: "Tetum", value: "tet" },
   { title: "Teso", value: "teo" },
   { title: "Thai/ภาษาไทย", value: "th" },
+  { title: "Thai (Northern)/กำเมือง", value: "nod" },
+  { title: "Thai (Northern, Tai Tham)", value: "nod-lana" },
+  { title: "Thai (Northern, Tai Tham) (BCP 47)", value: "nod-Lana" },
+  { title: "Thai (Northern, Thai)/กำเมือง", value: "nod-thai" },
+  { title: "Thai (Northern, Thai) (BCP 47)/กำเมือง", value: "nod-Thai" },
+  { title: "Thai (Southern)/ภาษาไทยถิ่นใต้/ภาษาตามโพร/ภาษาปักษ์ใต้/ภาษาใต้", value: "sou" },
   { title: "Tharu (Chitwania)", value: "the" },
   { title: "Tharu (Dangaura)", value: "thl" },
   { title: "Tharu (Kathariya)", value: "tkt" },
   { title: "Tharu (Kochila)", value: "thq" },
   { title: "Tharu (Rana)", value: "thr" },
+  { title: "Thavưng/ทะวืง", value: "thm" },
   { title: "Tibetan", value: "bo" },
   { title: "Tigrinya", value: "ti" },
   { title: "Tongan", value: "to" },
@@ -525,6 +619,7 @@ export const LANGUAGES = [
   { title: "Turkmen", value: "tk" },
   { title: "Twi", value: "tw" },
   { title: "Ukrainian", value: "uk" },
+  { title: "Urak Lawoiʼ/อูรักลาโวยจ", value: "urk" },
   { title: "Urdu/اردو", value: "ur" },
   { title: "Uyghur/Uyghurche/Уйғурчә/ئۇيغۇرچە", value: "ug" },
   { title: "Uyghur (Arabic)/ئۇيغۇرچە", value: "ug-arab" },
@@ -543,6 +638,7 @@ export const LANGUAGES = [
   { title: "Venda", value: "ve" },
   { title: "Venetian", value: "vec" },
   { title: "Vietnamese/Tiếng Việt", value: "vi" },
+  { title: "Vo", value: "wbm" },
   { title: "Volapük", value: "vo" },
   { title: "Võro", value: "vro" },
   { title: "Vunjo", value: "vun" },
@@ -552,6 +648,8 @@ export const LANGUAGES = [
   { title: "Wu", value: "wuu" },
   { title: "Xhosa", value: "xh" },
   { title: "Yiddish/ייִדיש", value: "yi" },
+  { title: "Yong", value: "yno" },
+  { title: "Yoy", value: "yoy" },
   { title: "Yoruba", value: "yo" },
   { title: "Yucatec Maya", value: "yua" },
   { title: "Zhuang", value: "za" },
@@ -571,36 +669,6 @@ export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => 
   return hour12 ?? (hourCycle === "h12" || hourCycle === "h11");
 });
 // console.log(languagesWith12HoursSystem.length);
-
-// ? TEST : get default calendar, number, and hour cycles for each languages
-// for (const { title, value } of LANGUAGES) {
-//   const { calendar, numberingSystem, hourCycle, hour12 } = Intl.DateTimeFormat(value, {
-//     dateStyle: "full",
-//     timeStyle: "full",
-//   }).resolvedOptions();
-//   console.log(value, "|", title, "->", calendar, "|", numberingSystem, "|", hourCycle, "|", hour12);
-// }
-
-// ? TEST : put default calendar and number of each languages to respective arrays
-// let calendarsArray = [];
-// let numbersArray = [];
-// let hourCycleArray = [];
-// for (const { value } of LANGUAGES) {
-//   const { calendar, numberingSystem, hourCycle } = Intl.DateTimeFormat(value, {
-//     dateStyle: "full",
-//     timeStyle: "full",
-//   }).resolvedOptions();
-//   if (!calendarsArray.includes(calendar)) {
-//     calendarsArray.push(calendar);
-//   }
-//   if (!numbersArray.includes(numberingSystem)) {
-//     numbersArray.push(numberingSystem);
-//   }
-//   if (hourCycle && !hourCycleArray.includes(hourCycle)) {
-//     hourCycleArray.push(hourCycle);
-//   }
-// }
-// console.log(calendarsArray, numbersArray, hourCycleArray); // * calendarsArray and numbersArray are never empty
 
 // TODO : put UTC and GMT time zone names of each languages to respective arrays
 let UTCTimeZoneLongNames = [];
@@ -658,40 +726,6 @@ assignTimeZoneName("long");
 assignTimeZoneName("full");
 
 export { UTCTimeZoneLongNames, UTCTimeZoneFullNames, GMTTimeZoneLongNames, GMTTimeZoneFullNames };
-
-// ? TEST : Display UTC time zone names in each languages in long and full formats
-// for (const { title, value } of LANGUAGES) {
-//   const UTCTzName = timeStyle =>
-//     new Intl.DateTimeFormat(value, { timeStyle, timeZone: "UTC" })
-//       .formatToParts(date)
-//       .find(({ type }) => type === "timeZoneName").value;
-//   console.log(value, "|", title, "|", UTCTzName("long"), "|", UTCTzName("full"));
-// }
-
-// ? TEST : Display GMT time zone names in each languages in long and full formats
-// for (const { title, value } of LANGUAGES) {
-//   const GMTTzName = timeStyle =>
-//     new Intl.DateTimeFormat(value, { timeStyle, timeZone: "GMT" })
-//       .formatToParts(date)
-//       .find(({ type }) => type === "timeZoneName").value;
-//   console.log(value, "|", title, "|", GMTTzName("long"), "|", GMTTzName("full"));
-// }
-
-// for (const { title, value } of LANGUAGES) {
-//   const GMTTzName = timeStyle =>
-//     new Intl.DateTimeFormat(value, { timeStyle, timeZone: "Africa/Abidjan" })
-//       .formatToParts(date)
-//       .find(({ type }) => type === "timeZoneName").value;
-//   console.log(value, "|", title, "|", GMTTzName("long"), "|", GMTTzName("full"));
-// }
-
-// for (const { title, value } of LANGUAGES) {
-//   const GMTTzName = timeStyle =>
-//     new Intl.DateTimeFormat(value, { timeStyle, timeZone: "Atlantic/Reykjavik" })
-//       .formatToParts(date)
-//       .find(({ type }) => type === "timeZoneName").value;
-//   console.log(value, "|", title, "|", GMTTzName("long"), "|", GMTTzName("full"));
-// }
 
 export const REGIONS = [
   { title: " Unspecified", value: "" },
@@ -1226,7 +1260,6 @@ export const regionsAdoptingES = [
 export const regionsAdoptingPT = ["AO", "BR", "CV", "EU", "GW", "MO", "MZ", "PT", "ST", "TL"]; // 10
 export const regionsAdoptingNL = ["AW", "BE", "BQ", "CW", "EU", "NL", "SR", "SX"]; // 8
 
-// console.log(regionsAdoptingAR.length);
 // console.log(REGIONS.filter(({ value }) => regionsAdoptingES.some(region => region === value)));
 // console.log(Intl.Collator("ja-JP", { collation: "gb2312" }).resolvedOptions());
 

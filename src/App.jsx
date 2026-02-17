@@ -15,6 +15,7 @@ import Footer from "./components/Footer.jsx";
 import "./App.css";
 
 export default function App() {
+  // TODO : Get the user’s locale, calendar, numbering system, and time zone
   let {
     locale,
     calendar: userCalendar,
@@ -34,8 +35,8 @@ export default function App() {
 
   // TODO : Default to UTC, GMT, or the last element of the TIMEZONES array if timeZone is undefined
   if (!TIMEZONES.some(({ value }) => value === timeZone)) {
-    const timeZoneLongName = timeZone =>
-      new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone })
+    const timeZoneLongName = tz =>
+      new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone: tz })
         .formatToParts(firstTimeExecutedDateTime)
         .find(({ type }) => type === "timeZoneName")?.value;
 
@@ -47,7 +48,7 @@ export default function App() {
 
   const [calendar, setCalendar] = useState({
     locale,
-    is12Hours: languagesWith12HoursSystem.some(({ language }) => language === localeLangScript),
+    is12Hours: languagesWith12HoursSystem.some(({ value }) => value === localeLangScript),
     timeZone,
   });
   const [dateTimeIsSingleLine, setDateTimeIsSingleLine] = useState(true);

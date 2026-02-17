@@ -55,7 +55,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Two.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Two.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Two.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Two.eot") format("eot");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -64,7 +65,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-TwoItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-TwoItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-TwoItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-TwoItalic.eot") format("eot");
   font-weight: 100;
   font-style: italic;
   font-display: swap;
@@ -73,7 +75,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Four.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Four.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Four.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Four.eot") format("eot");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -82,7 +85,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-FourItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-FourItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-FourItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-FourItalic.eot") format("eot");
   font-weight: 100;
   font-style: italic;
   font-display: swap;
@@ -91,7 +95,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Eight.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Eight.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Eight.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Eight.eot") format("eot");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -100,7 +105,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-EightItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-EightItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-EightItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-EightItalic.eot") format("eot");
   font-weight: 100;
   font-style: italic;
   font-display: swap;
@@ -109,7 +115,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Hair.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Hair.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Hair.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Hair.eot") format("eot");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -118,7 +125,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-HairItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-HairItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-HairItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-HairItalic.eot") format("eot");
   font-weight: 100;
   font-style: italic;
   font-display: swap;
@@ -127,7 +135,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Thin.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Thin.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Thin.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Thin.eot") format("eot");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -136,7 +145,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-ThinItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-ThinItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-ThinItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-ThinItalic.eot") format("eot");
   font-weight: 100;
   font-style: italic;
   font-display: swap;
@@ -145,7 +155,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-UltraLight.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-UltraLight.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-UltraLight.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-UltraLight.eot") format("eot");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -154,7 +165,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-UltraLightItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-UltraLightItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-UltraLightItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-UltraLightItalic.eot") format("eot");
   font-weight: 200;
   font-style: italic;
   font-display: swap;
@@ -163,8 +175,9 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-ExtraLight.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-ExtraLight.woff") format("woff");
-  font-weight: 200;
+    url("./assets/webfonts/woff/FiraGO-ExtraLight.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-ExtraLight.eot") format("eot");
+  font-weight: 250;
   font-style: normal;
   font-display: swap;
 }
@@ -172,8 +185,9 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-ExtraLightItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-ExtraLightItalic.woff") format("woff");
-  font-weight: 200;
+    url("./assets/webfonts/woff/FiraGO-ExtraLightItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-ExtraLightItalic.eot") format("eot");
+  font-weight: 250;
   font-style: italic;
   font-display: swap;
 }
@@ -181,7 +195,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Light.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Light.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Light.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Light.eot") format("eot");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -190,7 +205,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-LightItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-LightItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-LightItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-LightItalic.eot") format("eot");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -199,7 +215,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Book.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Book.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Book.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Book.eot") format("eot");
   font-weight: 350;
   font-style: normal;
   font-display: swap;
@@ -208,7 +225,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-BookItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-BookItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-BookItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-BookItalic.eot") format("eot");
   font-weight: 350;
   font-style: italic;
   font-display: swap;
@@ -217,7 +235,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Regular.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Regular.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Regular.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Regular.eot") format("eot");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -226,7 +245,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Italic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Italic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Italic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Italic.eot") format("eot");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -235,7 +255,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Medium.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Medium.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Medium.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Medium.eot") format("eot");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -244,7 +265,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-MediumItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-MediumItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-MediumItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-MediumItalic.eot") format("eot");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -253,7 +275,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-SemiBold.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-SemiBold.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-SemiBold.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-SemiBold.eot") format("eot");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -262,7 +285,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-SemiBoldItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-SemiBoldItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-SemiBoldItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-SemiBoldItalic.eot") format("eot");
   font-weight: 600;
   font-style: italic;
   font-display: swap;
@@ -271,7 +295,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Bold.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Bold.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Bold.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Bold.eot") format("eot");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -280,7 +305,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-BoldItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-BoldItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-BoldItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-BoldItalic.eot") format("eot");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -289,7 +315,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-ExtraBold.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-ExtraBold.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-ExtraBold.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-ExtraBold.eot") format("eot");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -298,7 +325,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-ExtraBoldItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-ExtraBoldItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-ExtraBoldItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-ExtraBoldItalic.eot") format("eot");
   font-weight: 800;
   font-style: italic;
   font-display: swap;
@@ -307,7 +335,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-Heavy.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-Heavy.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-Heavy.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-Heavy.eot") format("eot");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -316,7 +345,8 @@
   font-family: "FiraGO";
   src:
     url("./assets/webfonts/woff2/FiraGO-HeavyItalic.woff2") format("woff2"),
-    url("./assets/webfonts/woff/FiraGO-HeavyItalic.woff") format("woff");
+    url("./assets/webfonts/woff/FiraGO-HeavyItalic.woff") format("woff"),
+    url("./assets/webfonts/eot/FiraGO-HeavyItalic.eot") format("eot");
   font-weight: 900;
   font-style: italic;
   font-display: swap;
