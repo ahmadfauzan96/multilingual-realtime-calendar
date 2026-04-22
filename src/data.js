@@ -1,5 +1,3 @@
-import { firstTimeExecutedDateTime } from "./util";
-
 export const LANGUAGES = [
   { title: "Abkhazian", value: "ab" },
   { title: "Acehnese", value: "ace" },
@@ -10,6 +8,9 @@ export const LANGUAGES = [
   { title: "Adyghe", value: "ady" },
   { title: "Afar", value: "aa" },
   { title: "Afrikaans", value: "af" },
+  { title: "Aiton", value: "aio" },
+  { title: "Aiton (Myanmar)", value: "aio-mymr" },
+  { title: "Aiton (Myanmar) (BCP 47)", value: "aio-Mymr" },
   { title: "Akha", value: "ahk" },
   { title: "Akan", value: "ak" },
   { title: "Albanian", value: "sq" },
@@ -58,6 +59,9 @@ export const LANGUAGES = [
   { title: "Armenian", value: "hy" },
   { title: "Aromanian", value: "rup" },
   { title: "Arpitan/Patois/Franco-Provençal", value: "frp" },
+  { title: "Aso Chin", value: "csh" },
+  { title: "Aso Chin (Myanmar)", value: "csh-mymr" },
+  { title: "Aso Chin (Myanmar) (BCP 47)", value: "csh-Mymr" },
   { title: "Assamese", value: "as" },
   { title: "Asturian", value: "ast" },
   { title: "Asu", value: "asa" },
@@ -273,6 +277,9 @@ export const LANGUAGES = [
   { title: "Kashubian", value: "csb" },
   { title: "Katang (Northern)", value: "ncq" },
   { title: "Katang (Southern)", value: "sct" },
+  { title: "Kayah", value: "kyu" },
+  { title: "Kayah (Myanmar)", value: "kyu-mymr" },
+  { title: "Kayah (Myanmar) (BCP 47)", value: "kyu-Mymr" },
   { title: "Kazakh", value: "kk" },
   { title: "Kazakh (Cyrillic)", value: "kk-cyrl" },
   { title: "Kazakh (Cyrillic) (BCP 47)", value: "kk-Cyrl" },
@@ -280,6 +287,9 @@ export const LANGUAGES = [
   { title: "Kazakh (Latin) (BCP 47)", value: "kk-Latn" },
   { title: "Kensiu", value: "kns" },
   { title: "Khamet/Lamet", value: "lbn" },
+  { title: "Khamti", value: "kht" },
+  { title: "Khamti (Myanmar)", value: "kht-mymr" },
+  { title: "Khamti (Myanmar) (BCP 47)", value: "kht-Mymr" },
   { title: "Khasi", value: "kha" },
   { title: "Khasi (Bengali-Assamese)", value: "kha-beng" },
   { title: "Khasi (Bengali-Assamese) (BCP 47)", value: "kha-Beng" },
@@ -441,6 +451,9 @@ export const LANGUAGES = [
   { title: "Parauk", value: "prk" },
   { title: "Pashto/پښتو", value: "ps" },
   { title: "Pa'O/Taungthu'", value: "blk" },
+  { title: "Phake", value: "phk" },
+  { title: "Phake (Myanmar)", value: "phk-mymr" },
+  { title: "Phake (Myanmar) (BCP 47)", value: "phk-Mymr" },
   { title: "Phu Thai/ภาษาผู้ไท", value: "pht" },
   { title: "Phuan/พวน", value: "phu" },
   { title: "Phuan (Lao)/ພວນ", value: "phu-laoo" },
@@ -565,6 +578,9 @@ export const LANGUAGES = [
   { title: "Tai Dam (Tai Viet) (BCP 47)", value: "blt-Tavt" },
   { title: "Tai Dam (Thai)/ภาษาไทดำ", value: "blt-thai" },
   { title: "Tai Dam (Thai) (BCP 47)/ภาษาไทดำ", value: "blt-Thai" },
+  { title: "Tai Laing", value: "tjl" },
+  { title: "Tai Laing (Myanmar)", value: "tjl-mymr" },
+  { title: "Tai Laing (Myanmar) (BCP 47)", value: "tjl-Mymr" },
   { title: "Tai Lue/ภาษาไทลื้อ", value: "khb" },
   { title: "Tai Lue (New Tai Lü)", value: "khb-talu" },
   { title: "Tai Lue (New Tai Lü) (BCP 47)", value: "khb-Talu" },
@@ -671,7 +687,13 @@ export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => 
   }).resolvedOptions();
   return hour12 ?? (hourCycle === "h12" || hourCycle === "h11");
 });
+
 // console.log(languagesWith12HoursSystem.length);
+// console.log(
+//   LANGUAGES.filter(
+//     ({ value }) => Intl.DateTimeFormat(value).resolvedOptions().numberingSystem === "mymr",
+//   ),
+// );
 
 // TODO : put UTC and GMT time zone names of each languages to respective arrays
 let UTCTimeZoneLongNames = [];
@@ -682,7 +704,7 @@ function assignTimeZoneName(timeStyle) {
   for (const { value } of LANGUAGES) {
     const tzName = timeZone =>
       new Intl.DateTimeFormat(value, { timeStyle, timeZone })
-        .formatToParts(firstTimeExecutedDateTime)
+        .formatToParts(Date.now())
         .find(({ type }) => type === "timeZoneName")?.value ?? "GMT";
     const UTCTzName = tzName("UTC");
     const GMTTzName1 = tzName("GMT");
@@ -1279,7 +1301,7 @@ export const CALENDAR_OPTIONS = {
     { title: "Hijri Calendar, Umm al-Qura", value: "islamic-umalqura" },
     { title: "Hijri Calendar, Astronomical Epoch", value: "islamic-tbla" },
     { title: "Hijri Calendar, Civil Epoch", value: "islamic-civil" },
-    { title: "Hijri Calendar, Saudi Arabia Sighting", value: "islamic-rgsa" },
+    { title: "Hijri Calendar, Saudi Sighting", value: "islamic-rgsa" },
     { title: "ISO 8601 Calendar", value: "iso8601" },
     { title: "Japanese Imperial Calendar", value: "japanese" },
     { title: "Persian Calendar", value: "persian" },
@@ -1305,7 +1327,7 @@ export const CALENDAR_OPTIONS = {
     { title: "Cham Numbers", value: "cham" },
     { title: "Chisoi Numbers", value: "chis" },
     { title: "Cyrillic Algorithmic Numbers", value: "cyrl" },
-    { title: "Dari, Farsi, Kashmir, Mazanderani, Pashto, and Urdu Numbers", value: "arabext" },
+    { title: "Dari/Farsi/Kashmir/Mazanderani/Pashto/Shahmukhi/Urdu Numbers", value: "arabext" },
     { title: "Devanagari Numbers", value: "deva" },
     { title: "Dives Akuru Numbers", value: "diak" },
     { title: "Eastern Arabic Numbers", value: "arab" },

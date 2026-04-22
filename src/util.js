@@ -10,6 +10,8 @@ import {
 const HOURS_IN_MILLISECONDS = 60 * 60 * 1000;
 const MINUTES_IN_MILLISECONDS = 60 * 1000;
 
+export const firstTimeExecutedDateTime = new Date();
+
 // ? Locale Data
 export function localeData(locale) {
   const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
@@ -60,8 +62,6 @@ export const getFlagEmoji = regionalCode =>
       : "";
 
 // ? Timezones
-export const firstTimeExecutedDateTime = new Date();
-
 function tzOffsetFromUTC(timeZone) {
   // * timezone offset from UTC in milliseconds
   const tzOffset = getTimezoneOffset(timeZone, firstTimeExecutedDateTime);
@@ -181,7 +181,10 @@ export function localeRegionData(timeZone) {
   const name = REGION_MAP[regionalCode] ?? "No region data";
   // const name = countries[regionalCode]?.name ?? "No region data";
   const code = regionalCode ?? "No regional code";
-  const flag = getFlagEmoji(regionalCode) ?? "No flag data";
+  const flag =
+    getFlagEmoji(regionalCode) !== "" && getFlagEmoji(regionalCode) !== "(No flag for this region.)"
+      ? getFlagEmoji(regionalCode)
+      : "No flag data";
   const timeZones = countries[regionalCode]?.zones ?? (localeTimeZone ? [localeTimeZone] : []);
 
   return { name, code, flag, timeZones };
