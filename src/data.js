@@ -1,5 +1,7 @@
+import { firstTimeExecutedDateTime } from "./util";
+
 export const LANGUAGES = [
-  { title: "Abkhaizan", value: "ab" },
+  { title: "Abkhazian", value: "ab" },
   { title: "Acehnese", value: "ace" },
   { title: "Acehnese (Jawoë)", value: "ace-arab" },
   { title: "Acehnese (Jawoë) (BCP 47)", value: "ace-Arab" },
@@ -59,7 +61,8 @@ export const LANGUAGES = [
   { title: "Assamese", value: "as" },
   { title: "Asturian", value: "ast" },
   { title: "Asu", value: "asa" },
-  { title: "Avaric", value: "av" },
+  { title: "Avar/Avaric", value: "av" },
+  { title: "Avar/Avaric (Old)", value: "oav" },
   { title: "Avestan", value: "ae" },
   { title: "Awa", value: "vwa" },
   { title: "Aymara", value: "ay" },
@@ -292,11 +295,11 @@ export const LANGUAGES = [
   { title: "Khün (Tai Tham) (BCP 47)", value: "kkh-Lana" },
   { title: "Khün (Thai)/ไทเขิน", value: "kkh-thai" },
   { title: "Khün (Thai) (BCP 47)/ไทเขิน", value: "kkh-Thai" },
+  { title: "Kikongo/Kongo", value: "kg" },
   { title: "Kinyarwanda", value: "rw" },
   { title: "Kirundi/Rundi", value: "rn" },
   { title: "Kiswahili/Swahili", value: "sw" },
   { title: "Komi", value: "kv" },
-  { title: "Kongo", value: "kg" },
   { title: "Konkani", value: "kok" },
   { title: "Konkani (Goan)", value: "gom" },
   { title: "Konkani (Maharashtrian)", value: "knn" },
@@ -675,13 +678,12 @@ let UTCTimeZoneLongNames = [];
 let GMTTimeZoneLongNames = [];
 let UTCTimeZoneFullNames = [];
 let GMTTimeZoneFullNames = [];
-const date = new Date();
 function assignTimeZoneName(timeStyle) {
   for (const { value } of LANGUAGES) {
     const tzName = timeZone =>
       new Intl.DateTimeFormat(value, { timeStyle, timeZone })
-        .formatToParts(date)
-        .find(({ type }) => type === "timeZoneName")?.value;
+        .formatToParts(firstTimeExecutedDateTime)
+        .find(({ type }) => type === "timeZoneName")?.value ?? "GMT";
     const UTCTzName = tzName("UTC");
     const GMTTzName1 = tzName("GMT");
     const GMTTzName2 = tzName("Africa/Abidjan");

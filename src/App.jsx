@@ -1,9 +1,9 @@
 import { lazy, useState } from "react";
 import { firstTimeExecutedDateTime, localeData, TIMEZONES } from "./util.js";
 import {
-  languagesWith12HoursSystem,
   UTCTimeZoneLongNames as UTC,
   GMTTimeZoneLongNames as GMT,
+  languagesWith12HoursSystem as lang12Hours,
 } from "./data.js";
 
 import Header from "./components/Header.jsx";
@@ -34,7 +34,7 @@ export default function App() {
     (localeNumber !== "" ? localeNumber : userNumber);
 
   // TODO : Default to UTC, GMT, or the last element of the TIMEZONES array if timeZone is undefined
-  if (!TIMEZONES.some(({ value }) => value === timeZone)) {
+  if (!TIMEZONES.some(({ value }) => timeZone === value)) {
     const timeZoneLongName = tz =>
       new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone: tz })
         .formatToParts(firstTimeExecutedDateTime)
@@ -43,12 +43,12 @@ export default function App() {
     timeZone =
       TIMEZONES.find(({ value: tz }) => UTC.includes(timeZoneLongName(tz)))?.value ??
       TIMEZONES.find(({ value: tz }) => GMT.includes(timeZoneLongName(tz)))?.value ??
-      TIMEZONES.slice(-1)[0].value;
+      TIMEZONES.at(-1).value;
   }
 
   const [calendar, setCalendar] = useState({
     locale,
-    is12Hours: languagesWith12HoursSystem.some(({ value }) => value === localeLangScript),
+    is12Hours: lang12Hours.some(({ value }) => value === localeLangScript),
     timeZone,
   });
   const [dateTimeIsSingleLine, setDateTimeIsSingleLine] = useState(true);

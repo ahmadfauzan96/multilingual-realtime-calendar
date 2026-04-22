@@ -10,6 +10,38 @@ import {
 const HOURS_IN_MILLISECONDS = 60 * 60 * 1000;
 const MINUTES_IN_MILLISECONDS = 60 * 1000;
 
+// ? Locale Data
+export function localeData(locale) {
+  const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
+    ? locale.split("-u-")
+    : [locale, ""];
+
+  const localeLangScriptReg = localeNoCalendarOption.split("-");
+  const localeLang = localeLangScriptReg[0];
+  const localeScript =
+    localeLangScriptReg[1] && localeLangScriptReg[1].length === 4 ? localeLangScriptReg[1] : "";
+  const localeLangScript = localeLang + (localeScript ? "-" + localeScript : "");
+  const localeReg =
+    localeLangScriptReg[1] && localeLangScriptReg[1].length === 2
+      ? localeLangScriptReg[1]
+      : localeLangScriptReg[2] && localeLangScriptReg[2].length === 2
+        ? localeLangScriptReg[2]
+        : "";
+
+  const calendarOption = localeCalendarOption ? localeCalendarOption.split("-") : [];
+
+  const prefixLength = calendarOption.length >= 3 ? 3 : 2;
+  const localeCalendar =
+    calendarOption[0] === "ca"
+      ? calendarOption.length === 2 || calendarOption[2] === "nu"
+        ? calendarOption[1]
+        : calendarOption.slice(1, prefixLength).join("-")
+      : "";
+  const localeNumber = calendarOption.some(str => str === "nu") ? calendarOption.at(-1) : "";
+
+  return { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber };
+}
+
 // ? Flag Emoji
 export const getFlagEmoji = regionalCode =>
   typeof regionalCode === "string"
@@ -22,9 +54,7 @@ export const getFlagEmoji = regionalCode =>
           // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
           .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
           .join("")
-      : regionalCode === ""
-        ? ""
-        : ""
+      : ""
     : typeof regionalCode === "number"
       ? "(No flag for this region.)"
       : "";
@@ -89,7 +119,7 @@ function tzRegion(timeZone) {
 
   const timeZoneIsDeprecated = compatibilityTimeZones.some(tz => tz.oldTimeZone === timeZone);
   const { newTimeZone: deprecatedTZToActiveTZ, regionalCode: deprecatedTimeZoneRegionalCode } =
-    compatibilityTimeZones.find(({ oldTimeZone }) => oldTimeZone === timeZone) ?? {
+    compatibilityTimeZones.find(({ oldTimeZone }) => timeZone === oldTimeZone) ?? {
       newTimeZone: Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone,
     };
 
@@ -155,35 +185,4 @@ export function localeRegionData(timeZone) {
   const timeZones = countries[regionalCode]?.zones ?? (localeTimeZone ? [localeTimeZone] : []);
 
   return { name, code, flag, timeZones };
-}
-
-export function localeData(locale) {
-  const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
-    ? locale.split("-u-")
-    : [locale, ""];
-
-  const localeLangScriptReg = localeNoCalendarOption.split("-");
-  const localeLang = localeLangScriptReg[0];
-  const localeScript =
-    localeLangScriptReg[1] && localeLangScriptReg[1].length === 4 ? localeLangScriptReg[1] : "";
-  const localeLangScript = localeLang + (localeScript ? "-" + localeScript : "");
-  const localeReg =
-    localeLangScriptReg[1] && localeLangScriptReg[1].length === 2
-      ? localeLangScriptReg[1]
-      : localeLangScriptReg[2] && localeLangScriptReg[2].length === 2
-        ? localeLangScriptReg[2]
-        : "";
-
-  const calendarOption = localeCalendarOption ? localeCalendarOption.split("-") : [];
-
-  const prefixLength = calendarOption.length >= 3 ? 3 : 2;
-  const localeCalendar =
-    calendarOption[0] === "ca"
-      ? calendarOption.length === 2 || calendarOption[2] === "nu"
-        ? calendarOption[1]
-        : calendarOption.slice(1, prefixLength).join("-")
-      : "";
-  const localeNumber = calendarOption.some(str => str === "nu") ? calendarOption.slice(-1)[0] : "";
-
-  return { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber };
 }
