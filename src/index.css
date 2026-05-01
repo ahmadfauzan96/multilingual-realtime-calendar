@@ -440,8 +440,9 @@
 :root {
   color-scheme: dark;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font-smooth: auto; */
 }
 
 html {

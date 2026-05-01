@@ -82,7 +82,8 @@ li {
 
 .col-25,
 .col-75 {
-  margin-top: 6px;
+  /* margin-top: 6px; */
+  margin-block-start: 6px;
   float: inline-start;
 }
 
@@ -104,10 +105,12 @@ li {
   .col-75,
   button {
     width: 100%;
-    margin-top: 0;
+    /* margin-top: 0; */
+    margin-block-start: 0;
   }
 
   button {
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    margin-block-end: 1rem;
   }
 }
