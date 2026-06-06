@@ -1,187 +1,166 @@
 export const compatibilityTimeZones = [
-  { oldTimeZone: "Africa/Asmera", newTimeZone: "Africa/Asmara", regionalCode: "ER" },
-  { oldTimeZone: "Africa/Timbuktu", newTimeZone: "Africa/Bamako", regionalCode: "ML" },
+  { oldTz: "Africa/Asmera", newTz: "Africa/Asmara", regionalCode: "ER" },
+  { oldTz: "Africa/Timbuktu", newTz: "Africa/Bamako", regionalCode: "ML" },
+  { oldTz: "America/Buenos_Aires", newTz: "America/Argentina/Buenos_Aires", regionalCode: "AR" },
+  { oldTz: "America/Catamarca", newTz: "America/Argentina/Catamarca", regionalCode: "AR" },
   {
-    oldTimeZone: "America/Buenos_Aires",
-    newTimeZone: "America/Argentina/Buenos_Aires",
+    oldTz: "America/Argentina/ComodRivadavia",
+    newTz: "America/Argentina/Catamarca",
     regionalCode: "AR",
   },
-  {
-    oldTimeZone: "America/Catamarca",
-    newTimeZone: "America/Argentina/Catamarca",
-    regionalCode: "AR",
-  },
-  {
-    oldTimeZone: "America/Argentina/ComodRivadavia",
-    newTimeZone: "America/Argentina/Catamarca",
-    regionalCode: "AR",
-  },
-  { oldTimeZone: "America/Atka", newTimeZone: "America/Adak", regionalCode: "US" },
-  { oldTimeZone: "America/Coral_Harbour", newTimeZone: "America/Atikokan", regionalCode: "CA" },
-  { oldTimeZone: "America/Cordoba", newTimeZone: "America/Argentina/Cordoba", regionalCode: "AR" },
-  { oldTimeZone: "America/Ensenada", newTimeZone: "America/Tijuana", regionalCode: "MX" },
-  {
-    oldTimeZone: "America/Fort_Wayne",
-    newTimeZone: "America/Indiana/Indianapolis",
-    regionalCode: "US",
-  },
-  { oldTimeZone: "America/Godthab", newTimeZone: "America/Nuuk", regionalCode: "GL" },
-  {
-    oldTimeZone: "America/Indianapolis",
-    newTimeZone: "America/Indiana/Indianapolis",
-    regionalCode: "US",
-  },
-  { oldTimeZone: "America/Jujuy", newTimeZone: "America/Argentina/Jujuy", regionalCode: "AR" },
-  { oldTimeZone: "America/Knox_IN", newTimeZone: "America/Indiana/Knox", regionalCode: "US" },
-  {
-    oldTimeZone: "America/Louisville",
-    newTimeZone: "America/Kentucky/Louisville",
-    regionalCode: "US",
-  },
-  { oldTimeZone: "America/Mendoza", newTimeZone: "America/Argentina/Mendoza", regionalCode: "AR" },
-  { oldTimeZone: "America/Montreal", newTimeZone: "America/Toronto", regionalCode: "CA" },
-  { oldTimeZone: "America/Nipigon", newTimeZone: "America/Toronto", regionalCode: "CA" },
-  { oldTimeZone: "America/Pangnirtung", newTimeZone: "America/Iqaluit", regionalCode: "CA" },
-  { oldTimeZone: "America/Porto_Acre", newTimeZone: "America/Rio_Branco", regionalCode: "BR" },
-  { oldTimeZone: "America/Rainy_River", newTimeZone: "America/Winnipeg", regionalCode: "CA" },
-  { oldTimeZone: "America/Rosario", newTimeZone: "America/Argentina/Cordoba", regionalCode: "AR" },
-  { oldTimeZone: "America/Santa_Isabel", newTimeZone: "America/Tijuana", regionalCode: "MX" },
-  { oldTimeZone: "America/Shiprock", newTimeZone: "America/Denver", regionalCode: "US" },
-  { oldTimeZone: "America/Thunder_Bay", newTimeZone: "America/Toronto", regionalCode: "CA" },
-  { oldTimeZone: "America/Virgin", newTimeZone: "America/St_Thomas", regionalCode: "VI" },
-  { oldTimeZone: "America/Yellowknife", newTimeZone: "America/Edmonton", regionalCode: "CA" },
-  { oldTimeZone: "Antarctica/South_Pole", newTimeZone: "Antarctica/McMurdo", regionalCode: "AQ" },
-  { oldTimeZone: "Asia/Ashkhabad", newTimeZone: "Asia/Ashgabat", regionalCode: "TM" },
-  { oldTimeZone: "Asia/Calcutta", newTimeZone: "Asia/Kolkata", regionalCode: "IN" },
-  { oldTimeZone: "Asia/Choibalsan", newTimeZone: "Asia/Ulaanbaatar", regionalCode: "MN" },
-  { oldTimeZone: "Asia/Chongqing", newTimeZone: "Asia/Shanghai", regionalCode: "CN" },
-  { oldTimeZone: "Asia/Chungking", newTimeZone: "Asia/Shanghai", regionalCode: "CN" },
-  { oldTimeZone: "Asia/Dacca", newTimeZone: "Asia/Dhaka", regionalCode: "BD" },
-  { oldTimeZone: "Asia/Harbin", newTimeZone: "Asia/Shanghai", regionalCode: "CN" },
-  { oldTimeZone: "Asia/Istanbul", newTimeZone: "Europe/Istanbul", regionalCode: "TR" },
-  { oldTimeZone: "Asia/Kashgar", newTimeZone: "Asia/Urumqi", regionalCode: "CN" },
-  { oldTimeZone: "Asia/Katmandu", newTimeZone: "Asia/Kathmandu", regionalCode: "NP" },
-  { oldTimeZone: "Asia/Macao", newTimeZone: "Asia/Macau", regionalCode: "MO" },
-  { oldTimeZone: "Asia/Rangoon", newTimeZone: "Asia/Yangon", regionalCode: "MM" },
-  { oldTimeZone: "Asia/Saigon", newTimeZone: "Asia/Ho_Chi_Minh", regionalCode: "VN" },
-  { oldTimeZone: "Asia/Tel_Aviv", newTimeZone: "Asia/Jerusalem", regionalCode: "IL" },
-  { oldTimeZone: "Asia/Thimbu", newTimeZone: "Asia/Thimphu", regionalCode: "BT" },
-  { oldTimeZone: "Asia/Ujung_Pandang", newTimeZone: "Asia/Makassar", regionalCode: "ID" },
-  { oldTimeZone: "Asia/Ulan_Bator", newTimeZone: "Asia/Ulaanbaatar", regionalCode: "MN" },
-  { oldTimeZone: "Atlantic/Faeroe", newTimeZone: "Atlantic/Faroe", regionalCode: "FO" },
-  { oldTimeZone: "Atlantic/Jan_Mayen", newTimeZone: "Arctic/Longyearbyen", regionalCode: "SJ" },
-  { oldTimeZone: "Australia/ACT", newTimeZone: "Australia/Sydney", regionalCode: "AU" },
-  { oldTimeZone: "Australia/Canberra", newTimeZone: "Australia/Sydney", regionalCode: "AU" },
-  { oldTimeZone: "Australia/Currie", newTimeZone: "Australia/Hobart", regionalCode: "AU" },
-  { oldTimeZone: "Australia/LHI", newTimeZone: "Australia/Lord_Howe", regionalCode: "AU" },
-  { oldTimeZone: "Australia/North", newTimeZone: "Australia/Darwin", regionalCode: "AU" },
-  { oldTimeZone: "Australia/NSW", newTimeZone: "Australia/Sydney", regionalCode: "AU" },
-  { oldTimeZone: "Australia/Queensland", newTimeZone: "Australia/Brisbane", regionalCode: "AU" },
-  { oldTimeZone: "Australia/South", newTimeZone: "Australia/Adelaide", regionalCode: "AU" },
-  { oldTimeZone: "Australia/Tasmania", newTimeZone: "Australia/Hobart", regionalCode: "AU" },
-  { oldTimeZone: "Australia/Victoria", newTimeZone: "Australia/Melbourne", regionalCode: "AU" },
-  { oldTimeZone: "Australia/West", newTimeZone: "Australia/Perth", regionalCode: "AU" },
-  { oldTimeZone: "Australia/Yancowinna", newTimeZone: "Australia/Broken_Hill", regionalCode: "AU" },
-  { oldTimeZone: "Brazil/Acre", newTimeZone: "America/Rio_Branco", regionalCode: "BR" },
-  { oldTimeZone: "Brazil/DeNoronha", newTimeZone: "America/Noronha", regionalCode: "BR" },
-  { oldTimeZone: "Brazil/East", newTimeZone: "America/Sao_Paulo", regionalCode: "BR" },
-  { oldTimeZone: "Brazil/West", newTimeZone: "America/Manaus", regionalCode: "BR" },
+  { oldTz: "America/Atka", newTz: "America/Adak", regionalCode: "US" },
+  { oldTz: "America/Coral_Harbour", newTz: "America/Atikokan", regionalCode: "CA" },
+  { oldTz: "America/Cordoba", newTz: "America/Argentina/Cordoba", regionalCode: "AR" },
+  { oldTz: "America/Ensenada", newTz: "America/Tijuana", regionalCode: "MX" },
+  { oldTz: "America/Fort_Wayne", newTz: "America/Indiana/Indianapolis", regionalCode: "US" },
+  { oldTz: "America/Godthab", newTz: "America/Nuuk", regionalCode: "GL" },
+  { oldTz: "America/Indianapolis", newTz: "America/Indiana/Indianapolis", regionalCode: "US" },
+  { oldTz: "America/Jujuy", newTz: "America/Argentina/Jujuy", regionalCode: "AR" },
+  { oldTz: "America/Knox_IN", newTz: "America/Indiana/Knox", regionalCode: "US" },
+  { oldTz: "America/Louisville", newTz: "America/Kentucky/Louisville", regionalCode: "US" },
+  { oldTz: "America/Mendoza", newTz: "America/Argentina/Mendoza", regionalCode: "AR" },
+  { oldTz: "America/Montreal", newTz: "America/Toronto", regionalCode: "CA" },
+  { oldTz: "America/Nipigon", newTz: "America/Toronto", regionalCode: "CA" },
+  { oldTz: "America/Pangnirtung", newTz: "America/Iqaluit", regionalCode: "CA" },
+  { oldTz: "America/Porto_Acre", newTz: "America/Rio_Branco", regionalCode: "BR" },
+  { oldTz: "America/Rainy_River", newTz: "America/Winnipeg", regionalCode: "CA" },
+  { oldTz: "America/Rosario", newTz: "America/Argentina/Cordoba", regionalCode: "AR" },
+  { oldTz: "America/Santa_Isabel", newTz: "America/Tijuana", regionalCode: "MX" },
+  { oldTz: "America/Shiprock", newTz: "America/Denver", regionalCode: "US" },
+  { oldTz: "America/Thunder_Bay", newTz: "America/Toronto", regionalCode: "CA" },
+  { oldTz: "America/Virgin", newTz: "America/St_Thomas", regionalCode: "VI" },
+  { oldTz: "America/Yellowknife", newTz: "America/Edmonton", regionalCode: "CA" },
+  { oldTz: "Antarctica/South_Pole", newTz: "Antarctica/McMurdo", regionalCode: "AQ" },
+  { oldTz: "Asia/Ashkhabad", newTz: "Asia/Ashgabat", regionalCode: "TM" },
+  { oldTz: "Asia/Calcutta", newTz: "Asia/Kolkata", regionalCode: "IN" },
+  { oldTz: "Asia/Choibalsan", newTz: "Asia/Ulaanbaatar", regionalCode: "MN" },
+  { oldTz: "Asia/Chongqing", newTz: "Asia/Shanghai", regionalCode: "CN" },
+  { oldTz: "Asia/Chungking", newTz: "Asia/Shanghai", regionalCode: "CN" },
+  { oldTz: "Asia/Dacca", newTz: "Asia/Dhaka", regionalCode: "BD" },
+  { oldTz: "Asia/Harbin", newTz: "Asia/Shanghai", regionalCode: "CN" },
+  { oldTz: "Asia/Istanbul", newTz: "Europe/Istanbul", regionalCode: "TR" },
+  { oldTz: "Asia/Kashgar", newTz: "Asia/Urumqi", regionalCode: "CN" },
+  { oldTz: "Asia/Katmandu", newTz: "Asia/Kathmandu", regionalCode: "NP" },
+  { oldTz: "Asia/Macao", newTz: "Asia/Macau", regionalCode: "MO" },
+  { oldTz: "Asia/Rangoon", newTz: "Asia/Yangon", regionalCode: "MM" },
+  { oldTz: "Asia/Saigon", newTz: "Asia/Ho_Chi_Minh", regionalCode: "VN" },
+  { oldTz: "Asia/Tel_Aviv", newTz: "Asia/Jerusalem", regionalCode: "IL" },
+  { oldTz: "Asia/Thimbu", newTz: "Asia/Thimphu", regionalCode: "BT" },
+  { oldTz: "Asia/Ujung_Pandang", newTz: "Asia/Makassar", regionalCode: "ID" },
+  { oldTz: "Asia/Ulan_Bator", newTz: "Asia/Ulaanbaatar", regionalCode: "MN" },
+  { oldTz: "Atlantic/Faeroe", newTz: "Atlantic/Faroe", regionalCode: "FO" },
+  { oldTz: "Atlantic/Jan_Mayen", newTz: "Arctic/Longyearbyen", regionalCode: "SJ" },
+  { oldTz: "Australia/ACT", newTz: "Australia/Sydney", regionalCode: "AU" },
+  { oldTz: "Australia/Canberra", newTz: "Australia/Sydney", regionalCode: "AU" },
+  { oldTz: "Australia/Currie", newTz: "Australia/Hobart", regionalCode: "AU" },
+  { oldTz: "Australia/LHI", newTz: "Australia/Lord_Howe", regionalCode: "AU" },
+  { oldTz: "Australia/North", newTz: "Australia/Darwin", regionalCode: "AU" },
+  { oldTz: "Australia/NSW", newTz: "Australia/Sydney", regionalCode: "AU" },
+  { oldTz: "Australia/Queensland", newTz: "Australia/Brisbane", regionalCode: "AU" },
+  { oldTz: "Australia/South", newTz: "Australia/Adelaide", regionalCode: "AU" },
+  { oldTz: "Australia/Tasmania", newTz: "Australia/Hobart", regionalCode: "AU" },
+  { oldTz: "Australia/Victoria", newTz: "Australia/Melbourne", regionalCode: "AU" },
+  { oldTz: "Australia/West", newTz: "Australia/Perth", regionalCode: "AU" },
+  { oldTz: "Australia/Yancowinna", newTz: "Australia/Broken_Hill", regionalCode: "AU" },
+  { oldTz: "Brazil/Acre", newTz: "America/Rio_Branco", regionalCode: "BR" },
+  { oldTz: "Brazil/DeNoronha", newTz: "America/Noronha", regionalCode: "BR" },
+  { oldTz: "Brazil/East", newTz: "America/Sao_Paulo", regionalCode: "BR" },
+  { oldTz: "Brazil/West", newTz: "America/Manaus", regionalCode: "BR" },
   // Legacy Canadian zones : START
-  { oldTimeZone: "Canada/Atlantic", newTimeZone: "America/Halifax", regionalCode: "CA" },
-  { oldTimeZone: "Canada/Central", newTimeZone: "America/Winnipeg", regionalCode: "CA" },
-  { oldTimeZone: "Canada/Eastern", newTimeZone: "America/Toronto", regionalCode: "CA" },
-  { oldTimeZone: "Canada/East-Saskatchewan", newTimeZone: "America/Regina", regionalCode: "CA" }, // undetected in SpiderMonkey
-  { oldTimeZone: "Canada/Mountain", newTimeZone: "America/Edmonton", regionalCode: "CA" },
-  { oldTimeZone: "Canada/Newfoundland", newTimeZone: "America/St_Johns", regionalCode: "CA" },
-  { oldTimeZone: "Canada/Pacific", newTimeZone: "America/Vancouver", regionalCode: "CA" },
-  { oldTimeZone: "Canada/Saskatchewan", newTimeZone: "America/Regina", regionalCode: "CA" },
-  { oldTimeZone: "Canada/Yukon", newTimeZone: "America/Whitehorse", regionalCode: "CA" },
+  { oldTz: "Canada/Atlantic", newTz: "America/Halifax", regionalCode: "CA" },
+  { oldTz: "Canada/Central", newTz: "America/Winnipeg", regionalCode: "CA" },
+  { oldTz: "Canada/Eastern", newTz: "America/Toronto", regionalCode: "CA" },
+  { oldTz: "Canada/East-Saskatchewan", newTz: "America/Regina", regionalCode: "CA" }, // undetected in SpiderMonkey
+  { oldTz: "Canada/Mountain", newTz: "America/Edmonton", regionalCode: "CA" },
+  { oldTz: "Canada/Newfoundland", newTz: "America/St_Johns", regionalCode: "CA" },
+  { oldTz: "Canada/Pacific", newTz: "America/Vancouver", regionalCode: "CA" },
+  { oldTz: "Canada/Saskatchewan", newTz: "America/Regina", regionalCode: "CA" },
+  { oldTz: "Canada/Yukon", newTz: "America/Whitehorse", regionalCode: "CA" },
   // Legacy Canadian zones : END
-  { oldTimeZone: "CET", newTimeZone: "Europe/Brussels", regionalCode: "BE" },
-  { oldTimeZone: "Chile/Continental", newTimeZone: "America/Santiago", regionalCode: "CL" },
-  { oldTimeZone: "Chile/EasterIsland", newTimeZone: "Pacific/Easter", regionalCode: "CL" },
-  { oldTimeZone: "CST6CDT", newTimeZone: "America/Chicago", regionalCode: "US" },
-  { oldTimeZone: "Cuba", newTimeZone: "America/Havana", regionalCode: "CU" },
-  { oldTimeZone: "DFT", newTimeZone: "Europe/Brussels", regionalCode: "UN" }, // undetected in SpiderMonkey and V8
-  { oldTimeZone: "EET", newTimeZone: "Europe/Athens", regionalCode: "GR" },
-  { oldTimeZone: "Egypt", newTimeZone: "Africa/Cairo", regionalCode: "EG" },
-  { oldTimeZone: "Eire", newTimeZone: "Europe/Dublin", regionalCode: "IE" },
-  { oldTimeZone: "EST", newTimeZone: "America/Panama", regionalCode: "PA" },
-  { oldTimeZone: "EST5EDT", newTimeZone: "America/New_York", regionalCode: "US" },
-  { oldTimeZone: "Europe/Belfast", newTimeZone: "Europe/London", regionalCode: "GB" },
-  { oldTimeZone: "Europe/Kiev", newTimeZone: "Europe/Kyiv", regionalCode: "UA" },
-  { oldTimeZone: "Europe/Nicosia", newTimeZone: "Asia/Nicosia", regionalCode: "CY" },
-  { oldTimeZone: "Europe/Tiraspol", newTimeZone: "Europe/Chisinau", regionalCode: "MD" },
-  { oldTimeZone: "Europe/Uzhgorod", newTimeZone: "Europe/Kyiv", regionalCode: "UA" },
-  { oldTimeZone: "Europe/Zaporozhye", newTimeZone: "Europe/Kyiv", regionalCode: "UA" },
+  { oldTz: "CET", newTz: "Europe/Brussels", regionalCode: "BE" },
+  { oldTz: "Chile/Continental", newTz: "America/Santiago", regionalCode: "CL" },
+  { oldTz: "Chile/EasterIsland", newTz: "Pacific/Easter", regionalCode: "CL" },
+  { oldTz: "CST", newTz: "America/Chicago", regionalCode: "US" },
+  { oldTz: "CST6CDT", newTz: "America/Chicago", regionalCode: "US" },
+  { oldTz: "Cuba", newTz: "America/Havana", regionalCode: "CU" },
+  { oldTz: "DFT", newTz: "Europe/Brussels", regionalCode: "UN" }, // undetected in SpiderMonkey and V8
+  { oldTz: "EET", newTz: "Europe/Athens", regionalCode: "GR" },
+  { oldTz: "Egypt", newTz: "Africa/Cairo", regionalCode: "EG" },
+  { oldTz: "Eire", newTz: "Europe/Dublin", regionalCode: "IE" },
+  { oldTz: "EST", newTz: "America/Panama", regionalCode: "PA" },
+  { oldTz: "EST5EDT", newTz: "America/New_York", regionalCode: "US" },
+  { oldTz: "Europe/Belfast", newTz: "Europe/London", regionalCode: "GB" },
+  { oldTz: "Europe/Kiev", newTz: "Europe/Kyiv", regionalCode: "UA" },
+  { oldTz: "Europe/Nicosia", newTz: "Asia/Nicosia", regionalCode: "CY" },
+  { oldTz: "Europe/Tiraspol", newTz: "Europe/Chisinau", regionalCode: "MD" },
+  { oldTz: "Europe/Uzhgorod", newTz: "Europe/Kyiv", regionalCode: "UA" },
+  { oldTz: "Europe/Zaporozhye", newTz: "Europe/Kyiv", regionalCode: "UA" },
   // Legacy UK zones : START
-  { oldTimeZone: "BST", newTimeZone: "Europe/London", regionalCode: "GB" }, // undetected in SpiderMonkey
-  // { oldTimeZone: "BST", newTimeZone: "Asia/Dhaka", regionalCode: "BD" }, // detected in V8
-  { oldTimeZone: "GB", newTimeZone: "Europe/London", regionalCode: "GB" },
-  { oldTimeZone: "GB/Eire", newTimeZone: "Europe/London", regionalCode: "GB" }, // undetected in SpiderMonkey and V8
+  { oldTz: "BST", newTz: "Europe/London", regionalCode: "GB" }, // undetected in SpiderMonkey
+  // { oldTz: "BST", newTz: "Asia/Dhaka", regionalCode: "BD" }, // detected in V8
+  { oldTz: "GB", newTz: "Europe/London", regionalCode: "GB" },
+  { oldTz: "GB/Eire", newTz: "Europe/London", regionalCode: "GB" }, // undetected in SpiderMonkey and V8
   // Legacy UK zones : END
-  { oldTimeZone: "Hongkong", newTimeZone: "Asia/Hong_Kong", regionalCode: "HK" },
-  { oldTimeZone: "HST", newTimeZone: "Pacific/Honolulu", regionalCode: "US" },
-  { oldTimeZone: "Iceland", newTimeZone: "Atlantic/Reykjavik", regionalCode: "IS" },
-  { oldTimeZone: "Iran", newTimeZone: "Asia/Tehran", regionalCode: "IR" },
-  { oldTimeZone: "Israel", newTimeZone: "Asia/Jerusalem", regionalCode: "IL" },
-  { oldTimeZone: "IST", newTimeZone: "Europe/Dublin", regionalCode: "IE" }, // undetected in SpiderMonkey
-  // { oldTimeZone: "IST", newTimeZone: "Asia/Calcutta", regionalCode: "IN" }, // detected in V8
-  { oldTimeZone: "Jamaica", newTimeZone: "America/Jamaica", regionalCode: "JM" },
-  { oldTimeZone: "Japan", newTimeZone: "Asia/Tokyo", regionalCode: "JP" },
-  { oldTimeZone: "Kwajalein", newTimeZone: "Pacific/Kwajalein", regionalCode: "MH" },
-  { oldTimeZone: "Libya", newTimeZone: "Africa/Tripoli", regionalCode: "LY" },
-  { oldTimeZone: "MET", newTimeZone: "Europe/Brussels", regionalCode: "BE" },
+  { oldTz: "Hongkong", newTz: "Asia/Hong_Kong", regionalCode: "HK" },
+  { oldTz: "HongKong", newTz: "Asia/Hong_Kong", regionalCode: "HK" },
+  { oldTz: "HST", newTz: "Pacific/Honolulu", regionalCode: "US" },
+  { oldTz: "Iceland", newTz: "Atlantic/Reykjavik", regionalCode: "IS" },
+  { oldTz: "Iran", newTz: "Asia/Tehran", regionalCode: "IR" },
+  { oldTz: "Israel", newTz: "Asia/Jerusalem", regionalCode: "IL" },
+  { oldTz: "IST", newTz: "Europe/Dublin", regionalCode: "IE" }, // undetected in SpiderMonkey
+  // { oldTz: "IST", newTz: "Asia/Calcutta", regionalCode: "IN" }, // detected in V8
+  { oldTz: "Jamaica", newTz: "America/Jamaica", regionalCode: "JM" },
+  { oldTz: "Japan", newTz: "Asia/Tokyo", regionalCode: "JP" },
+  { oldTz: "Kwajalein", newTz: "Pacific/Kwajalein", regionalCode: "MH" },
+  { oldTz: "Libya", newTz: "Africa/Tripoli", regionalCode: "LY" },
+  { oldTz: "MET", newTz: "Europe/Brussels", regionalCode: "BE" },
   // Legacy Mexican zones : START
-  { oldTimeZone: "Mexico/BajaNorte", newTimeZone: "America/Tijuana", regionalCode: "MX" },
-  { oldTimeZone: "Mexico/BajaSur", newTimeZone: "America/Mazatlan", regionalCode: "MX" },
-  { oldTimeZone: "Mexico/General", newTimeZone: "America/Mexico_City", regionalCode: "MX" },
+  { oldTz: "Mexico/BajaNorte", newTz: "America/Tijuana", regionalCode: "MX" },
+  { oldTz: "Mexico/BajaSur", newTz: "America/Mazatlan", regionalCode: "MX" },
+  { oldTz: "Mexico/General", newTz: "America/Mexico_City", regionalCode: "MX" },
   // Legacy Mexican zones : END
-  { oldTimeZone: "MST", newTimeZone: "America/Phoenix", regionalCode: "US" },
-  { oldTimeZone: "MST7MDT", newTimeZone: "America/Denver", regionalCode: "US" },
-  { oldTimeZone: "Navajo", newTimeZone: "America/Denver", regionalCode: "US" },
+  { oldTz: "MST", newTz: "America/Phoenix", regionalCode: "US" },
+  { oldTz: "MST7MDT", newTz: "America/Denver", regionalCode: "US" },
+  { oldTz: "Navajo", newTz: "America/Denver", regionalCode: "US" },
   // Legacy New Zealand zones: START
-  { oldTimeZone: "NZ", newTimeZone: "Pacific/Auckland", regionalCode: "NZ" },
-  { oldTimeZone: "NZ-CHAT", newTimeZone: "Pacific/Chatham", regionalCode: "NZ" },
+  { oldTz: "NZ", newTz: "Pacific/Auckland", regionalCode: "NZ" },
+  { oldTz: "NZ-CHAT", newTz: "Pacific/Chatham", regionalCode: "NZ" },
   // Legacy New Zealand zones: END
-  { oldTimeZone: "Pacific/Enderbury", newTimeZone: "Pacific/Kanton", regionalCode: "KI" },
-  { oldTimeZone: "Pacific/Johnston", newTimeZone: "Pacific/Honolulu", regionalCode: "UM" },
-  { oldTimeZone: "Pacific/Ponape", newTimeZone: "Pacific/Pohnpei", regionalCode: "FM" },
-  { oldTimeZone: "Pacific/Samoa", newTimeZone: "Pacific/Pago_Pago", regionalCode: "AS" },
-  { oldTimeZone: "Pacific/Truk", newTimeZone: "Pacific/Chuuk", regionalCode: "FM" },
-  { oldTimeZone: "Pacific/Yap", newTimeZone: "Pacific/Chuuk", regionalCode: "FM" },
-  { oldTimeZone: "Poland", newTimeZone: "Europe/Warsaw", regionalCode: "PL" },
-  { oldTimeZone: "Portugal", newTimeZone: "Europe/Lisbon", regionalCode: "PT" },
-  { oldTimeZone: "PRC", newTimeZone: "Asia/Shanghai", regionalCode: "CN" },
-  { oldTimeZone: "PST8PDT", newTimeZone: "America/Los_Angeles", regionalCode: "US" },
-  { oldTimeZone: "ROC", newTimeZone: "Asia/Taipei", regionalCode: "TW" },
-  { oldTimeZone: "ROK", newTimeZone: "Asia/Seoul", regionalCode: "KR" },
-  { oldTimeZone: "Singapore", newTimeZone: "Asia/Singapore", regionalCode: "SG" },
-  { oldTimeZone: "Turkey", newTimeZone: "Europe/Istanbul", regionalCode: "TR" },
+  { oldTz: "Pacific/Enderbury", newTz: "Pacific/Kanton", regionalCode: "KI" },
+  { oldTz: "Pacific/Johnston", newTz: "Pacific/Honolulu", regionalCode: "UM" },
+  { oldTz: "Pacific/Ponape", newTz: "Pacific/Pohnpei", regionalCode: "FM" },
+  { oldTz: "Pacific/Samoa", newTz: "Pacific/Pago_Pago", regionalCode: "AS" },
+  { oldTz: "Pacific/Truk", newTz: "Pacific/Chuuk", regionalCode: "FM" },
+  { oldTz: "Pacific/Yap", newTz: "Pacific/Chuuk", regionalCode: "FM" },
+  { oldTz: "Poland", newTz: "Europe/Warsaw", regionalCode: "PL" },
+  { oldTz: "Portugal", newTz: "Europe/Lisbon", regionalCode: "PT" },
+  { oldTz: "PRC", newTz: "Asia/Shanghai", regionalCode: "CN" },
+  { oldTz: "PST", newTz: "America/Los_Angeles", regionalCode: "US" },
+  { oldTz: "PST8PDT", newTz: "America/Los_Angeles", regionalCode: "US" },
+  { oldTz: "ROC", newTz: "Asia/Taipei", regionalCode: "TW" },
+  { oldTz: "ROK", newTz: "Asia/Seoul", regionalCode: "KR" },
+  { oldTz: "Singapore", newTz: "Asia/Singapore", regionalCode: "SG" },
+  { oldTz: "Turkey", newTz: "Europe/Istanbul", regionalCode: "TR" },
   // Legacy US zones : START
-  { oldTimeZone: "US/Alaska", newTimeZone: "America/Anchorage", regionalCode: "US" },
-  { oldTimeZone: "US/Aleutian", newTimeZone: "America/Adak", regionalCode: "US" },
-  { oldTimeZone: "US/Arizona", newTimeZone: "America/Phoenix", regionalCode: "US" },
-  { oldTimeZone: "US/Central", newTimeZone: "America/Chicago", regionalCode: "US" },
-  {
-    oldTimeZone: "US/East-Indiana",
-    newTimeZone: "America/Indiana/Indianapolis",
-    regionalCode: "US",
-  },
-  { oldTimeZone: "US/Eastern", newTimeZone: "America/New_York", regionalCode: "US" },
-  { oldTimeZone: "US/Hawaii", newTimeZone: "Pacific/Honolulu", regionalCode: "US" },
-  { oldTimeZone: "US/Indiana-Starke", newTimeZone: "America/Indiana/Knox", regionalCode: "US" },
-  { oldTimeZone: "US/Michigan", newTimeZone: "America/Detroit", regionalCode: "US" },
-  { oldTimeZone: "US/Mountain", newTimeZone: "America/Denver", regionalCode: "US" },
-  { oldTimeZone: "US/Pacific", newTimeZone: "America/Los_Angeles", regionalCode: "US" },
-  { oldTimeZone: "US/Pacific-New", newTimeZone: "America/Los_Angeles", regionalCode: "US" }, // undetected in SpiderMonkey
+  { oldTz: "US/Alaska", newTz: "America/Anchorage", regionalCode: "US" },
+  { oldTz: "US/Aleutian", newTz: "America/Adak", regionalCode: "US" },
+  { oldTz: "US/Arizona", newTz: "America/Phoenix", regionalCode: "US" },
+  { oldTz: "US/Central", newTz: "America/Chicago", regionalCode: "US" },
+  { oldTz: "US/East-Indiana", newTz: "America/Indiana/Indianapolis", regionalCode: "US" },
+  { oldTz: "US/Eastern", newTz: "America/New_York", regionalCode: "US" },
+  { oldTz: "US/Hawaii", newTz: "Pacific/Honolulu", regionalCode: "US" },
+  { oldTz: "US/Indiana-Starke", newTz: "America/Indiana/Knox", regionalCode: "US" },
+  { oldTz: "US/Michigan", newTz: "America/Detroit", regionalCode: "US" },
+  { oldTz: "US/Mountain", newTz: "America/Denver", regionalCode: "US" },
+  { oldTz: "US/Pacific", newTz: "America/Los_Angeles", regionalCode: "US" },
+  { oldTz: "US/Pacific-New", newTz: "America/Los_Angeles", regionalCode: "US" }, // undetected in SpiderMonkey
   // Legacy US zones : END
-  { oldTimeZone: "US/Samoa", newTimeZone: "Pacific/Pago_Pago", regionalCode: "AS" },
-  { oldTimeZone: "WAT", newTimeZone: "Africa/Kinshasa", regionalCode: "CD" }, // undetected in SpiderMonkey and V8
-  { oldTimeZone: "W-SU", newTimeZone: "Europe/Moscow", regionalCode: "RU" }, // Soviet Union winter time (deprecated)
-  { oldTimeZone: "WET", newTimeZone: "Europe/Lisbon", regionalCode: "PT" },
-  { oldTimeZone: "WEST", newTimeZone: "Europe/Brussels", regionalCode: "BE" }, // undetected in SpiderMonkey and V8
-  { oldTimeZone: "WEDT", newTimeZone: "Europe/Brussels", regionalCode: "BE" }, // undetected in SpiderMonkey and V8
+  { oldTz: "US/Samoa", newTz: "Pacific/Pago_Pago", regionalCode: "AS" },
+  { oldTz: "WAT", newTz: "Africa/Kinshasa", regionalCode: "CD" }, // undetected in SpiderMonkey and V8
+  { oldTz: "W-SU", newTz: "Europe/Moscow", regionalCode: "RU" }, // Soviet Union winter time (deprecated)
+  { oldTz: "WET", newTz: "Europe/Lisbon", regionalCode: "PT" },
+  { oldTz: "WEST", newTz: "Europe/Brussels", regionalCode: "BE" }, // undetected in SpiderMonkey and V8
+  { oldTz: "WEDT", newTz: "Europe/Brussels", regionalCode: "BE" }, // undetected in SpiderMonkey and V8
 ];
 
 // ? JavaScript engines:
@@ -602,7 +581,7 @@ export const greenwichMeridianTimeZoneFullNames = [
 
 // ? TEST : Check which time zone aliases are accepted but not canonical (helped by ChatGPT)
 // const acceptedTimeZoneAliases = compatibilityTimeZones
-//   .map(({ oldTimeZone }) => oldTimeZone)
+//   .map(({ oldTz }) => oldTz)
 //   .filter(tz => {
 //     try {
 //       new Intl.DateTimeFormat("en", { timeZone: tz });
@@ -633,56 +612,56 @@ export const greenwichMeridianTimeZoneFullNames = [
 //   Intl.supportedValuesOf("timeZone").includes(Intl.DateTimeFormat().resolvedOptions().timeZone)
 // ); // * should be true in modern browser
 
-// ? TEST : input oldTimeZone to obtain newTimeZone
+// ? TEST : input oldTz to obtain newTz
 // let outputOld = 0;
 // let outputInvalid = 0;
-// for (const { oldTimeZone, newTimeZone } of compatibilityTimeZones) {
+// for (const { oldTz, newTz } of compatibilityTimeZones) {
 //   try {
-//     const output = Intl.DateTimeFormat("en", { timeZone: oldTimeZone }).resolvedOptions().timeZone;
+//     const output = Intl.DateTimeFormat("en", { timeZone: oldTz }).resolvedOptions().timeZone;
 //     switch (output) {
-//       case newTimeZone:
-//         console.log(oldTimeZone, "->", output);
+//       case newTz:
+//         console.log(oldTz, "->", output);
 //         break;
 
-//       case oldTimeZone:
-//         console.log(oldTimeZone);
+//       case oldTz:
+//         console.log(oldTz);
 //         outputOld++;
 //         break;
 
 //       default:
-//         console.log(oldTimeZone, "->", output, "(expected:", newTimeZone + ")");
+//         console.log(oldTz, "->", output, "(expected:", newTz + ")");
 //         break;
 //     }
 //   } catch (error) {
-//     console.log(oldTimeZone, "->", error.message);
+//     console.log(oldTz, "->", error.message);
 //     outputInvalid++;
 //   }
 // }
 // console.log("Total matched old time zones:", outputOld);
 // console.log("Total invalid old time zones:", outputInvalid);
 
-// ? TEST : input newTimeZone to obtain oldTimeZone
+// ? TEST : input newTz to obtain oldTz
 // let outputOld = 0;
 // let outputInvalid = 0;
-// for (const { oldTimeZone, newTimeZone } of compatibilityTimeZones) {
+// for (const { oldTz, newTz } of compatibilityTimeZones) {
 //   try {
-//     const output = Intl.DateTimeFormat("en", { timeZone: newTimeZone }).resolvedOptions().timeZone;
+//     const output = Intl.DateTimeFormat("en", { timeZone: newTz }).resolvedOptions().timeZone;
 //     switch (output) {
-//       case newTimeZone:
-//         console.log(newTimeZone, "<-", oldTimeZone);
+//       case newTz:
+//         console.log(newTz, "<-", oldTz);
 //         break;
 
-//       case oldTimeZone:
-//         console.log(output, "->", newTimeZone);
+//       case oldTz:
+//         console.log(output, "->", newTz);
 //         outputOld++;
 //         break;
 
 //       default:
-//         console.log(oldTimeZone, "->", output, "(expected:", newTimeZone + ")");
+//         console.log(oldTz, "->", output, "(expected:", newTz + ")");
 //         break;
 //     }
 //   } catch (error) {
-//     console.log(oldTimeZone, "->", error.message);
+//     console.log(oldTz, "->", error.message);
 //     outputInvalid++;
 //   }
 // }

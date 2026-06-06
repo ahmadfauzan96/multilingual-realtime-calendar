@@ -7,15 +7,15 @@ h1 > time {
   font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.871);
   @supports (color: oklch(0% 0 0)) {
-    color: oklch(100% 0.00011 271.152 / 0.87);
+    color: oklch(100% 0.00011 271.152 / 0.871);
   }
 }
 
 h3 {
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 0.871);
   @supports (color: oklch(0% 0 0)) {
-    color: oklch(100% 0.00011 271.152 / 0.87);
+    color: oklch(100% 0.00011 271.152 / 0.871);
   }
 }
 
@@ -28,7 +28,7 @@ h3 {
   font-family:
     "FiraGO", "Noto Sans Armenian", "Klee One", "BIZ UDGothic", "Nanum Gothic", "LXGW WenKai TC",
     "Noto Sans Mongolian", "Hind Siliguri", "Mukta Vaani", "Mukta Mahee", "Mukta Malar",
-    "Baloo Tammudu 2", "Baloo Tamma 2", "Manjari", "Meera", "Baloo Bhaina 2",
+    "Baloo Tammudu 2", "Anek Kannada", "Baloo Tamma 2", "Manjari", "Meera", "Baloo Bhaina 2",
     "Noto Sans Meetei Mayek", "Noto Sans Ol Chiki", "Yaldevi", "Noto Sans Sinhala",
     "MiSans Tibetan", "Noto Sans Lao", "Noto Sans Khmer", "Noto Sans Myanmar", "Noto Sans Ethiopic",
     sans-serif;

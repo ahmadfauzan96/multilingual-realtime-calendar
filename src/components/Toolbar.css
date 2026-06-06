@@ -9,7 +9,7 @@ select {
 
 select {
   font-family: "FiraGO", sans-serif;
-  width: 100%;
+  inline-size: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   @supports (color: oklch(0% 0 0)) {
@@ -20,7 +20,10 @@ select {
 }
 
 label {
-  padding: 12px 12px 12px 0;
+  /* padding: 12px 12px 12px 0; */
+  padding-block: 12px;
+  padding-inline-start: 0;
+  padding-inline-end: 12px;
   display: flex;
   place-items: start;
 }
@@ -28,7 +31,8 @@ label {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding-block: 0.6em;
+  padding-inline: 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -73,28 +77,31 @@ li {
 }
 
 .col-25 {
-  width: 25%;
+  inline-size: 25%;
 }
 
 .col-75 {
-  width: 75%;
+  inline-size: 75%;
 }
 
 .col-25,
 .col-75 {
-  /* margin-top: 6px; */
   margin-block-start: 6px;
   float: inline-start;
 }
 
-/* Clear floats after the columns */
+/* TODO : Clear floats after the columns */
 .row::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+/* * Responsive layout
+ ? when the screen is less than 600px wide,
+ ? make the two columns stack on top of each other
+ ? instead of next to each other
+*/
 @media screen and (max-width: 600px) {
   label {
     display: flex;
@@ -104,13 +111,11 @@ li {
   .col-25,
   .col-75,
   button {
-    width: 100%;
-    /* margin-top: 0; */
+    inline-size: 100%;
     margin-block-start: 0;
   }
 
   button {
-    /* margin-bottom: 1rem; */
     margin-block-end: 1rem;
   }
 }

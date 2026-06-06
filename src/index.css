@@ -454,21 +454,21 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-inline-size: 320px;
+  min-block-size: 100vh;
   /* ? Background settings from https://cssgradient.io/ */
-  background: #020024;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
-  background: -webkit-linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
-  background: -moz-linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
-  background: linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
+  background: #020024; /* ! Solid Color Fallback */
+  background: -moz-linear-gradient(top, #020024 0%, #090979 50%, #00d4ff 100%); /* ! Old Firefox Fallback */
+  background: -webkit-linear-gradient(top, #020024 0%, #090979 50%, #00d4ff 100%); /* ! Old WebKit Fallback */
+  background: linear-gradient(in oklch 180deg, #020024 0%, #090979 50%, #00d4ff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1); /* ! Legacy IE6-9 Filter */
 
-  /* ? Improved by Deepseek AI */
+  /* ? Improved background settings by Deepseek AI */
   /* * Modern version with OKLCH - for supporting browsers */
   @supports (color: oklch(0% 0 0)) {
-    background: oklch(12.157% 0.07907 270.925);
+    background: oklch(12.157% 0.07907 270.925); /* ! Solid Color Fallback */
     background: linear-gradient(
-      180deg,
+      in oklch 180deg,
       oklch(12.157% 0.07907 270.925) 0%,
       oklch(27.235% 0.17226 267) 50%,
       oklch(80.427% 0.146 219.548) 100%

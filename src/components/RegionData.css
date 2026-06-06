@@ -1,6 +1,7 @@
 .region-data {
   text-align: center;
-  margin: 3rem 0;
+  margin-block: 3rem;
+  margin-inline: 0;
 }
 
 .region-data > h2 {

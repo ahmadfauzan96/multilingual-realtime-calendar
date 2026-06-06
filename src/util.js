@@ -7,8 +7,8 @@ import {
   universalTimeZones,
 } from "./timezones";
 
-const HOURS_IN_MILLISECONDS = 60 * 60 * 1000;
-const MINUTES_IN_MILLISECONDS = 60 * 1000;
+const HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
+const MINUTE_IN_MILLISECONDS = 60 * 1000;
 
 export const firstTimeExecutedDateTime = new Date();
 
@@ -52,9 +52,9 @@ export const getFlagEmoji = regionalCode =>
           .toUpperCase()
           .split("")
           // .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
-          // .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
+          .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
           // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
-          .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
+          // .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
           .join("")
       : ""
     : typeof regionalCode === "number"
@@ -67,7 +67,7 @@ function tzOffsetFromUTC(timeZone) {
   const tzOffset = getTimezoneOffset(timeZone, firstTimeExecutedDateTime);
 
   // * Hour
-  const tzOffsetHour = tzOffset / HOURS_IN_MILLISECONDS;
+  const tzOffsetHour = tzOffset / HOUR_IN_MILLISECONDS;
   const tzHour =
     tzOffset > 0
       ? Math.floor(tzOffsetHour).toString()
@@ -76,7 +76,7 @@ function tzOffsetFromUTC(timeZone) {
         : tzOffsetHour.toString();
 
   // * Minute
-  const tzOffsetMinute = (tzOffset % HOURS_IN_MILLISECONDS) / MINUTES_IN_MILLISECONDS;
+  const tzOffsetMinute = (tzOffset % HOUR_IN_MILLISECONDS) / MINUTE_IN_MILLISECONDS;
   const absTzOffsetMinute = Math.abs(tzOffsetMinute).toString();
   const tzMinute = +absTzOffsetMinute < 10 ? "0" + absTzOffsetMinute : absTzOffsetMinute;
 
@@ -117,10 +117,10 @@ function tzRegion(timeZone) {
   // const activeTimeZoneRegion = countries[activeTimeZoneRegionalCode]?.name;
   const activeTimeZoneRegion = REGION_MAP[activeTimeZoneRegionalCode];
 
-  const timeZoneIsDeprecated = compatibilityTimeZones.some(tz => tz.oldTimeZone === timeZone);
-  const { newTimeZone: deprecatedTZToActiveTZ, regionalCode: deprecatedTimeZoneRegionalCode } =
-    compatibilityTimeZones.find(({ oldTimeZone }) => timeZone === oldTimeZone) ?? {
-      newTimeZone: Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone,
+  const timeZoneIsDeprecated = compatibilityTimeZones.some(({ oldTz }) => timeZone === oldTz);
+  const { newTz: deprecatedTZToActiveTZ, regionalCode: deprecatedTimeZoneRegionalCode } =
+    compatibilityTimeZones.find(({ oldTz }) => timeZone === oldTz) ?? {
+      newTz: Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone,
     };
 
   // * Original code
@@ -176,13 +176,13 @@ export function localeRegionData(timeZone) {
 
   const regionalCode =
     zones[localeTimeZone]?.countries[0] ??
-    compatibilityTimeZones.find(tz => tz.oldTimeZone === localeTimeZone)?.regionalCode;
+    compatibilityTimeZones.find(({ oldTz }) => localeTimeZone === oldTz)?.regionalCode;
 
   const name = REGION_MAP[regionalCode] ?? "No region data";
   // const name = countries[regionalCode]?.name ?? "No region data";
   const code = regionalCode ?? "No regional code";
   const flag =
-    getFlagEmoji(regionalCode) !== "" && getFlagEmoji(regionalCode) !== "(No flag for this region.)"
+    getFlagEmoji(regionalCode) !== "" && getFlagEmoji(regionalCode).length === 4
       ? getFlagEmoji(regionalCode)
       : "No flag data";
   const timeZones = countries[regionalCode]?.zones ?? (localeTimeZone ? [localeTimeZone] : []);
