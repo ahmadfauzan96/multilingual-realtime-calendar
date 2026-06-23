@@ -1,3 +1,8 @@
+export const createMap = array =>
+  Object.fromEntries(array.map(({ title, value }) => [value, title]));
+// export const createMap = array =>
+//   array.reduce((acc, { title, value }) => ((acc[value] = title), acc), {});
+
 export const LANGUAGES = [
   { title: "Abkhazian", value: "ab" },
   { title: "Acehnese", value: "ace" },
@@ -676,11 +681,7 @@ export const LANGUAGES = [
   { title: "Zulu", value: "zu" },
 ];
 
-export const LANGUAGE_MAP = Object.fromEntries(LANGUAGES.map(({ title, value }) => [value, title]));
-// export const LANGUAGE_MAP = LANGUAGES.reduce(
-//   (acc, { title, value }) => ((acc[value] = title), acc),
-//   {},
-// );
+export const LANGUAGE_MAP = createMap(LANGUAGES);
 
 export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => {
   const { hourCycle, hour12 } = new Intl.DateTimeFormat(lang, {
@@ -689,13 +690,7 @@ export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => 
   return hour12 ?? (hourCycle === "h12" || hourCycle === "h11");
 });
 
-export const LANGUAGE_12H_MAP = Object.fromEntries(
-  languagesWith12HoursSystem.map(({ title, value }) => [value, title]),
-);
-// export const LANGUAGE_12H_MAP = languagesWith12HoursSystem.reduce(
-//   (acc, { title, value }) => ((acc[value] = title), acc),
-//   {},
-// );
+export const LANGUAGE_12H_MAP = createMap(languagesWith12HoursSystem);
 
 // console.log(languagesWith12HoursSystem.length);
 // console.log(
@@ -1026,11 +1021,7 @@ export const REGIONS = [
   { title: "Zimbabwe", value: "ZW" },
 ];
 
-export const REGION_MAP = Object.fromEntries(REGIONS.map(({ title, value }) => [value, title]));
-// export const REGION_MAP = REGIONS.reduce(
-//   (acc, { title, value }) => ((acc[value] = title), acc),
-//   {},
-// );
+export const REGION_MAP = createMap(REGIONS);
 
 export const regionsAdoptingAR = [
   "AE",
@@ -1484,29 +1475,9 @@ export const CALENDAR_OPTIONS = {
   ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
 };
 
-export const CALENDAR_MAP = Object.fromEntries(
-  CALENDAR_OPTIONS.CALENDARS.map(({ title, value }) => [value, title]),
-);
-// export const CALENDAR_MAP = CALENDAR_OPTIONS.CALENDARS.reduce(
-//   (acc, { title, value }) => ((acc[value] = title), acc),
-//   {},
-// );
-
-export const NUMBER_MAP = Object.fromEntries(
-  CALENDAR_OPTIONS.NUMBERS.map(({ title, value }) => [value, title]),
-);
-// export const NUMBER_MAP = CALENDAR_OPTIONS.NUMBERS.reduce(
-//   (acc, { title, value }) => ((acc[value] = title), acc),
-//   {},
-// );
-
-export const COLLATION_MAP = Object.fromEntries(
-  CALENDAR_OPTIONS.COLLATIONS.map(({ title, value }) => [value, title]),
-);
-// export const COLLATION_MAP = CALENDAR_OPTIONS.COLLATIONS.reduce(
-//   (acc, { title, value }) => ((acc[value] = title), acc),
-//   {},
-// );
+export const CALENDAR_MAP = createMap(CALENDAR_OPTIONS.CALENDARS);
+export const NUMBER_MAP = createMap(CALENDAR_OPTIONS.NUMBERS);
+export const COLLATION_MAP = createMap(CALENDAR_OPTIONS.COLLATIONS);
 
 // console.log(LANGUAGE_MAP);
 // for (const key in LANGUAGE_MAP) {
