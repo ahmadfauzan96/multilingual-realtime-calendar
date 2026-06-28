@@ -756,7 +756,7 @@ assignTimeZoneName("full");
 export { UTCTimeZoneLongNames, UTCTimeZoneFullNames, GMTTimeZoneLongNames, GMTTimeZoneFullNames };
 
 export const REGIONS = [
-  { title: " Unspecified", value: "" },
+  { title: "Unspecified", value: "" },
   { title: "Afghanistan", value: "AF" },
   { title: "Åland Island", value: "AX" },
   { title: "Albania", value: "AL" },
@@ -808,7 +808,8 @@ export const REGIONS = [
   { title: "Chad", value: "TD" },
   { title: "Chechnya", value: "CE" },
   { title: "Chile", value: "CL" },
-  { title: "China (Mainland) (People’s Republic of China)", value: "CN" },
+  { title: "China (Mainland)", value: "CN" },
+  { title: "China (Taiwan)", value: "TW" },
   { title: "Christmas Islands", value: "CX" },
   { title: "Clipperton Island", value: "CP" },
   { title: "Cocos (Keeling) Islands", value: "CC" },
@@ -985,7 +986,6 @@ export const REGIONS = [
   { title: "Sweden", value: "SE" },
   { title: "Switzerland", value: "CH" },
   { title: "Syria", value: "SY" },
-  { title: "Taiwan (Republic of China)", value: "TW" },
   { title: "Tajikistan", value: "TJ" },
   { title: "Tanzania", value: "TZ" },
   { title: "Thailand", value: "TH" },
@@ -1290,7 +1290,7 @@ export const regionsAdoptingNL = ["AW", "BE", "BQ", "CW", "EU", "NL", "SR", "SX"
 
 export const CALENDAR_OPTIONS = {
   CALENDARS: [
-    { title: " None", value: "" },
+    { title: "None", value: "" },
     { title: "Balinese Hindu/Indian Calendar", value: "indian" },
     { title: "Buddhist Calendar", value: "buddhist" },
     { title: "Civil (Algorithmic) Arabic Calendar", value: "islamicc" },
@@ -1312,9 +1312,9 @@ export const CALENDAR_OPTIONS = {
     { title: "Traditional Korean Calendar", value: "dangi" },
     { title: "Tibetan Calendar", value: "tibetan" },
     { title: "Ugaritic Calendar", value: "ugaritic" },
-  ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
+  ],
   NUMBERS: [
-    { title: " None", value: "" },
+    { title: "None", value: "" },
     { title: "ASCII/Western Arabic Numbers", value: "latn" },
     { title: "Adlam Numbers", value: "adlm" },
     { title: "Ahom Numbers", value: "ahom" },
@@ -1428,9 +1428,9 @@ export const CALENDAR_OPTIONS = {
     { title: "Vai Numbers", value: "vaii" },
     { title: "Warang Citi Numbers", value: "wara" },
     { title: "Wancho Numbers", value: "wcho" },
-  ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
+  ],
   COLLATIONS: [
-    { title: " None", value: "" },
+    { title: "None", value: "" },
     { title: "Binary Code-Point Collation (Hindi)", value: "direct" },
     { title: "Compatibility Collation", value: "compat" },
     { title: "Default Collation", value: "standard" },
@@ -1472,7 +1472,7 @@ export const CALENDAR_OPTIONS = {
     { title: "Reformed Collation (Swedish)", value: "reformed" },
     { title: "String-Search Collation", value: "search" },
     { title: "Traditional Collation (Spanish)", value: "trad" },
-  ].sort((a, b) => a.title.localeCompare(b.title, "en", { collation: "ducet" })),
+  ],
 };
 
 export const CALENDAR_MAP = createMap(CALENDAR_OPTIONS.CALENDARS);

@@ -98,7 +98,19 @@ export default function Toolbar({
   //     ? "display-ti"
   //     : "display";
 
-  const { CALENDARS, NUMBERS } = CALENDAR_OPTIONS;
+  let { CALENDARS, NUMBERS } = CALENDAR_OPTIONS;
+  CALENDARS = [
+    CALENDARS[0],
+    ...CALENDARS.slice(1).sort((a, b) =>
+      a.title.localeCompare(b.title, "en", { collation: "ducet" }),
+    ),
+  ];
+  NUMBERS = [
+    NUMBERS[0],
+    ...NUMBERS.slice(1).sort((a, b) =>
+      a.title.localeCompare(b.title, "en", { collation: "ducet" }),
+    ),
+  ];
 
   const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(timeZone);
 
@@ -159,9 +171,13 @@ export default function Toolbar({
         </ToolbarRowRef>
 
         <ToolbarRowRef ref={regionRef} title="Region" label="region" defaultValue={localeReg}>
-          {REGIONS.map(({ title, value }) => (
+          {[REGIONS[0], ...REGIONS.slice(1)].map(({ title, value }) => (
             <option key={value} value={value}>
-              {title} {getFlagEmoji(value)}
+              {title +
+                " " +
+                (value === "TW" && localeReg === "CN"
+                  ? getFlagEmoji(localeReg)
+                  : getFlagEmoji(value))}
             </option>
           ))}
         </ToolbarRowRef>

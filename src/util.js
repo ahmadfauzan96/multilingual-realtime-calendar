@@ -136,10 +136,13 @@ function tzRegion(timeZone) {
 
   // * Improved performance by reducing the number of return statements (helped by IBM Granite AI)
   let region;
+  const userRegion = new Intl.DateTimeFormat().resolvedOptions().locale.split("-").at(-1);
+  const flagEmoji = reg =>
+    reg === "TW" && userRegion === "CN" ? getFlagEmoji(userRegion) : getFlagEmoji(reg);
   if (activeTimeZoneRegion) {
-    region = `${activeTimeZoneRegion} ${getFlagEmoji(activeTimeZoneRegionalCode)}`;
+    region = `${activeTimeZoneRegion} ${flagEmoji(activeTimeZoneRegionalCode)}`;
   } else if (timeZoneIsDeprecated && deprecatedTimeZoneRegion) {
-    region = `${deprecatedTimeZoneRegion} ${getFlagEmoji(
+    region = `${deprecatedTimeZoneRegion} ${flagEmoji(
       deprecatedTimeZoneRegionalCode,
     )} (link to ${deprecatedTZToActiveTZ})`;
   } else {
