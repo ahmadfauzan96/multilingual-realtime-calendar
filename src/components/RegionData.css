@@ -8,9 +8,13 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #03013b;
+  /* color: #03013b;
   @supports (color: oklch(0% 0 0)) {
     color: oklch(16.497% 0.10646 268.307);
+  } */
+  color: rgba(255, 255, 255, 0.871);
+  @supports (color: oklch(0% 0 0)) {
+    color: oklch(100% 0.00011 271.152 / 0.871);
   }
   text-decoration: underline;
 }
@@ -18,8 +22,12 @@
 .region-data > p {
   margin: 0;
   font-size: 1.25rem;
-  color: #03013b;
+  /* color: #03013b;
   @supports (color: oklch(0% 0 0)) {
     color: oklch(16.497% 0.10646 268.307);
+  } */
+  color: rgba(255, 255, 255, 0.871);
+  @supports (color: oklch(0% 0 0)) {
+    color: oklch(100% 0.00011 271.152 / 0.871);
   }
 }

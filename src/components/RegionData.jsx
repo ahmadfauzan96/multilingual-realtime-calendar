@@ -2,6 +2,7 @@
 import { localeRegionData } from "../util.js";
 import "./RegionData.css";
 
+/** @param {{timeZone: string}} props */
 export default function RegionData({ timeZone }) {
   const { name, code, flag, timeZones } = localeRegionData(timeZone);
   const tzAmount = timeZones.length === 1 && timeZones[0] === "" ? 0 : timeZones.length;

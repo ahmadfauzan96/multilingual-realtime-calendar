@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { forwardRef } from "react";
+import "./Toolbar.css";
 
 const ToolbarRowRef = forwardRef(({ title, label, defaultValue, children }, ref) => {
   return (

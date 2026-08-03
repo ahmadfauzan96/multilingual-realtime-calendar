@@ -7,61 +7,67 @@ import {
   universalTimeZones,
 } from "./timezones";
 
-const HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
 const MINUTE_IN_MILLISECONDS = 60 * 1000;
+const HOUR_IN_MILLISECONDS = 60 * MINUTE_IN_MILLISECONDS;
 
 export const firstTimeExecutedDateTime = new Date();
 
 // ? Locale Data
+/**
+ * @typedef {Object} LocaleData
+ * @property {string} localeLang
+ * @property {string} localeScript
+ * @property {string} localeLangScript
+ * @property {string} localeReg
+ * @property {string} localeCalendar
+ * @property {string} localeNumber
+ */
+/**
+ * @param {string} locale -  The locale string.
+ * @return {LocaleData} Language, script, region, calendar, and numbering system information.
+ */
 export function localeData(locale) {
-  const [localeNoCalendarOption, localeCalendarOption] = locale.includes("-u-")
-    ? locale.split("-u-")
-    : [locale, ""];
-
-  const localeLangScriptReg = localeNoCalendarOption.split("-");
-  const localeLang = localeLangScriptReg[0];
-  const localeScript =
-    localeLangScriptReg[1] && localeLangScriptReg[1].length === 4 ? localeLangScriptReg[1] : "";
-  const localeLangScript = localeLang + (localeScript ? "-" + localeScript : "");
-  const localeReg =
-    localeLangScriptReg[1] && localeLangScriptReg[1].length === 2
-      ? localeLangScriptReg[1]
-      : localeLangScriptReg[2] && localeLangScriptReg[2].length === 2
-        ? localeLangScriptReg[2]
-        : "";
-
-  const calendarOption = localeCalendarOption ? localeCalendarOption.split("-") : [];
-
-  const prefixLength = calendarOption.length >= 3 ? 3 : 2;
-  const localeCalendar =
-    calendarOption[0] === "ca"
-      ? calendarOption.length === 2 || calendarOption[2] === "nu"
-        ? calendarOption[1]
-        : calendarOption.slice(1, prefixLength).join("-")
-      : "";
-  const localeNumber = calendarOption.some(str => str === "nu") ? calendarOption.at(-1) : "";
+  const {
+    locale: lcl,
+    calendar,
+    numberingSystem,
+  } = new Intl.DateTimeFormat(locale).resolvedOptions();
+  const {
+    language: localeLang,
+    script: localeScript = "",
+    region: localeReg = "",
+    calendar: localeCalendar = calendar,
+    numberingSystem: localeNumber = numberingSystem,
+  } = new Intl.Locale(lcl, { calendar: calendar, numberingSystem: numberingSystem });
+  const localeLangScript = localeLang + (localeScript !== "" ? "-" + localeScript : "");
 
   return { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber };
 }
 
 // ? Flag Emoji
+/**
+ * @param {string} regionalCode -  The regional code.
+ * @return {string} The flag emoji for the given regional code, if any.
+ */
 export const getFlagEmoji = regionalCode =>
-  typeof regionalCode === "string"
-    ? regionalCode.length === 2
-      ? regionalCode
-          .toUpperCase()
-          .split("")
-          // .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
-          .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
-          // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
-          // .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
-          .join("")
-      : ""
-    : typeof regionalCode === "number"
+  regionalCode.length === 2
+    ? regionalCode
+        .toUpperCase()
+        .split("")
+        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
+        .map(char => String.fromCodePoint(127397 + char.charCodeAt(0)))
+        // .map(char => String.fromCodePoint(char.charCodeAt(0) + 0x1f1a5))
+        // .map(char => String.fromCodePoint(0x1f1a5 + char.charCodeAt(0)))
+        .join("")
+    : regionalCode.length === 3
       ? "(No flag for this region.)"
       : "";
 
 // ? Timezones
+/**
+ * @param {string} timeZone -  IANA time zone identifier.
+ * @return {string} The timezone offset from UTC in the format of "UTC±H" or "UTC±H:MM".
+ */
 function tzOffsetFromUTC(timeZone) {
   // * timezone offset from UTC in milliseconds
   const tzOffset = getTimezoneOffset(timeZone, firstTimeExecutedDateTime);
@@ -77,8 +83,9 @@ function tzOffsetFromUTC(timeZone) {
 
   // * Minute
   const tzOffsetMinute = (tzOffset % HOUR_IN_MILLISECONDS) / MINUTE_IN_MILLISECONDS;
-  const absTzOffsetMinute = Math.abs(tzOffsetMinute).toString();
-  const tzMinute = +absTzOffsetMinute < 10 ? "0" + absTzOffsetMinute : absTzOffsetMinute;
+  const absTzOffsetMinute = Math.abs(tzOffsetMinute);
+  const tzMinute =
+    absTzOffsetMinute < 10 ? "0" + absTzOffsetMinute.toString() : absTzOffsetMinute.toString();
 
   return (
     "UTC" +
@@ -90,21 +97,43 @@ function tzOffsetFromUTC(timeZone) {
   );
 }
 
+/**
+ * @param {string} locale -  The locale code.
+ * @param {string} timeZone -  IANA time zone identifiers.
+ * @return {string} The timezone long name in the given locale.
+ */
 export const tzLongNameIntl = (locale, timeZone) =>
   new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone })
     .formatToParts(firstTimeExecutedDateTime)
     .find(({ type }) => type === "timeZoneName").value;
 
+/**
+ * @param {string} locale -  The locale code.
+ * @param {string} timeZone -  IANA time zone identifiers.
+ * @return {string} The timezone full name in the given locale.
+ */
 export const tzFullNameIntl = (locale, timeZone) =>
   new Intl.DateTimeFormat(locale, { timeStyle: "full", timeZone })
     .formatToParts(firstTimeExecutedDateTime)
     .find(({ type }) => type === "timeZoneName").value;
 
-const tzLongName = tzLongNameIntl.bind(null, "en");
-const tzFullName = tzFullNameIntl.bind(null, "en");
+/**
+ * @param {string} timeZone -  IANA time zone identifiers.
+ * @return {string} The timezone long name in English.
+ */
+export const tzLongName = tzLongNameIntl.bind(null, "en");
+/**
+ * @param {string} timeZone -  IANA time zone identifiers.
+ * @return {string} The timezone full name in English.
+ */
+export const tzFullName = tzFullNameIntl.bind(null, "en");
 
+/**
+ * @param {string} timeZone -  IANA time zone identifier.
+ * @return {string} The region associated with the given time zone, if any.
+ */
 function tzRegion(timeZone) {
-  const activeTimeZoneRegionalCode = zones[timeZone]?.countries[0];
+  const activeTimeZoneRegionalCode = zones[timeZone]?.countries[0] ?? "";
 
   // * Original code
   // const activeTimeZoneRegion =
@@ -121,6 +150,7 @@ function tzRegion(timeZone) {
   const { newTz: deprecatedTZToActiveTZ, regionalCode: deprecatedTimeZoneRegionalCode } =
     compatibilityTimeZones.find(({ oldTz }) => timeZone === oldTz) ?? {
       newTz: Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone,
+      regionalCode: "",
     };
 
   // * Original code
@@ -135,16 +165,22 @@ function tzRegion(timeZone) {
   const deprecatedTimeZoneRegion = REGION_MAP[deprecatedTimeZoneRegionalCode];
 
   // * Improved performance by reducing the number of return statements (helped by IBM Granite AI)
-  let region;
-  const userRegion = new Intl.DateTimeFormat().resolvedOptions().locale.split("-").at(-1);
+  let region = "";
+  const userRegion = new Intl.DateTimeFormat().resolvedOptions().locale.split("-").at(-1) ?? "";
   const flagEmoji = reg =>
-    reg === "TW" && userRegion === "CN" ? getFlagEmoji(userRegion) : getFlagEmoji(reg);
-  if (activeTimeZoneRegion) {
-    region = `${activeTimeZoneRegion} ${flagEmoji(activeTimeZoneRegionalCode)}`;
-  } else if (timeZoneIsDeprecated && deprecatedTimeZoneRegion) {
-    region = `${deprecatedTimeZoneRegion} ${flagEmoji(
-      deprecatedTimeZoneRegionalCode,
-    )} (link to ${deprecatedTZToActiveTZ})`;
+    typeof reg === "string" && reg === "TW" && userRegion === "CN"
+      ? getFlagEmoji(userRegion)
+      : typeof reg === "string" && reg !== ""
+        ? getFlagEmoji(reg)
+        : "";
+  if (activeTimeZoneRegionalCode !== "") {
+    region = activeTimeZoneRegion + " " + flagEmoji(activeTimeZoneRegionalCode);
+  } else if (timeZoneIsDeprecated && deprecatedTimeZoneRegionalCode !== "") {
+    region =
+      deprecatedTimeZoneRegion +
+      " " +
+      flagEmoji(deprecatedTimeZoneRegionalCode) +
+      ` (link to ${deprecatedTZToActiveTZ})`;
   } else {
     region = universalTimeZones.includes(timeZone)
       ? "Coordinated Universal Time"
@@ -163,6 +199,17 @@ export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
 }));
 
 // ? Locale Region Data from given Timezone
+/**
+ * @typedef {Object} LocaleRegionData
+ * @property {string} name - The region name.
+ * @property {string} code - The regional code.
+ * @property {string} flag - The flag emoji for the region.
+ * @property {string[]} timeZones - An array of timezones associated with the given time zone.
+ */
+/**
+ * @param {string} timeZone -  IANA time zone identifier.
+ * @returns {LocaleRegionData} Region name, regional code, flag emoji, and an array of timezones associated to the given time zone.
+ */
 export function localeRegionData(timeZone) {
   // ! For testing purposes
   // console.log(timeZone);
@@ -181,14 +228,22 @@ export function localeRegionData(timeZone) {
     zones[localeTimeZone]?.countries[0] ??
     compatibilityTimeZones.find(({ oldTz }) => localeTimeZone === oldTz)?.regionalCode;
 
-  const name = REGION_MAP[regionalCode] ?? "No region data";
+  const name = typeof regionalCode === "string" ? REGION_MAP[regionalCode] : "No region data";
   // const name = countries[regionalCode]?.name ?? "No region data";
-  const code = regionalCode ?? "No regional code";
+  const code =
+    typeof regionalCode === "string" && regionalCode !== "" ? regionalCode : "No regional code";
   const flag =
-    getFlagEmoji(regionalCode) !== "" && getFlagEmoji(regionalCode).length === 4
+    typeof regionalCode === "string" &&
+    regionalCode !== "" &&
+    getFlagEmoji(regionalCode).length === 4
       ? getFlagEmoji(regionalCode)
       : "No flag data";
-  const timeZones = countries[regionalCode]?.zones ?? (localeTimeZone ? [localeTimeZone] : []);
+  const timeZones =
+    typeof regionalCode === "string"
+      ? countries[regionalCode]?.zones
+      : localeTimeZone !== undefined
+        ? [localeTimeZone]
+        : [];
 
   return { name, code, flag, timeZones };
 }

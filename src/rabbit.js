@@ -1,6 +1,16 @@
 // * Source : https://github.com/Rabbit-Converter/Rabbit/blob/master/other-lang/javascript/rabbit.js
-// * Simplified by ahmadfauzan96, rules are kept intact.
+// * Converted to ESM and added with JSDoc types by ahmadfauzan96, rules are kept intact.
 
+/**
+ * @typedef {Object} ConversionRule
+ * @property {string} from - The string to be replaced.
+ * @property {string} to - The string to replace with.
+ */
+/**
+ * @param {ConversionRule[]} rule - The conversion rule object.
+ * @param {string} input - The input string to be converted.
+ * @return {string} The converted string.
+ */
 function replaceWithRule(rule, input) {
   let output = input;
   for (const { from, to } of rule) {
@@ -10,7 +20,11 @@ function replaceWithRule(rule, input) {
   return output;
 }
 
-function uni2zg(input) {
+/**
+ * @param {string} input - The Unicode string to be converted.
+ * @return {string} The converted Zawgyi string.
+ */
+export function uni2zg(input) {
   const rule = [
     {
       from: "\u1004\u103a\u1039",
@@ -336,7 +350,11 @@ function uni2zg(input) {
   return replaceWithRule(rule, input);
 }
 
-function zg2uni(input) {
+/**
+ * @param {string} input - The Zawgyi string to be converted.
+ * @return {string} The converted Unicode string.
+ */
+export function zg2uni(input) {
   const rule = [
     {
       from: "([\u102D\u102E\u103D\u102F\u1037\u1095])\\1+",
@@ -813,5 +831,3 @@ function zg2uni(input) {
   ];
   return replaceWithRule(rule, input);
 }
-
-export { zg2uni, uni2zg };

@@ -10,10 +10,17 @@ import Header from "./components/Header.jsx";
 const Toolbar = lazy(() => import("./components/Toolbar.jsx"));
 const Display = lazy(() => import("./components/Display.jsx"));
 const RegionData = lazy(() => import("./components/RegionData.jsx"));
+const TimezoneTable = lazy(() => import("./components/TimezoneTable.jsx"));
 import Footer from "./components/Footer.jsx";
 
 import "./App.css";
 
+/**
+ * @typedef {Object} CalendarSettings
+ * @property {string} locale - The current locale.
+ * @property {boolean} is12Hours - Whether to display time in 12-hour format.
+ * @property {string} timeZone - The current time zone.
+ */
 export default function App() {
   // TODO : Get the user’s locale, calendar, numbering system, and time zone
   let {
@@ -27,7 +34,7 @@ export default function App() {
   const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(locale);
   locale =
     localeLangScript +
-    (localeReg ? "-" + localeReg : "") +
+    (localeReg !== "" ? "-" + localeReg : "") +
     "-u-ca-" +
     (localeCalendar !== "" ? localeCalendar : userCalendar) +
     "-nu-" +
@@ -35,6 +42,10 @@ export default function App() {
 
   // TODO : Default to UTC, GMT, or the last element of the TIMEZONES array if timeZone is undefined
   if (!TIMEZONES.some(({ value }) => timeZone === value)) {
+    /**
+     * @param {string} tz -  IANA time zone identifier.
+     * @return {string} The timezone long name.
+     */
     const timeZoneLongName = tz =>
       new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone: tz })
         .formatToParts(firstTimeExecutedDateTime)
@@ -64,6 +75,7 @@ export default function App() {
       />
       <Display {...calendar} dateTimeIsSingleLine={dateTimeIsSingleLine} />
       <RegionData timeZone={timeZone} />
+      <TimezoneTable locale={localeLangScript} />
       <Footer />
     </>
   );

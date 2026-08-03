@@ -3,19 +3,21 @@ import { useRef, useState } from "react";
 
 import { getFlagEmoji, localeData, TIMEZONES } from "../util.js";
 import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.js";
-// ? for testing timezone names in various languages
-// import { tzLongNameIntl, tzFullNameIntl, getFlagEmoji, localeData, TIMEZONES } from "../util.js";
-// import { CALENDAR_OPTIONS, LANGUAGE_MAP, LANGUAGES, REGIONS } from "../data.js";
-// import { getLocaleDirection } from "../languages-direction.js";
 
 import ToolbarRowRef from "./ToolbarRowRef.jsx";
 import ToolbarRowState from "./ToolbarRowState.jsx";
 import ToggleButton from "./ToggleButton.jsx";
 
 import "./Toolbar.css";
-// ? for testing timezone names in various languages
-// import "./Display.css";
 
+/**
+ * @typedef {Object} ToolbarProps
+ * @property {React.Dispatch<React.SetStateAction<import("../App.jsx").CalendarSettings>>} setCalendar - Function to update the calendar settings.
+ * @property {boolean} dateTimeIsSingleLine - Whether the date and time are displayed in a single line.
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setDateTimeIsSingleLine - Function to update the date/time display mode.
+ */
+/** @typedef {ToolbarProps & import("../App.jsx").CalendarSettings} Props */
+/** @param {Props} props */
 export default function Toolbar({
   locale,
   is12Hours,
@@ -25,78 +27,6 @@ export default function Toolbar({
   setDateTimeIsSingleLine: setIsSingleLine,
 }) {
   const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(locale);
-  // ? for testing timezone names in various languages
-  // const { localeLang, localeScript, localeLangScript, localeReg, localeCalendar, localeNumber } =
-  //   localeData(locale);
-  //   const displayClass =
-  //   localeLang === "hy"
-  //     ? "display-hy"
-  //     : localeLang === "ja"
-  //     ? "display-ja"
-  //     : localeLang === "ko"
-  //     ? "display-ko"
-  //     : localeScript === "hans" || localeScript === "Hans"
-  //     ? "display-zh-hans"
-  //     : localeScript === "hant" || localeScript === "Hant"
-  //     ? "display-zh-hant"
-  //     : localeLang === "zh" || localeLang === "yue" || localeLang === "nan"
-  //     ? "display-zh"
-  //     : localeLang === "mn" && (localeScript === "mong" || localeScript === "Mong")
-  //     ? "display-mn-mong"
-  //     : localeLang === "bn" || localeScript === "beng" || localeScript === "Beng"
-  //     ? "display-bn"
-  //     : localeLang === "as"
-  //     ? "display-as"
-  //     : localeLang === "gu"
-  //     ? "display-gu"
-  //     : localeLang === "pa" && (localeScript !== "arab" || localeScript !== "Arab")
-  //     ? "display-pa"
-  //     : localeScript === "guru" || localeScript === "Guru"
-  //     ? "display-pa-guru"
-  //     : localeLang === "ta"
-  //     ? "display-ta"
-  //     : localeLang === "te"
-  //     ? "display-te"
-  //     : localeLang === "kn"
-  //     ? "display-kn"
-  //     : localeLang === "ml"
-  //     ? "display-ml"
-  //     : localeLang === "or"
-  //     ? "display-or"
-  //     : localeLang === "mni"
-  //     ? "display-mni"
-  //     : localeLang === "sat"
-  //     ? "display-sat"
-  //     : localeScript === "olck" || localeScript === "Olck"
-  //     ? "display-olck"
-  //     : localeLang === "si"
-  //     ? "display-si"
-  //     : localeLang === "bo" ||
-  //       localeLang === "dz" ||
-  //       localeLang === "sip" ||
-  //       localeLang === "lbi" ||
-  //       localeLang === "zau" ||
-  //       localeLang === "scp" ||
-  //       localeLang === "tsj" ||
-  //       localeLang === "kkf" ||
-  //       (localeLang === "bft" && (localeScript === "tibt" || localeScript === "Tibt")) ||
-  //       (localeLang === "bft" && localeScript !== "arab" && localeScript !== "Arab") ||
-  //       (localeLang === "jul" && (localeScript === "tibt" || localeScript === "Tibt")) ||
-  //       (localeLang === "jul" && localeScript !== "deva" && localeScript !== "Deva") ||
-  //       (localeLang === "xsr" && (localeScript === "tibt" || localeScript === "Tibt")) ||
-  //       (localeLang === "xsr" && localeScript !== "deva" && localeScript !== "Deva")
-  //     ? "display-bo"
-  //     : localeLang === "lo"
-  //     ? "display-lo"
-  //     : localeLang === "km"
-  //     ? "display-km"
-  //     : localeLang === "my" || localeScript === "mymr" || localeScript === "Mymr"
-  //     ? "display-my"
-  //     : localeLang === "am"
-  //     ? "display-am"
-  //     : localeLang === "ti"
-  //     ? "display-ti"
-  //     : "display";
 
   let { CALENDARS, NUMBERS } = CALENDAR_OPTIONS;
   CALENDARS = [
@@ -120,6 +50,9 @@ export default function Toolbar({
   const numberRef = useRef();
   const hour12Ref = useRef();
 
+  /**
+   * @param {React.FormEvent<HTMLFormElement>} e
+   */
   function handleSaveCalendar(e) {
     e.preventDefault();
     setCalendar(prevCalendar => {
@@ -156,7 +89,7 @@ export default function Toolbar({
 
   return (
     <section className="toolbar">
-      <form onSubmit={handleSaveCalendar}>
+      <form onSubmit={e => handleSaveCalendar(e)}>
         <ToolbarRowRef
           ref={languageScriptRef}
           title="Language"
@@ -174,10 +107,11 @@ export default function Toolbar({
           {[REGIONS[0], ...REGIONS.slice(1)].map(({ title, value }) => (
             <option key={value} value={value}>
               {title +
-                " " +
                 (value === "TW" && localeReg === "CN"
-                  ? getFlagEmoji(localeReg)
-                  : getFlagEmoji(value))}
+                  ? " " + getFlagEmoji(localeReg)
+                  : value !== ""
+                    ? " " + getFlagEmoji(value)
+                    : "")}
             </option>
           ))}
         </ToolbarRowRef>
@@ -240,118 +174,6 @@ export default function Toolbar({
           </button>
         </div>
       </div>
-
-      {/* // ? Testing LXGW Wenkai TC font to Simplified Chinese */}
-      {/* <h2>Timezone Names in Simplified Chinese</h2>
-      <table className="display-zh" style={{ textAlign: "start" }}>
-        <thead>
-          <tr>
-            <th>Value</th>
-            <th>English (Short)</th>
-            <th>English (Long)</th>
-            <th lang="zh-Hans">简体中文 (短)</th>
-            <th lang="zh-Hans">简体中文 (长)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {TIMEZONES.map(({ value }) => (
-            <tr key={value}>
-              <td>{value}</td>
-              <td>{tzLongNameIntl("en", value)}</td>
-              <td>{tzFullNameIntl("en", value)}</td>
-              <td lang="zh-Hans">{tzLongNameIntl("zh-Hans", value)}</td>
-              <td lang="zh-Hans">{tzFullNameIntl("zh-Hans", value)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-
-      {/* // ? Testing LXGW Wenkai TC font to Traditional Chinese */}
-      {/* <h2>Timezone Names in Traditional Chinese</h2>
-      <table className="display-zh" style={{ textAlign: "start" }}>
-        <thead>
-          <tr>
-            <th>Value</th>
-            <th>English (Short)</th>
-            <th>English (Long)</th>
-            <th lang="zh-Hant">繁體中文 (短)</th>
-            <th lang="zh-Hant">繁體中文 (長)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {TIMEZONES.map(({ value }) => (
-            <tr key={value}>
-              <td>{value}</td>
-              <td>{tzLongNameIntl("en", value)}</td>
-              <td>{tzFullNameIntl("en", value)}</td>
-              <td lang="zh-Hant">{tzLongNameIntl("zh-Hant", value)}</td>
-              <td lang="zh-Hant">{tzFullNameIntl("zh-Hant", value)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-
-      {/* // ? Testing Klee One font to Japanese */}
-      {/* <h2>Timezone Names in Japanese</h2>
-      <table className="display-ja" style={{ textAlign: "start" }}>
-        <thead>
-          <tr>
-            <th>Value</th>
-            <th>English (Short)</th>
-            <th>English (Long)</th>
-            <th lang="ja">日本語 (低)</th>
-            <th lang="ja">日本語 (長)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {TIMEZONES.map(({ value }) => (
-            <tr key={value}>
-              <td>{value}</td>
-              <td>{tzLongNameIntl("en", value)}</td>
-              <td>{tzFullNameIntl("en", value)}</td>
-              <td lang="ja">{tzLongNameIntl("ja", value)}</td>
-              <td lang="ja">{tzFullNameIntl("ja", value)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-
-      {/* // ? Testing various languages */}
-      {/* <h2>Timezone Names in {LANGUAGE_MAP[localeLangScript]}</h2>
-      <table className={displayClass} style={{ textAlign: "start" }}>
-        <thead>
-          <tr>
-            <th>Value</th>
-            <th>English (Short)</th>
-            <th>English (Long)</th>
-            {localeLangScript !== "en" && (
-              <>
-                <th>{localeLangScript}</th>
-                <th>{LANGUAGE_MAP[localeLangScript]}</th>
-              </>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {TIMEZONES.map(({ value }) => (
-            <tr key={value}>
-              <td>{value}</td>
-              <td>{tzLongNameIntl("en", value)}</td>
-              <td>{tzFullNameIntl("en", value)}</td>
-              {localeLangScript !== "en" && (
-                <>
-                  <td lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
-                    {tzLongNameIntl(localeLangScript, value)}
-                  </td>
-                  <td lang={localeLangScript} dir={getLocaleDirection(localeLangScript)}>
-                    {tzFullNameIntl(localeLangScript, value)}
-                  </td>
-                </>
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
     </section>
   );
 }

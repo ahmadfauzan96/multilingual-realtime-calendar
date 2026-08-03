@@ -1,4 +1,15 @@
 /* eslint-disable react/prop-types */
+import "./Toolbar.css";
+
+/**
+ * @typedef {Object} ToolbarRowStateProps
+ * @property {string} title - The title of the row.
+ * @property {string} label - The label for the select element.
+ * @property {string} defaultValue - The default value for the select element.
+ * @property {React.ReactNode} children - The options for the select element.
+ * @property {React.Dispatch<React.SetStateAction<string>>} setState - Function to update the state based on the selected value.
+ */
+/** @param {ToolbarRowStateProps} props */
 export default function ToolbarRowState({ title, label, defaultValue, children, setState }) {
   return (
     <div className="row">

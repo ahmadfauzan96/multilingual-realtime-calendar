@@ -1,3 +1,5 @@
+import { isRtlLang } from "rtl-detect";
+
 // ? ref: http://en.wikipedia.org/wiki/Right-to-left
 const right2LeftLanguages = [
   "aao" /* Algerian Saharan Arabic */,
@@ -58,155 +60,131 @@ const right2LeftLanguages = [
 // ? Table of scripts in Unicode: https://en.wikipedia.org/wiki/Script_(Unicode)
 // * Any language written in a right-to-left script from the array below should be written from right to left
 const right2LeftScripts = [
-  "arab",
   "Arab",
-  "hebr",
+  "Aran",
   "Hebr",
-  "samr",
-  "Samr",
-  "thaa",
   "Thaa",
-  "mand",
-  "Mand",
-  "adlm",
-  "Adlm",
-  "mend",
-  "Mend",
-  "nkoo",
   "Nkoo",
-  // * Ancient scripts
-  "armi",
-  "Armi",
-  "avst",
-  "Avst",
-  "chrs",
-  "Chrs",
-  "cprt",
-  "Cprt",
-  "elym",
-  "Elym",
-  "hatr",
-  "Hatr",
-  "hung",
-  "Hung",
-  "khar",
-  "Khar",
-  "lydi",
-  "Lydi",
-  "mani",
-  "Mani",
-  "merc",
-  "Merc",
-  "mero",
-  "Mero",
-  "narb",
-  "Narb",
-  "nbat",
-  "Nbat",
-  "orkh",
-  "Orkh",
-  "palm",
-  "Palm",
-  "phli",
-  "Phli",
-  "phlp",
-  "Phlp",
-  "phnx",
-  "Phnx",
-  "prti",
-  "Prti",
-  "rohg",
+  "Tfng",
+  "Adlm",
+  "Gara",
+  "Samr",
+  "Mand",
+  "Mend",
   "Rohg",
-  "sarb",
+  // * Ancient scripts
+  "Armi",
+  "Avst",
+  "Chrs",
+  "Cprt",
+  "Elym",
+  "Hatr",
+  "Hung",
+  "Khar",
+  "Lydi",
+  "Mani",
+  "Merc",
+  "Mero",
+  "Narb",
+  "Nbat",
+  "Orkh",
+  "Palm",
+  "Phli",
+  "Phlp",
+  "Phnx",
+  "Prti",
   "Sarb",
-  "sogo",
+  "Sidt",
   "Sogo",
-  "syrc",
   "Syrc",
-  "syre",
   "Syre",
-  "syrj",
   "Syrj",
-  "syrn",
   "Syrn",
-  "yezi",
   "Yezi",
 ];
 // * An originally right-to-left language should be written in a left-to-right script
 // * given such script is available in the array below
 const left2RightScripts = [
   // * Latin, Greek, and Cyrillic scripts
-  "latn",
   "Latn",
-  "grek",
   "Grek",
-  "cyrl",
   "Cyrl",
-  "cyrs",
   "Cyrs",
   // * Indonesian Scripts
-  "bali",
   "Bali",
-  "batk",
   "Batk",
-  "bugi",
   "Bugi",
-  "java",
   "Java",
-  "maka",
   "Maka",
-  "rjng",
   "Rjng",
-  "sund",
   "Sund",
+  // * Southeast Asian Scripts
+  "Khmr",
+  "Lana",
+  "Laoo",
+  "Mymr",
+  "Qaag",
+  "Talu",
+  "Tavt",
+  "Thai",
   // * South Asian Scripts
-  "beng",
   "Beng",
-  "deva",
   "Deva",
-  "gujr",
   "Gujr",
-  "guru",
   "Guru",
-  "knda",
   "Knda",
-  "mlym",
   "Mlym",
-  "mtei",
   "Mtei",
-  "olck",
   "Olck",
-  "onao",
   "Onao",
-  "orya",
   "Orya",
-  "sinh",
   "Sinh",
-  "sora",
   "Sora",
-  "taml",
   "Taml",
-  "telu",
   "Telu",
-  "tibt",
   "Tibt",
-  "wara",
   "Wara",
-  "wcho",
   "Wcho",
+  // * East Asian Scripts
+  "Hang",
+  "Hani",
+  "Hans",
+  "Hant",
+  "Hira",
+  "Hntl",
+  "Hrkt",
+  "Jamo",
+  "Jpan",
+  "Kana",
+  "Mong",
 ];
 
-const isRight2LeftLanguage = lang =>
-  right2LeftLanguages.some(language => language === lang.split("-")[0]);
-const isRight2LeftScript = lang => right2LeftScripts.some(script => lang.split("-")[1] === script);
-const isLeft2RightScript = lang => left2RightScripts.some(script => lang.split("-")[1] === script);
+/**
+ * Determine whether the language is right-to-left language.
+ * @param {string} lang -  The language code.
+ */
+const isRight2LeftLanguage = lang => right2LeftLanguages.includes(lang);
+/**
+ * Determine whether the script is written from right to left.
+ * @param {string} script -  The script used to write any language.
+ */
+const isRight2LeftScript = script => right2LeftScripts.includes(script);
+/**
+ * Determine whether the script is written from left to right.
+ * @param {string} script -  The script used to write any language.
+ */
+const isLeft2RightScript = script => left2RightScripts.includes(script);
 
-// TODO: Getting direction automatically according to language used
-const getLanguageDirection = lang => (isRight2LeftLanguage(lang) ? "rtl" : "ltr");
-// TODO: Getting proper direction according to locale used
-export const getLocaleDirection = locale =>
-  isLeft2RightScript(locale)
-    ? "ltr"
-    : isRight2LeftScript(locale)
+// TODO: Getting direction automatically according to locale used
+/**
+ * @param {string} locale -  The locale string.
+ * @return {"rtl" | "ltr"} The text direction.
+ */
+export function getDirection(locale) {
+  const { language, script = "" } = new Intl.Locale(locale);
+  return isRtlLang(language) ||
+    (isRight2LeftLanguage(language) && !isLeft2RightScript(script)) ||
+    isRight2LeftScript(script)
     ? "rtl"
-    : getLanguageDirection(locale);
+    : "ltr";
+}
