@@ -4,9 +4,17 @@ import "./RegionData.css";
 
 /** @param {{timeZone: string}} props */
 export default function RegionData({ timeZone }) {
-  const { name, code, flag, timeZones } = localeRegionData(timeZone);
-  const tzAmount = timeZones.length === 1 && timeZones[0] === "" ? 0 : timeZones.length;
-  const formattedTZNoun = "timezone" + (tzAmount > 1 ? "s" : "");
+  const { name, code, flag, activeTimeZones, deprecatedTimeZones } = localeRegionData(timeZone);
+
+  const activeTzAmount =
+    activeTimeZones.length === 1 && activeTimeZones[0] === "" ? 0 : activeTimeZones.length;
+  const formattedActiveTZNoun = "timezone" + (activeTzAmount > 1 ? "s" : "");
+
+  const deprecatedTzAmount =
+    deprecatedTimeZones.length === 1 && deprecatedTimeZones[0] === ""
+      ? 0
+      : deprecatedTimeZones.length;
+  const formattedDeprecatedTZNoun = "timezone" + (deprecatedTzAmount > 1 ? "s" : "");
 
   return (
     <section className="region-data">
@@ -18,12 +26,25 @@ export default function RegionData({ timeZone }) {
       </p>
       <br />
 
-      <h2>Available {formattedTZNoun} in your region</h2>
+      <h2>Active {formattedActiveTZNoun} in your region</h2>
       <p>
-        {tzAmount > 0 ? timeZones.join(", ") + " " : "No timezone data"}
-        {tzAmount > 0 && (
+        {activeTzAmount > 0 ? activeTimeZones.join(", ") + " " : "No active timezone data"}
+        {activeTzAmount > 0 && (
           <strong>
-            ({tzAmount} {formattedTZNoun})
+            ({activeTzAmount} {formattedActiveTZNoun})
+          </strong>
+        )}
+      </p>
+      <br />
+
+      <h2>Deprecated {formattedDeprecatedTZNoun} in your region</h2>
+      <p>
+        {deprecatedTzAmount > 0
+          ? deprecatedTimeZones.join(", ") + " "
+          : "No deprecated timezone data"}
+        {deprecatedTzAmount > 0 && (
+          <strong>
+            ({deprecatedTzAmount} {formattedDeprecatedTZNoun})
           </strong>
         )}
       </p>

@@ -10,7 +10,7 @@ import Header from "./components/Header.jsx";
 const Toolbar = lazy(() => import("./components/Toolbar.jsx"));
 const Display = lazy(() => import("./components/Display.jsx"));
 const RegionData = lazy(() => import("./components/RegionData.jsx"));
-const TimezoneTable = lazy(() => import("./components/TimezoneTable.jsx"));
+// const TimezoneTable = lazy(() => import("./components/TimezoneTable.jsx"));
 import Footer from "./components/Footer.jsx";
 
 import "./App.css";
@@ -75,7 +75,7 @@ export default function App() {
       />
       <Display {...calendar} dateTimeIsSingleLine={dateTimeIsSingleLine} />
       <RegionData timeZone={timeZone} />
-      <TimezoneTable locale={localeLangScript} />
+      {/* <TimezoneTable locale={localeLangScript} /> */}
       <Footer />
     </>
   );

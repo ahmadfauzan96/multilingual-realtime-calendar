@@ -1,3 +1,11 @@
+/**
+ * @typedef {Object} NewAndOldTimeZone
+ * @property {string} oldTz
+ * @property {string} newTz
+ * @property {string} regionalCode
+ */
+
+/** @type {Array<NewAndOldTimeZone>} */
 export const compatibilityTimeZones = [
   { oldTz: "Africa/Asmera", newTz: "Africa/Asmara", regionalCode: "ER" },
   { oldTz: "Africa/Timbuktu", newTz: "Africa/Bamako", regionalCode: "ML" },
@@ -161,6 +169,7 @@ export const compatibilityTimeZones = [
   { oldTz: "WET", newTz: "Europe/Lisbon", regionalCode: "PT" },
   { oldTz: "WEST", newTz: "Europe/Brussels", regionalCode: "BE" }, // undetected in SpiderMonkey and V8
   { oldTz: "WEDT", newTz: "Europe/Brussels", regionalCode: "BE" }, // undetected in SpiderMonkey and V8
+  { oldTz: "Zulu", newTz: "UTC", regionalCode: "UN" },
 ];
 
 // ? JavaScript engines:

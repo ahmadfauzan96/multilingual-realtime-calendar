@@ -14,8 +14,8 @@
 function replaceWithRule(rule, input) {
   let output = input;
   for (const { from, to } of rule) {
-    const from_regex = new RegExp(from, "g");
-    output = output.replace(from_regex, to);
+    const fromRegex = new RegExp(from, "g");
+    output = output.replace(fromRegex, to);
   }
   return output;
 }

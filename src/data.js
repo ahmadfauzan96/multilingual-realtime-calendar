@@ -1,10 +1,17 @@
 /**
- * @param {{title: string, value: string}[]} array -  The array of objects with title and value properties.
+ * @typedef {Object} Data
+ * @property {string} title
+ * @property {string} value
+ * */
+
+/**
+ * @param {Array<Data>} array - The array of objects with `Data` interface.
  * @return {{[value: string]: string}} The map of value to title.
  */
 const createMap = array => Object.fromEntries(array.map(({ title, value }) => [value, title]));
 // const createMap = array => array.reduce((acc, { title, value }) => ((acc[value] = title), acc), {});
 
+/** @type {Array<Data>} */
 export const LANGUAGES = [
   { title: "Abkhazian", value: "ab" },
   { title: "Acehnese", value: "ace" },
@@ -654,6 +661,7 @@ assignTimeZoneName("full");
 
 export { UTCTimeZoneLongNames, UTCTimeZoneFullNames, GMTTimeZoneLongNames, GMTTimeZoneFullNames };
 
+/** @type {Array<Data>} */
 export const REGIONS = [
   { title: "Unspecified", value: "" },
   { title: "Afghanistan", value: "AF" },
@@ -700,7 +708,7 @@ export const REGIONS = [
   { title: "Cameroon", value: "CM" },
   { title: "Canada", value: "CA" },
   { title: "Canary Islands", value: "IC" },
-  { title: "Cape Verde", value: "CV" },
+  { title: "Cabo Verde", value: "CV" },
   { title: "Cayman Islands", value: "KY" },
   { title: "Central African Republic", value: "CF" },
   { title: "Ceuta and Melilla", value: "EA" },
@@ -723,7 +731,7 @@ export const REGIONS = [
   { title: "Cuba", value: "CU" },
   { title: "Curaçao", value: "CW" },
   { title: "Cyprus", value: "CY" },
-  { title: "Czech Republic", value: "CZ" },
+  { title: "Czechia/Czech Republic", value: "CZ" },
   { title: "Denmark", value: "DK" },
   { title: "Diego Garcia", value: "DG" },
   { title: "Djibouti", value: "DJ" },
@@ -856,8 +864,8 @@ export const REGIONS = [
   { title: "Saint Helena, Ascension and Tristan da Cunha", value: "SH" },
   { title: "Saint Kitts and Nevis", value: "KN" },
   { title: "Saint Lucia", value: "LC" },
-  { title: "Saint Martin (Dutch)", value: "SX" },
   { title: "Saint Martin (French)", value: "MF" },
+  { title: "Sint Maarten (Dutch)", value: "SX" },
   { title: "Saint Pierre and Miquelon", value: "PM" },
   { title: "Saint Vincent and the Grenadines", value: "VC" },
   { title: "Samoa", value: "WS" },
@@ -911,8 +919,8 @@ export const REGIONS = [
   { title: "Vanuatu", value: "VU" },
   { title: "Venezuela", value: "VE" },
   { title: "Việt Nam", value: "VN" },
-  { title: "Virgin Islands (British)", value: "VG" },
-  { title: "Virgin Islands (U.S.)", value: "VI" },
+  { title: "Virgin Islands (UK)", value: "VG" },
+  { title: "Virgin Islands (US)", value: "VI" },
   { title: "Wallis and Futuna", value: "WF" },
   { title: "Western Sahara", value: "EH" },
   { title: "Yemen", value: "YE" },
@@ -1156,7 +1164,7 @@ export const regionsAdoptingFR = [
 export const regionsAdoptingDE = ["AT", "BE", "CH", "DE", "EU", "LI", "LU"]; // 7
 export const regionsAdoptingIT = ["IT", "CH", "EU", "SM", "VA"]; // 5
 export const regionsAdoptingES = [
-  419,
+  "419",
   "AR",
   "BO",
   "CL",
@@ -1189,6 +1197,7 @@ export const regionsAdoptingNL = ["AW", "BE", "BQ", "CW", "EU", "NL", "SR", "SX"
 // console.log(REGIONS.filter(({ value }) => regionsAdoptingES.some(region => region === value)));
 // console.log(Intl.Collator("ja-JP", { collation: "gb2312" }).resolvedOptions());
 
+/** @type {{CALENDARS: Array<Data>, NUMBERS: Array<Data>, COLLATIONS: Array<Data>}} */
 export const CALENDAR_OPTIONS = {
   CALENDARS: [
     { title: "None", value: "" },
