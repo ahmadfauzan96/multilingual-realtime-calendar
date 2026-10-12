@@ -12,9 +12,6 @@ import {
   universalTimeZones,
 } from "./timezones";
 
-const MINUTE_IN_MILLISECONDS = 60 * 1000;
-const HOUR_IN_MILLISECONDS = 60 * MINUTE_IN_MILLISECONDS;
-
 export const firstTimeExecutedDateTime = new Date();
 
 // ? Locale Data
@@ -74,6 +71,9 @@ export const getFlagEmoji = regionalCode =>
  * @return {string} The timezone offset from UTC in the format of "UTC±H" or "UTC±H:MM".
  */
 function tzOffsetFromUTC(timeZone) {
+  const MINUTE_IN_MILLISECONDS = 60 * 1000;
+  const HOUR_IN_MILLISECONDS = 60 * MINUTE_IN_MILLISECONDS;
+
   // * timezone offset from UTC in milliseconds
   const tzOffset = getTimezoneOffset(timeZone, firstTimeExecutedDateTime);
 
@@ -93,15 +93,13 @@ function tzOffsetFromUTC(timeZone) {
     absTzOffsetMinute < 10 ? "0" + absTzOffsetMinute.toString() : absTzOffsetMinute.toString();
 
   // * With countries-and-timezones
-  const dstOffset = getTimezone(timeZone)?.dstOffsetStr;
-  const utcOffset = getTimezone(timeZone)?.utcOffsetStr;
-  const offsetRegex = /(?<=[+-])0|:(?<=:)00|\+00:00|-00:00/g;
+  const offsetRegex = /[+-]00:00|(?<=[+-])0|:00/g;
+  const dstOffset = getTimezone(timeZone)?.dstOffsetStr.replace(offsetRegex, "");
+  const utcOffset = getTimezone(timeZone)?.utcOffsetStr.replace(offsetRegex, "");
   const offset =
     dstOffset &&
     utcOffset &&
-    (dstOffset === utcOffset
-      ? "UTC" + utcOffset.replace(offsetRegex, "")
-      : `UTC${utcOffset.replace(offsetRegex, "")} (UTC) | UTC${dstOffset.replace(offsetRegex, "")} (DST)`);
+    (dstOffset === utcOffset ? "UTC" + utcOffset : `UTC${utcOffset} (UTC) | UTC${dstOffset} (DST)`);
 
   return (
     offset ??
@@ -223,7 +221,7 @@ export const TIMEZONES = Intl.supportedValuesOf("timeZone").map(tz => ({
 
 /**
  * @param {string} timeZone -  IANA time zone identifier.
- * @returns {LocaleRegionData} Region name, regional code, flag emoji, and an array of timezones associated to the given time zone.
+ * @return {LocaleRegionData} Region name, regional code, flag emoji, and an array of timezones associated to the given time zone.
  */
 export function localeRegionData(timeZone) {
   // ? This is just for testing purposes, to simulate different timezones
