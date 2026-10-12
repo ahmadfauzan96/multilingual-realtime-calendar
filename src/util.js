@@ -71,6 +71,17 @@ export const getFlagEmoji = regionalCode =>
  * @return {string} The timezone offset from UTC in the format of "UTC±H" or "UTC±H:MM".
  */
 function tzOffsetFromUTC(timeZone) {
+  // * With countries-and-timezones (can return undefined)
+  const offsetRegex = /[+-]00:00|(?<=[+-])0|:00/g;
+  const tz = getTimezone(timeZone);
+  const dstOffset = tz?.dstOffsetStr.replace(offsetRegex, "");
+  const utcOffset = tz?.utcOffsetStr.replace(offsetRegex, "");
+  const offset =
+    dstOffset &&
+    utcOffset &&
+    (dstOffset === utcOffset ? "UTC" + utcOffset : `UTC${utcOffset} (UTC) | UTC${dstOffset} (DST)`);
+
+  // * With date-fns-tz
   const MINUTE_IN_MILLISECONDS = 60 * 1000;
   const HOUR_IN_MILLISECONDS = 60 * MINUTE_IN_MILLISECONDS;
 
@@ -91,15 +102,6 @@ function tzOffsetFromUTC(timeZone) {
   const absTzOffsetMinute = Math.abs(tzOffsetMinute);
   const tzMinute =
     absTzOffsetMinute < 10 ? "0" + absTzOffsetMinute.toString() : absTzOffsetMinute.toString();
-
-  // * With countries-and-timezones
-  const offsetRegex = /[+-]00:00|(?<=[+-])0|:00/g;
-  const dstOffset = getTimezone(timeZone)?.dstOffsetStr.replace(offsetRegex, "");
-  const utcOffset = getTimezone(timeZone)?.utcOffsetStr.replace(offsetRegex, "");
-  const offset =
-    dstOffset &&
-    utcOffset &&
-    (dstOffset === utcOffset ? "UTC" + utcOffset : `UTC${utcOffset} (UTC) | UTC${dstOffset} (DST)`);
 
   return (
     offset ??
