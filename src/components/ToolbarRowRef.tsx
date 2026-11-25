@@ -1,9 +1,11 @@
-/* eslint-disable react/prop-types */
-import { forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
+import type { ToolbarRowProps } from "./Toolbar.tsx";
 import "./Toolbar.css";
 
-const ToolbarRowRef = forwardRef(({ title, label, defaultValue, children }, ref) => {
-  return (
+interface ToolbarRowRefProps extends ToolbarRowProps {}
+
+const ToolbarRowRef = forwardRef<HTMLSelectElement, ToolbarRowRefProps>(
+  ({ title, label, defaultValue, children }, ref): JSX.Element => (
     <div className="row">
       <div className="col-25">
         <label htmlFor={label}>{title}</label>
@@ -14,7 +16,7 @@ const ToolbarRowRef = forwardRef(({ title, label, defaultValue, children }, ref)
         </select>
       </div>
     </div>
-  );
-});
+  ),
+);
 ToolbarRowRef.displayName = "ToolbarRowRef";
 export default ToolbarRowRef;

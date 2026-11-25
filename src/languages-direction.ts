@@ -1,7 +1,7 @@
 import { isRtlLang } from "rtl-detect";
 
 // ? ref: http://en.wikipedia.org/wiki/Right-to-left
-const right2LeftLanguages = [
+const right2LeftLanguages: string[] = [
   "aao" /* Algerian Saharan Arabic */,
   "abv" /* 'العربية البحرانية', Bahrani Arabic */,
   "acm" /* 'اللهجة العراقية', Gelet/South Mesopotamian Arabic */,
@@ -59,7 +59,7 @@ const right2LeftLanguages = [
 ];
 // ? Table of scripts in Unicode: https://en.wikipedia.org/wiki/Script_(Unicode)
 // * Any language written in a right-to-left script from the array below should be written from right to left
-const right2LeftScripts = [
+const right2LeftScripts: string[] = [
   "Arab",
   "Aran",
   "Hebr",
@@ -104,7 +104,7 @@ const right2LeftScripts = [
 ];
 // * An originally right-to-left language should be written in a left-to-right script
 // * given such script is available in the array below
-const left2RightScripts = [
+const left2RightScripts: string[] = [
   // * Latin, Greek, and Cyrillic scripts
   "Latn",
   "Grek",
@@ -159,32 +159,21 @@ const left2RightScripts = [
   "Mong",
 ];
 
-/**
- * Determine whether the language is right-to-left language.
- * @param {string} lang -  The language code.
- */
-const isRight2LeftLanguage = lang => right2LeftLanguages.includes(lang);
-/**
- * Determine whether the script is written from right to left.
- * @param {string} script -  The script used to write any language.
- */
-const isRight2LeftScript = script => right2LeftScripts.includes(script);
-/**
- * Determine whether the script is written from left to right.
- * @param {string} script -  The script used to write any language.
- */
-const isLeft2RightScript = script => left2RightScripts.includes(script);
+// * Determine whether the language is right-to-left language
+const isRight2LeftLanguage = (lang: string): boolean => right2LeftLanguages.includes(lang);
+// * Determine whether the script is written from right to left
+const isRight2LeftScript = (script: string): boolean => right2LeftScripts.includes(script);
+// * Determine whether the script is written from left to right
+const isLeft2RightScript = (script: string): boolean => left2RightScripts.includes(script);
 
 // TODO: Getting direction automatically according to locale used
-/**
- * @param {string} locale -  The locale string.
- * @return {"rtl" | "ltr"} The text direction.
- */
-export function getDirection(locale) {
+export const getDirection = (locale: string): "rtl" | "ltr" => {
   const { language, script = "" } = new Intl.Locale(locale);
-  return isRtlLang(language) ||
+  return (isRtlLang(language) === true && isRight2LeftScript(script)) ||
     (isRight2LeftLanguage(language) && !isLeft2RightScript(script)) ||
     isRight2LeftScript(script)
     ? "rtl"
     : "ltr";
-}
+
+  // return new Intl.Locale(locale).getTextInfo().direction ?? "ltr"; // since July 2026
+};

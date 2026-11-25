@@ -1,13 +1,13 @@
 import "./components/Display.css";
 
 /**
- * @param {string} lang -  The language code.
- * @param {string} script -  The script used to write the language.
- * @return {string} The className for the display of the language and script. Formatted as "display-\<lang\>", "display-\<script\>", or "display-\<lang\>-\<script\>".
+ * @param lang -  The language code.
+ * @param script -  The script used to write the language.
+ * @return The className for the display of the language and script. Formatted as "display-\<lang\>", "display-\<script\>", or "display-\<lang\>-\<script\>".
  *
  * Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Thai, and Georgian scripts are already covered by default "display" class.
  */
-export const displayClass = (lang, script) =>
+export const displayClass = (lang: string, script: string): string =>
   lang === "hy"
     ? "display-hy"
     : lang === "ja"

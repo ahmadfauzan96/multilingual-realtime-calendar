@@ -1,12 +1,6 @@
-/**
- * @typedef {Object} NewAndOldTimeZone
- * @property {string} oldTz
- * @property {string} newTz
- * @property {string} regionalCode
- */
+import type { Zone } from "../types.ts";
 
-/** @type {Array<NewAndOldTimeZone>} */
-export const compatibilityTimeZones = [
+export const compatibilityTimeZones: Zone[] = [
   { oldTz: "Africa/Asmera", newTz: "Africa/Asmara", regionalCode: "ER" },
   { oldTz: "Africa/Timbuktu", newTz: "Africa/Bamako", regionalCode: "ML" },
   { oldTz: "America/Buenos_Aires", newTz: "America/Argentina/Buenos_Aires", regionalCode: "AR" },
@@ -70,10 +64,12 @@ export const compatibilityTimeZones = [
   { oldTz: "Australia/Victoria", newTz: "Australia/Melbourne", regionalCode: "AU" },
   { oldTz: "Australia/West", newTz: "Australia/Perth", regionalCode: "AU" },
   { oldTz: "Australia/Yancowinna", newTz: "Australia/Broken_Hill", regionalCode: "AU" },
+  // Legacy Brazil zones : START
   { oldTz: "Brazil/Acre", newTz: "America/Rio_Branco", regionalCode: "BR" },
   { oldTz: "Brazil/DeNoronha", newTz: "America/Noronha", regionalCode: "BR" },
   { oldTz: "Brazil/East", newTz: "America/Sao_Paulo", regionalCode: "BR" },
   { oldTz: "Brazil/West", newTz: "America/Manaus", regionalCode: "BR" },
+  // Legacy Brazil zones : END
   // Legacy Canadian zones : START
   { oldTz: "Canada/Atlantic", newTz: "America/Halifax", regionalCode: "CA" },
   { oldTz: "Canada/Central", newTz: "America/Winnipeg", regionalCode: "CA" },
@@ -105,7 +101,7 @@ export const compatibilityTimeZones = [
   { oldTz: "Europe/Zaporozhye", newTz: "Europe/Kyiv", regionalCode: "UA" },
   // Legacy UK zones : START
   { oldTz: "BST", newTz: "Europe/London", regionalCode: "GB" }, // undetected in SpiderMonkey
-  // { oldTz: "BST", newTz: "Asia/Dhaka", regionalCode: "BD" }, // detected in V8
+  { oldTz: "BST", newTz: "Asia/Dhaka", regionalCode: "BD" }, // detected in V8
   { oldTz: "GB", newTz: "Europe/London", regionalCode: "GB" },
   { oldTz: "GB/Eire", newTz: "Europe/London", regionalCode: "GB" }, // undetected in SpiderMonkey and V8
   // Legacy UK zones : END
@@ -116,7 +112,7 @@ export const compatibilityTimeZones = [
   { oldTz: "Iran", newTz: "Asia/Tehran", regionalCode: "IR" },
   { oldTz: "Israel", newTz: "Asia/Jerusalem", regionalCode: "IL" },
   { oldTz: "IST", newTz: "Europe/Dublin", regionalCode: "IE" }, // undetected in SpiderMonkey
-  // { oldTz: "IST", newTz: "Asia/Calcutta", regionalCode: "IN" }, // detected in V8
+  { oldTz: "IST", newTz: "Asia/Calcutta", regionalCode: "IN" }, // detected in V8
   { oldTz: "Jamaica", newTz: "America/Jamaica", regionalCode: "JM" },
   { oldTz: "Japan", newTz: "Asia/Tokyo", regionalCode: "JP" },
   { oldTz: "Kwajalein", newTz: "Pacific/Kwajalein", regionalCode: "MH" },
@@ -174,7 +170,7 @@ export const compatibilityTimeZones = [
 
 // ? JavaScript engines:
 // * V8 (Chrome, Edge, Opera, Brave, Vivaldi, Ecosia, Node.js)
-// * SpiderMonkey (Firefox, Gecko, Tor Browser)
+// * Gecko with SpiderMonkey (Firefox, Gecko, Tor Browser)
 // * JavaScriptCore (Safari, React Native, Bun)
 // * Hermes (React Native)
 // * JerryScript (IoT devices, Moddable, Mongoose OS)
@@ -195,7 +191,7 @@ export const compatibilityTimeZones = [
 // * ActionScript (Adobe Flash) - obsolete
 // ? More info: https://en.wikipedia.org/wiki/List_of_JavaScript_engines
 
-export const universalTimeZones = [
+export const universalTimeZones: string[] = [
   "UTC",
   "Etc/UTC",
   "Etc/UCT",
@@ -204,7 +200,7 @@ export const universalTimeZones = [
   "Zulu",
 ];
 
-export const universalTimeZoneLongNames = [
+export const universalTimeZoneLongNames: string[] = [
   ...universalTimeZones,
   "SGH",
   "TCU",
@@ -212,7 +208,7 @@ export const universalTimeZoneLongNames = [
   "م ع و",
 ];
 
-export const universalTimeZoneFullNames = [
+export const universalTimeZoneFullNames: string[] = [
   "Am Coordinated Universal",
   "Àm Uile-choitcheann Co-òrdanaichte",
   "Am Uilíoch Lárnach",
@@ -367,7 +363,7 @@ export const universalTimeZoneFullNames = [
   "ꋧꃅꎕꏦꄮꈉ",
 ];
 
-export const greenwichMeridianTimeZones = [
+export const greenwichMeridianTimeZones: string[] = [
   "Etc/GMT",
   "Etc/GMT+0",
   "Etc/GMT0",
@@ -380,7 +376,7 @@ export const greenwichMeridianTimeZones = [
   "Greenwich",
 ];
 
-export const greenwichMeridianTimeZoneLongNames = [
+export const greenwichMeridianTimeZoneLongNames: string[] = [
   ...greenwichMeridianTimeZones,
   "MAG",
   "SGH",
@@ -409,7 +405,7 @@ export const greenwichMeridianTimeZoneLongNames = [
   "ꋧꃅꎕꏦꄮꈉ",
 ];
 
-export const greenwichMeridianTimeZoneFullNames = [
+export const greenwichMeridianTimeZoneFullNames: string[] = [
   "Àm Uile-choitcheann Co-òrdanaichte",
   "Am Uilíoch Lárnach",
   "Amansan Kɔdinatɛde Berɛ",
@@ -590,43 +586,43 @@ export const greenwichMeridianTimeZoneFullNames = [
 
 // ? TEST : Check which time zone aliases are accepted but not canonical (helped by ChatGPT)
 // const acceptedTimeZoneAliases = compatibilityTimeZones
-//   .map(({ oldTz }) => oldTz)
-//   .filter(tz => {
+//   .map(({ oldTz }: Zone) => oldTz)
+//   .filter((tz: string): boolean => {
 //     try {
-//       new Intl.DateTimeFormat("en", { timeZone: tz });
 //       return !new Set(Intl.supportedValuesOf("timeZone")).has(tz); // * accepted but not canonical
 //     } catch {
 //       return false; // ! not supported at all
 //     }
 //   });
 // console.log("Accepted deprecated/alias zones:", acceptedTimeZoneAliases);
-
 // console.log("Total deprecated time zones:", compatibilityTimeZones.length);
 
 // ? TEST : output time zone names that are not supported by the browser
 // console.log(
 //   Intl.supportedValuesOf("timeZone").filter(
-//     timeZone => !new Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone // ? helped by ChatGPT
-//   )
+//     (timeZone: string): boolean =>
+//       !new Intl.DateTimeFormat("en", { timeZone }).resolvedOptions().timeZone, // ? helped by ChatGPT
+//   ),
 // ); // * should be an empty array in modern browser
 
 // ? TEST : output time zone names that are not supported by the browser
-// const tzArray = Intl.supportedValuesOf("timeZone");
-// const tzName = timeZone =>
-//   new Intl.DateTimeFormat("dz", { timeStyle: "full", timeZone }).resolvedOptions();
-// console.log(tzArray.filter(tz => !tzArray.includes(tzName(tz).timeZone))); // * should be an empty array in modern browser
+// const tzArray: string[] = Intl.supportedValuesOf("timeZone");
+// const tzName = (timeZone: string): string =>
+//   new Intl.DateTimeFormat("dz", { timeStyle: "full", timeZone }).resolvedOptions().timeZone;
+// console.log(tzArray.filter((tz: string): boolean => !tzArray.includes(tzName(tz)))); // * should be an empty array in modern browser
 
 // ? TEST : check whether locale or user’s time zone is supported by the browser
 // console.log(
-//   Intl.supportedValuesOf("timeZone").includes(Intl.DateTimeFormat().resolvedOptions().timeZone)
+//   Intl.supportedValuesOf("timeZone").includes(Intl.DateTimeFormat().resolvedOptions().timeZone),
 // ); // * should be true in modern browser
 
 // ? TEST : input oldTz to obtain newTz
-// let outputOld = 0;
-// let outputInvalid = 0;
+// let outputOld: number = 0;
+// let outputInvalid: number = 0;
 // for (const { oldTz, newTz } of compatibilityTimeZones) {
 //   try {
-//     const output = Intl.DateTimeFormat("en", { timeZone: oldTz }).resolvedOptions().timeZone;
+//     const output: string = Intl.DateTimeFormat("en", { timeZone: oldTz }).resolvedOptions()
+//       .timeZone;
 //     switch (output) {
 //       case newTz:
 //         console.log(oldTz, "->", output);
@@ -642,7 +638,7 @@ export const greenwichMeridianTimeZoneFullNames = [
 //         break;
 //     }
 //   } catch (error) {
-//     console.log(oldTz, "->", error.message);
+//     console.log(oldTz, "->", error instanceof Error ? error.message : String(error));
 //     outputInvalid++;
 //   }
 // }
@@ -650,11 +646,12 @@ export const greenwichMeridianTimeZoneFullNames = [
 // console.log("Total invalid old time zones:", outputInvalid);
 
 // ? TEST : input newTz to obtain oldTz
-// let outputOld = 0;
-// let outputInvalid = 0;
+// let outputOld: number = 0;
+// let outputInvalid: number = 0;
 // for (const { oldTz, newTz } of compatibilityTimeZones) {
 //   try {
-//     const output = Intl.DateTimeFormat("en", { timeZone: newTz }).resolvedOptions().timeZone;
+//     const output: string = Intl.DateTimeFormat("en", { timeZone: newTz }).resolvedOptions()
+//       .timeZone;
 //     switch (output) {
 //       case newTz:
 //         console.log(newTz, "<-", oldTz);
@@ -670,7 +667,7 @@ export const greenwichMeridianTimeZoneFullNames = [
 //         break;
 //     }
 //   } catch (error) {
-//     console.log(oldTz, "->", error.message);
+//     console.log(oldTz, "->", error instanceof Error ? error.message : String(error));
 //     outputInvalid++;
 //   }
 // }

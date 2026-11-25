@@ -1,27 +1,23 @@
-import { lazy, useState } from "react";
-import { firstTimeExecutedDateTime, localeData, TIMEZONES } from "./util.js";
+import { type JSX, lazy, useState } from "react";
+
+import type { CalendarSettings, Data } from "../types.ts";
+import { firstTimeExecutedDateTime, localeData, TIMEZONES } from "./util.ts";
 import {
   UTCTimeZoneLongNames as UTC,
   GMTTimeZoneLongNames as GMT,
   languagesWith12HoursSystem as lang12Hours,
-} from "./data.js";
+} from "./data.ts";
 
-import Header from "./components/Header.jsx";
-const Toolbar = lazy(() => import("./components/Toolbar.jsx"));
-const Display = lazy(() => import("./components/Display.jsx"));
-const RegionData = lazy(() => import("./components/RegionData.jsx"));
-// const TimezoneTable = lazy(() => import("./components/TimezoneTable.jsx"));
-import Footer from "./components/Footer.jsx";
+import Header from "./components/Header.tsx";
+const Toolbar = lazy(() => import("./components/Toolbar.tsx"));
+const Display = lazy(() => import("./components/Display.tsx"));
+const RegionData = lazy(() => import("./components/RegionData.tsx"));
+// const TimezoneTable = lazy(() => import("./components/TimezoneTable.tsx"));
+import Footer from "./components/Footer.tsx";
 
 import "./App.css";
 
-/**
- * @typedef {Object} CalendarSettings
- * @property {string} locale - The current locale.
- * @property {boolean} is12Hours - Whether to display time in 12-hour format.
- * @property {string} timeZone - The current time zone.
- */
-export default function App() {
+export default function App(): JSX.Element {
   // TODO : Get the user’s locale, calendar, numbering system, and time zone
   let {
     locale,
@@ -41,28 +37,25 @@ export default function App() {
     (localeNumber !== "" ? localeNumber : userNumber);
 
   // TODO : Default to UTC, GMT, or the last element of the TIMEZONES array if timeZone is undefined
-  if (!TIMEZONES.some(({ value }) => timeZone === value)) {
-    /**
-     * @param {string} tz -  IANA time zone identifier.
-     * @return {string} The timezone long name.
-     */
-    const timeZoneLongName = tz =>
+  if (!TIMEZONES.some(({ value }: Data): boolean => timeZone === value)) {
+    const timeZoneLongName = (tz: string): string =>
       new Intl.DateTimeFormat(locale, { timeStyle: "long", timeZone: tz })
         .formatToParts(firstTimeExecutedDateTime)
-        .find(({ type }) => type === "timeZoneName")?.value;
+        .find(({ type }) => type === "timeZoneName")?.value ?? "";
 
     timeZone =
-      TIMEZONES.find(({ value: tz }) => UTC.includes(timeZoneLongName(tz)))?.value ??
-      TIMEZONES.find(({ value: tz }) => GMT.includes(timeZoneLongName(tz)))?.value ??
-      TIMEZONES.at(-1).value;
+      TIMEZONES.find(({ value: tz }: Data): boolean => UTC.includes(timeZoneLongName(tz)))?.value ??
+      TIMEZONES.find(({ value: tz }: Data): boolean => GMT.includes(timeZoneLongName(tz)))?.value ??
+      TIMEZONES.at(-1)?.value ??
+      TIMEZONES.slice(-1)[0].value;
   }
 
-  const [calendar, setCalendar] = useState({
+  const [calendar, setCalendar] = useState<CalendarSettings>({
     locale,
-    is12Hours: lang12Hours.some(({ value }) => value === localeLangScript),
+    is12Hours: lang12Hours.some(({ value }: Data): boolean => value === localeLangScript),
     timeZone,
   });
-  const [dateTimeIsSingleLine, setDateTimeIsSingleLine] = useState(true);
+  const [dateTimeIsSingleLine, setDateTimeIsSingleLine] = useState<boolean>(true);
 
   return (
     <>

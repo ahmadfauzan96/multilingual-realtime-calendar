@@ -1,20 +1,25 @@
-/* eslint-disable react/prop-types */
-import { localeRegionData } from "../util.js";
+import type { JSX } from "react";
+import type { CalendarProps } from "../../types.ts";
+import { localeRegionData } from "../util.ts";
 import "./RegionData.css";
 
-/** @param {{timeZone: string}} props */
-export default function RegionData({ timeZone }) {
+interface RegionDataProps {
+  /** The user’s time zone at the first runtime. */
+  timeZone: CalendarProps["timeZone"];
+}
+
+export default function RegionData({ timeZone }: RegionDataProps): JSX.Element {
   const { name, code, flag, activeTimeZones, deprecatedTimeZones } = localeRegionData(timeZone);
 
-  const activeTzAmount =
+  const activeTzAmount: number =
     activeTimeZones.length === 1 && activeTimeZones[0] === "" ? 0 : activeTimeZones.length;
-  const formattedActiveTZNoun = "timezone" + (activeTzAmount > 1 ? "s" : "");
+  const formattedActiveTZNoun: string = "timezone" + (activeTzAmount > 1 ? "s" : "");
 
-  const deprecatedTzAmount =
+  const deprecatedTzAmount: number =
     deprecatedTimeZones.length === 1 && deprecatedTimeZones[0] === ""
       ? 0
       : deprecatedTimeZones.length;
-  const formattedDeprecatedTZNoun = "timezone" + (deprecatedTzAmount > 1 ? "s" : "");
+  const formattedDeprecatedTZNoun: string = "timezone" + (deprecatedTzAmount > 1 ? "s" : "");
 
   return (
     <section className="region-data">

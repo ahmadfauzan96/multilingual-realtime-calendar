@@ -1,18 +1,45 @@
-/**
- * @typedef {Object} Data
- * @property {string} title
- * @property {string} value
- * */
+import type { CalendarOptions, Data, ValueToTitleMap } from "../types.ts";
 
-/**
- * @param {Array<Data>} array - The array of objects with `Data` interface.
- * @return {{[value: string]: string}} The map of value to title.
- */
-const createMap = array => Object.fromEntries(array.map(({ title, value }) => [value, title]));
-// const createMap = array => array.reduce((acc, { title, value }) => ((acc[value] = title), acc), {});
+const createMap = (array: Data[]): ValueToTitleMap =>
+  // ? Templates for creating maps
+  // * Object.fromEntries()
+  // Object.fromEntries<Data["title"]>(
+  //   array.map<[Data["value"], Data["title"]]>(({ title, value }: Data) => [value, title]),
+  // );
+  // * .reduce<T>()
+  // array.reduce<ValueToTitleMap>((acc: valueToTitleMap, { title, value }: Data) => {
+  //   acc[value] = title;
+  //   return acc;
+  // }, {});
+  array.reduce<ValueToTitleMap>(
+    (acc: ValueToTitleMap, { title, value }: Data) => ((acc[value] = title), acc),
+    {},
+  );
+// * Looping
+// {
+//   const map: ValueToTitleMap = {};
 
-/** @type {Array<Data>} */
-export const LANGUAGES = [
+//   // * for-of Loop
+//   // for (const { title, value } of array) map[value] = title;
+//   // * .forEach() Loop
+//   // array.forEach(({ title, value }: Data) => (map[value] = title));
+//   // * for Loop
+//   // for (let index: number = 0; index < array.length; index++) {
+//   //   const { title, value } = array[index];
+//   //   map[value] = title;
+//   // }
+//   // * while Loop
+//   // let index: number = 0;
+//   // while (index < array.length) {
+//   //   const { title, value } = array[index];
+//   //   map[value] = title;
+//   //   index++;
+//   // }
+
+//   return map;
+// };
+
+export const LANGUAGES: Data[] = [
   { title: "Abkhazian", value: "ab" },
   { title: "Acehnese", value: "ace" },
   { title: "Acehnese (Jawoë)", value: "ace-Arab" },
@@ -576,57 +603,50 @@ export const LANGUAGES = [
   { title: "Zulu", value: "zu" },
 ];
 
-export const LANGUAGE_MAP = createMap(LANGUAGES);
+export const LANGUAGE_MAP: ValueToTitleMap = createMap(LANGUAGES);
 
-export const languagesWith12HoursSystem = LANGUAGES.filter(({ value: lang }) => {
+export const languagesWith12HoursSystem: Data[] = LANGUAGES.filter(({ value: lang }: Data) => {
   const { hourCycle, hour12 } = new Intl.DateTimeFormat(lang, {
     timeStyle: "full",
   }).resolvedOptions();
   return hour12 ?? (hourCycle === "h12" || hourCycle === "h11");
 });
 
-export const LANGUAGE_12H_MAP = createMap(languagesWith12HoursSystem);
+export const LANGUAGE_12H_MAP: ValueToTitleMap = createMap(languagesWith12HoursSystem);
 
 // console.log(languagesWith12HoursSystem.length);
 // console.log(
 //   LANGUAGES.filter(
-//     ({ value }) => Intl.DateTimeFormat(value).resolvedOptions().numberingSystem === "mymr",
+//     ({ value }: Data) => Intl.DateTimeFormat(value).resolvedOptions().numberingSystem === "mymr",
 //   ),
 // );
 
 // TODO : put UTC and GMT time zone names of each languages to respective arrays
-/** @type {Array<string>} */
-const UTCTimeZoneLongNames = [];
-/** @type {Array<string>} */
-const GMTTimeZoneLongNames = [];
-/** @type {Array<string>} */
-const UTCTimeZoneFullNames = [];
-/** @type {Array<string>} */
-const GMTTimeZoneFullNames = [];
+const UTCTimeZoneLongNames: string[] = [];
+const GMTTimeZoneLongNames: string[] = [];
+const UTCTimeZoneFullNames: string[] = [];
+const GMTTimeZoneFullNames: string[] = [];
 
-/**
- * @param {string} timeStyle -  The time style for formatting.
- */
-function assignTimeZoneName(timeStyle) {
+const assignTimeZoneName = (timeStyle: Intl.DateTimeFormatOptions["timeStyle"]): void => {
   for (const { value } of LANGUAGES) {
-    /**
-     * @param {string} timeZone -  The IANA time zone identifier
-     */
-    const tzName = timeZone =>
+    //  * The IANA time zone identifier
+    const tzName = (timeZone: string): string =>
       new Intl.DateTimeFormat(value, { timeStyle, timeZone })
         .formatToParts(Date.now())
         .find(({ type }) => type === "timeZoneName")?.value ?? "GMT";
-    const UTCTzName = tzName("UTC");
-    const GMTTzName1 = tzName("GMT");
-    const GMTTzName2 = tzName("Africa/Abidjan");
-    const GMTTzName3 = tzName("Atlantic/Reykjavik");
+    const UTCTzName: string = tzName("UTC");
+    const GMTTzName1: string = tzName("GMT");
+    const GMTTzName2: string = tzName("Africa/Abidjan");
+    const GMTTzName3: string = tzName("Atlantic/Reykjavik");
 
     switch (timeStyle) {
       case "long":
+        // * populate UTC names
         if (!UTCTimeZoneLongNames.includes(UTCTzName)) {
           UTCTimeZoneLongNames.push(UTCTzName);
         }
 
+        // * populate GMT names
         if (!GMTTimeZoneLongNames.includes(GMTTzName1)) {
           GMTTimeZoneLongNames.push(GMTTzName1);
         } else if (!GMTTimeZoneLongNames.includes(GMTTzName2)) {
@@ -637,10 +657,12 @@ function assignTimeZoneName(timeStyle) {
         break;
 
       case "full":
+        // * populate UTC names
         if (!UTCTimeZoneFullNames.includes(UTCTzName)) {
           UTCTimeZoneFullNames.push(UTCTzName);
         }
 
+        // * populate GMT names
         if (!GMTTimeZoneFullNames.includes(GMTTzName1)) {
           GMTTimeZoneFullNames.push(GMTTzName1);
         } else if (!GMTTimeZoneFullNames.includes(GMTTzName2)) {
@@ -654,15 +676,14 @@ function assignTimeZoneName(timeStyle) {
         break;
     }
   }
-}
+};
 
 assignTimeZoneName("long");
 assignTimeZoneName("full");
 
 export { UTCTimeZoneLongNames, UTCTimeZoneFullNames, GMTTimeZoneLongNames, GMTTimeZoneFullNames };
 
-/** @type {Array<Data>} */
-export const REGIONS = [
+export const REGIONS: Data[] = [
   { title: "Unspecified", value: "" },
   { title: "Afghanistan", value: "AF" },
   { title: "Åland Island", value: "AX" },
@@ -928,9 +949,9 @@ export const REGIONS = [
   { title: "Zimbabwe", value: "ZW" },
 ];
 
-export const REGION_MAP = createMap(REGIONS);
+export const REGION_MAP: ValueToTitleMap = createMap(REGIONS);
 
-export const regionsAdoptingAR = [
+export const regionsAdoptingAR: string[] = [
   "AE",
   "BH",
   "DJ",
@@ -960,44 +981,44 @@ export const regionsAdoptingAR = [
   "UN",
   "YE",
 ]; // 28
-export const arabRegionsUsingWesternArabicNumbers = ["AE", "DZ", "EH", "LY", "MA", "TN"];
-export const regionsAdoptingFA = ["AF", "IR"];
-export const regionsAdoptingUR = ["IN", "PK"];
-export const regionsAdoptingSD = ["IN", "PK"];
-export const regionsAdoptingHE = ["IL"];
-export const regionsAdoptingDV = ["MV"];
+export const arabRegionsUsingWesternArabicNumbers: string[] = ["AE", "DZ", "EH", "LY", "MA", "TN"];
+export const regionsAdoptingFA: string[] = ["AF", "IR"];
+export const regionsAdoptingUR: string[] = ["IN", "PK"];
+export const regionsAdoptingSD: string[] = ["IN", "PK"];
+export const regionsAdoptingHE: string[] = ["IL"];
+export const regionsAdoptingDV: string[] = ["MV"];
 
-export const regionsAdoptingZH = ["CN", "HK", "MO", "MY", "SG", "TW", "UN"];
-export const regionsAdoptingKO = ["KR", "KP"];
-export const regionsAdoptingJA = ["JP"];
-export const regionsAdoptingMN = ["MN"];
+export const regionsAdoptingZH: string[] = ["CN", "HK", "MO", "MY", "SG", "TW", "UN"];
+export const regionsAdoptingKO: string[] = ["KR", "KP"];
+export const regionsAdoptingJA: string[] = ["JP"];
+export const regionsAdoptingMN: string[] = ["MN"];
 
-export const regionsAdoptingTA = ["IN", "LK", "MY", "SG"];
-export const regionsAdoptingBN = ["BD", "IN"];
-export const regionsAdoptingHI = ["IN"];
+export const regionsAdoptingTA: string[] = ["IN", "LK", "MY", "SG"];
+export const regionsAdoptingBN: string[] = ["BD", "IN"];
+export const regionsAdoptingHI: string[] = ["FJ", "IN"];
 
-export const regionsAdoptingMS = ["BN", "ID", "MY", "SG"];
-export const regionsAdoptingID = ["ID"];
-export const regionsAdoptingJV = ["ID", "NC", "SR"];
-export const regionsAdoptingSU = ["ID"];
-export const regionsAdoptingTL = ["PH"];
-export const regionsAdoptingTH = ["TH"];
-export const regionsAdoptingLO = ["LA"];
-export const regionsAdoptingKM = ["KH"];
-export const regionsAdoptingMY = ["MM"];
-export const regionsAdoptingVI = ["VN"];
+export const regionsAdoptingMS: string[] = ["BN", "ID", "MY", "SG"];
+export const regionsAdoptingID: string[] = ["ID"];
+export const regionsAdoptingJV: string[] = ["ID", "NC", "SR"];
+export const regionsAdoptingSU: string[] = ["ID"];
+export const regionsAdoptingTL: string[] = ["PH"];
+export const regionsAdoptingTH: string[] = ["TH"];
+export const regionsAdoptingLO: string[] = ["LA"];
+export const regionsAdoptingKM: string[] = ["KH"];
+export const regionsAdoptingMY: string[] = ["MM"];
+export const regionsAdoptingVI: string[] = ["VN"];
 
-export const regionsAdoptingAM = ["ER", "ET"];
-export const regionsAdoptingTI = ["ER", "ET"];
-export const regionsAdoptingSW = ["KE", "TZ", "UG"];
+export const regionsAdoptingAM: string[] = ["ER", "ET"];
+export const regionsAdoptingTI: string[] = ["ER", "ET"];
+export const regionsAdoptingSW: string[] = ["KE", "TZ", "UG"];
 
-export const regionsAdoptingKA = ["GE"];
-export const regionsAdoptingHY = ["AM"];
+export const regionsAdoptingKA: string[] = ["GE"];
+export const regionsAdoptingHY: string[] = ["AM"];
 
-export const regionsAdoptingRU = ["BY", "KZ", "KG", "RU", "UA", "UN", "MD"]; // 7
-export const regionsAdoptingEL = ["GR", "CY"]; // 2
+export const regionsAdoptingRU: string[] = ["BY", "KZ", "KG", "RU", "UA", "UN", "MD"]; // 7
+export const regionsAdoptingEL: string[] = ["GR", "CY"]; // 2
 
-export const regionsAdoptingEN = [
+export const regionsAdoptingEN: string[] = [
   "AE",
   "AG",
   "AI",
@@ -1118,7 +1139,7 @@ export const regionsAdoptingEN = [
   "ZM",
   "ZW",
 ]; // 119
-export const regionsAdoptingFR = [
+export const regionsAdoptingFR: string[] = [
   "BE",
   "BF",
   "BJ",
@@ -1161,9 +1182,9 @@ export const regionsAdoptingFR = [
   "WF",
   "YT",
 ]; // 41
-export const regionsAdoptingDE = ["AT", "BE", "CH", "DE", "EU", "LI", "LU"]; // 7
-export const regionsAdoptingIT = ["IT", "CH", "EU", "SM", "VA"]; // 5
-export const regionsAdoptingES = [
+export const regionsAdoptingDE: string[] = ["AT", "BE", "CH", "DE", "EU", "LI", "LU"]; // 7
+export const regionsAdoptingIT: string[] = ["IT", "CH", "EU", "SM", "VA"]; // 5
+export const regionsAdoptingES: string[] = [
   "419",
   "AR",
   "BO",
@@ -1191,14 +1212,26 @@ export const regionsAdoptingES = [
   "UY",
   "VE",
 ]; // 26
-export const regionsAdoptingPT = ["AO", "BR", "CV", "EU", "GW", "MO", "MZ", "PT", "ST", "TL"]; // 10
-export const regionsAdoptingNL = ["AW", "BE", "BQ", "CW", "EU", "NL", "SR", "SX"]; // 8
+export const regionsAdoptingPT: string[] = [
+  "AO",
+  "BR",
+  "CV",
+  "EU",
+  "GW",
+  "MO",
+  "MZ",
+  "PT",
+  "ST",
+  "TL",
+]; // 10
+export const regionsAdoptingNL: string[] = ["AW", "BE", "BQ", "CW", "EU", "NL", "SR", "SX"]; // 8
 
-// console.log(REGIONS.filter(({ value }) => regionsAdoptingES.some(region => region === value)));
+// console.log(
+//   REGIONS.filter(({ value }: Data) => regionsAdoptingES.some(region => region === value)),
+// );
 // console.log(Intl.Collator("ja-JP", { collation: "gb2312" }).resolvedOptions());
 
-/** @type {{CALENDARS: Array<Data>, NUMBERS: Array<Data>, COLLATIONS: Array<Data>}} */
-export const CALENDAR_OPTIONS = {
+export const CALENDAR_OPTIONS: CalendarOptions = {
   CALENDARS: [
     { title: "None", value: "" },
     { title: "Balinese Hindu/Indian Calendar", value: "indian" },
@@ -1385,60 +1418,60 @@ export const CALENDAR_OPTIONS = {
   ],
 };
 
-export const CALENDAR_MAP = createMap(CALENDAR_OPTIONS.CALENDARS);
-export const NUMBER_MAP = createMap(CALENDAR_OPTIONS.NUMBERS);
-export const COLLATION_MAP = createMap(CALENDAR_OPTIONS.COLLATIONS);
+export const CALENDAR_MAP: ValueToTitleMap = createMap(CALENDAR_OPTIONS.CALENDARS);
+export const NUMBER_MAP: ValueToTitleMap = createMap(CALENDAR_OPTIONS.NUMBERS);
+export const COLLATION_MAP: ValueToTitleMap = createMap(CALENDAR_OPTIONS.COLLATIONS);
 
 // console.log(LANGUAGE_MAP);
 // for (const key in LANGUAGE_MAP) {
 //   if (!Object.hasOwn(LANGUAGE_MAP, key)) continue;
 
-//   const element = LANGUAGE_MAP[key];
+//   const title = LANGUAGE_MAP[key];
 
-//   console.log(element);
+//   console.log(title);
 // }
 
 // console.log(LANGUAGE_12H_MAP);
 // for (const key in LANGUAGE_12H_MAP) {
 //   if (!Object.hasOwn(LANGUAGE_12H_MAP, key)) continue;
 
-//   const element = LANGUAGE_12H_MAP[key];
+//   const title = LANGUAGE_12H_MAP[key];
 
-//   console.log(element);
+//   console.log(title);
 // }
 
 // console.log(REGION_MAP);
 // for (const key in REGION_MAP) {
 //   if (!Object.hasOwn(REGION_MAP, key)) continue;
 
-//   const element = REGION_MAP[key];
+//   const title = REGION_MAP[key];
 
-//   console.log(element);
+//   console.log(title);
 // }
 
 // console.log(CALENDAR_MAP);
 // for (const key in CALENDAR_MAP) {
 //   if (!Object.hasOwn(CALENDAR_MAP, key)) continue;
 
-//   const element = CALENDAR_MAP[key];
+//   const title = CALENDAR_MAP[key];
 
-//   console.log(element);
+//   console.log(title);
 // }
 
 // console.log(NUMBER_MAP);
 // for (const key in NUMBER_MAP) {
 //   if (!Object.hasOwn(NUMBER_MAP, key)) continue;
 
-//   const element = NUMBER_MAP[key];
+//   const title = NUMBER_MAP[key];
 
-//   console.log(element);
+//   console.log(title);
 // }
 
 // console.log(COLLATION_MAP);
 // for (const key in COLLATION_MAP) {
 //   if (!Object.hasOwn(COLLATION_MAP, key)) continue;
 
-//   const element = COLLATION_MAP[key];
+//   const title = COLLATION_MAP[key];
 
-//   console.log(element);
+//   console.log(title);
 // }

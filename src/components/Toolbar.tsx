@@ -1,23 +1,37 @@
-/* eslint-disable react/prop-types */
+import type { Dispatch, FormEvent, JSX, ReactNode, SetStateAction } from "react";
 import { useRef, useState } from "react";
 
-import { getFlagEmoji, localeData, TIMEZONES } from "../util.js";
-import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.js";
+import { getFlagEmoji, localeData, TIMEZONES } from "../util.ts";
+import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.ts";
 
-import ToolbarRowRef from "./ToolbarRowRef.jsx";
-import ToolbarRowState from "./ToolbarRowState.jsx";
-import ToggleButton from "./ToggleButton.jsx";
+import type { CalendarProps, Data } from "../../types.ts";
+
+import ToolbarRowRef from "./ToolbarRowRef.tsx";
+import ToolbarRowState from "./ToolbarRowState.tsx";
+import ToggleButton from "./ToggleButton.tsx";
 
 import "./Toolbar.css";
 
-/**
- * @typedef {Object} ToolbarProps
- * @property {React.Dispatch<React.SetStateAction<import("../App.jsx").CalendarSettings>>} setCalendar - Function to update the calendar settings.
- * @property {boolean} dateTimeIsSingleLine - Whether the date and time are displayed in a single line.
- * @property {React.Dispatch<React.SetStateAction<boolean>>} setDateTimeIsSingleLine - Function to update the date/time display mode.
- */
-/** @typedef {ToolbarProps & import("../App.jsx").CalendarSettings} Props */
-/** @param {Props} props */
+export interface ToolbarRowProps {
+  /** The title of the row. */
+  title: string;
+  /** The label for the select element. */
+  label: string;
+  /** The default value for the select element. */
+  defaultValue: string;
+  /** The options for the select element. */
+  children: ReactNode;
+}
+
+interface ToolbarProps extends CalendarProps {
+  /** Function to update the calendar settings. */
+  setCalendar: Dispatch<SetStateAction<CalendarProps>>;
+  /** Whether to display date and time in a single line or double lines. */
+  dateTimeIsSingleLine: boolean;
+  /** Function to update the date and time display mode (either a single line or double lines). */
+  setDateTimeIsSingleLine: Dispatch<SetStateAction<boolean>>;
+}
+
 export default function Toolbar({
   locale,
   is12Hours,
@@ -25,51 +39,52 @@ export default function Toolbar({
   setCalendar,
   dateTimeIsSingleLine: isSingleLine,
   setDateTimeIsSingleLine: setIsSingleLine,
-}) {
+}: ToolbarProps): JSX.Element {
   const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(locale);
 
   let { CALENDARS, NUMBERS } = CALENDAR_OPTIONS;
+  const sortFunction = (a: Data, b: Data): number =>
+    a.title.localeCompare(b.title, "en", { collation: "ducet" });
   CALENDARS = [
     CALENDARS[0],
-    ...CALENDARS.slice(1).sort((a, b) =>
-      a.title.localeCompare(b.title, "en", { collation: "ducet" }),
-    ),
+    ...CALENDARS.slice(1)
+      .sort(sortFunction)
+      .filter(({ value }: Data): boolean => Intl.supportedValuesOf("calendar").includes(value)),
   ];
   NUMBERS = [
     NUMBERS[0],
-    ...NUMBERS.slice(1).sort((a, b) =>
-      a.title.localeCompare(b.title, "en", { collation: "ducet" }),
-    ),
+    ...NUMBERS.slice(1)
+      .sort(sortFunction)
+      .filter(({ value }: Data): boolean =>
+        Intl.supportedValuesOf("numberingSystem").includes(value),
+      ),
   ];
 
-  const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState(timeZone);
+  const [toBeSelectedTimeZone, setToBeSelectedTimeZone] = useState<string>(timeZone);
 
-  const languageScriptRef = useRef();
-  const regionRef = useRef();
-  const calendarRef = useRef();
-  const numberRef = useRef();
-  const hour12Ref = useRef();
+  const languageScriptRef = useRef<HTMLSelectElement>(null);
+  const regionRef = useRef<HTMLSelectElement>(null);
+  const calendarRef = useRef<HTMLSelectElement>(null);
+  const numberRef = useRef<HTMLSelectElement>(null);
+  const hour12Ref = useRef<HTMLInputElement>(null);
 
-  /**
-   * @param {React.FormEvent<HTMLFormElement>} e
-   */
-  function handleSaveCalendar(e) {
+  function handleSaveCalendar(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    setCalendar(prevCalendar => {
-      const newCalendar = { ...prevCalendar };
+    setCalendar((prevCalendar: CalendarProps): CalendarProps => {
+      const newCalendar: CalendarProps = { ...prevCalendar };
       // TODO : Set new language and region
-      const newLanguageScript = languageScriptRef.current.value;
-      const newRegion =
+      const newLanguageScript: string = languageScriptRef.current?.value ?? localeLangScript;
+      const newRegion: string =
         regionRef.current && regionRef.current.value !== "" ? "-" + regionRef.current.value : "";
 
       // TODO : Set new calendar and number
-      const calendarRefValue =
+      const calendarRefValue: string =
         calendarRef.current && calendarRef.current.value !== "" ? calendarRef.current.value : "";
-      const numberRefValue =
+      const numberRefValue: string =
         numberRef.current && numberRef.current.value !== "" ? numberRef.current.value : "";
 
       // TODO : Set new calendar option based on set calendar and number
-      const newCalendarOption =
+      const newCalendarOption: string =
         calendarRefValue !== "" && numberRefValue !== ""
           ? "-u-ca-" + calendarRefValue + "-nu-" + numberRefValue
           : calendarRefValue === "" && numberRefValue !== ""
@@ -80,7 +95,7 @@ export default function Toolbar({
 
       // TODO : Set new calendar
       newCalendar.locale = newLanguageScript + newRegion + newCalendarOption;
-      newCalendar.is12Hours = hour12Ref.current.checked;
+      newCalendar.is12Hours = hour12Ref.current?.checked ?? prevCalendar.is12Hours;
       newCalendar.timeZone = toBeSelectedTimeZone;
 
       return newCalendar;
@@ -89,7 +104,7 @@ export default function Toolbar({
 
   return (
     <section className="toolbar">
-      <form onSubmit={e => handleSaveCalendar(e)}>
+      <form onSubmit={handleSaveCalendar}>
         <ToolbarRowRef
           ref={languageScriptRef}
           title="Language"
@@ -104,7 +119,7 @@ export default function Toolbar({
         </ToolbarRowRef>
 
         <ToolbarRowRef ref={regionRef} title="Region" label="region" defaultValue={localeReg}>
-          {[REGIONS[0], ...REGIONS.slice(1)].map(({ title, value }) => (
+          {REGIONS.map(({ title, value }) => (
             <option key={value} value={value}>
               {title +
                 (value === "TW" && localeReg === "CN"
@@ -169,7 +184,9 @@ export default function Toolbar({
       <div className="row">
         <div className="col-25" />
         <div className="col-75">
-          <button onClick={() => setIsSingleLine(isSingleLine => !isSingleLine)}>
+          <button
+            onClick={() => setIsSingleLine((isSingleLine: boolean): boolean => !isSingleLine)}
+          >
             View in {isSingleLine ? "Double Lines" : "a Single Line"}
           </button>
         </div>

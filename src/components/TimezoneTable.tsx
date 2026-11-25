@@ -1,5 +1,7 @@
-/* eslint-disable react/prop-types */
 // ? for testing timezone names in various languages
+import type { JSX } from "react";
+
+import type { CalendarProps } from "../../types.ts";
 import {
   tzLongNameIntl,
   tzFullNameIntl,
@@ -7,16 +9,19 @@ import {
   tzFullName,
   localeData,
   TIMEZONES,
-} from "../util.js";
-import { LANGUAGE_MAP } from "../data.js";
-import { getDirection } from "../languages-direction.js";
-import { displayClass } from "../display-class.js";
+} from "../util.ts";
+import { LANGUAGE_MAP } from "../data.ts";
+import { getDirection } from "../languages-direction.ts";
+import { displayClass } from "../display-class.ts";
+
 import "./Display.css";
 
-/**
- * @param {{locale: string}} props
- */
-export default function TimezoneTable({ locale }) {
+interface TimezoneTableProps {
+  /** The locale for which to display timezone names. */
+  locale: CalendarProps["locale"];
+}
+
+export default function TimezoneTable({ locale }: TimezoneTableProps): JSX.Element {
   const { localeLang, localeScript, localeLangScript } = localeData(locale);
 
   return (
