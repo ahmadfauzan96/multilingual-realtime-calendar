@@ -2,9 +2,7 @@ import { forwardRef, type JSX } from "react";
 import type { ToolbarRowProps } from "./Toolbar.tsx";
 import "./Toolbar.css";
 
-interface ToolbarRowRefProps extends ToolbarRowProps {}
-
-const ToolbarRowRef = forwardRef<HTMLSelectElement, ToolbarRowRefProps>(
+const ToolbarRowRef = forwardRef<HTMLSelectElement, ToolbarRowProps>(
   ({ title, label, defaultValue, children }, ref): JSX.Element => (
     <div className="row">
       <div className="col-25">

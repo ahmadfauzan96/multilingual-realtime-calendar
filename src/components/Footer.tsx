@@ -7,14 +7,14 @@ export default function Footer(): JSX.Element {
    * @param createdYear - The year the copyright was created.
    * @return The copyright year range, or the copyright year if the project is newly made.
    */
-  function copyrightYear(createdYear: number): string {
+  const copyrightYear = (createdYear: number): string => {
     const currentYear = new Date().getFullYear();
     return currentYear > createdYear
       ? createdYear + "-" + currentYear
       : currentYear === createdYear
         ? currentYear.toString()
         : "Not created yet.";
-  }
+  };
 
   return (
     <footer>

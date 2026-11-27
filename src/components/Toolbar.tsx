@@ -1,10 +1,10 @@
 import type { Dispatch, FormEvent, JSX, ReactNode, SetStateAction } from "react";
 import { useRef, useState } from "react";
 
-import { getFlagEmoji, localeData, TIMEZONES } from "../util.ts";
-import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.ts";
-
 import type { CalendarProps, Data } from "../../types.ts";
+
+import { CALENDAR_OPTIONS, LANGUAGES, REGIONS } from "../data.ts";
+import { getFlagEmoji, localeData, TIMEZONES } from "../util.ts";
 
 import ToolbarRowRef from "./ToolbarRowRef.tsx";
 import ToolbarRowState from "./ToolbarRowState.tsx";

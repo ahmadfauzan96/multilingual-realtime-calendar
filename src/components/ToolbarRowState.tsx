@@ -1,4 +1,4 @@
-import type { Dispatch, JSX, SetStateAction } from "react";
+import type { ChangeEvent, Dispatch, JSX, SetStateAction } from "react";
 import type { ToolbarRowProps } from "./Toolbar.tsx";
 import "./Toolbar.css";
 
@@ -24,7 +24,7 @@ export default function ToolbarRowState({
           name={label}
           id={label}
           defaultValue={defaultValue}
-          onChange={e => setState(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => setState(e.target.value)}
         >
           {children}
         </select>

@@ -1,6 +1,6 @@
 import { type JSX, lazy, useState } from "react";
 
-import type { CalendarSettings, Data } from "../types.ts";
+import type { CalendarProps, Data } from "../types.ts";
 import { firstTimeExecutedDateTime, localeData, TIMEZONES } from "./util.ts";
 import {
   UTCTimeZoneLongNames as UTC,
@@ -18,13 +18,11 @@ import Footer from "./components/Footer.tsx";
 import "./App.css";
 
 export default function App(): JSX.Element {
-  // TODO : Get the user’s locale, calendar, numbering system, and time zone
-  let {
-    locale,
-    calendar: userCalendar,
-    numberingSystem: userNumber,
-    timeZone,
-  } = new Intl.DateTimeFormat().resolvedOptions();
+  // TODO : Get the user’s calendar, numbering system, locale, and time zone
+  const dateTimeFormatOptions: Intl.ResolvedDateTimeFormatOptions =
+    new Intl.DateTimeFormat().resolvedOptions();
+  const { calendar: userCalendar, numberingSystem: userNumber } = dateTimeFormatOptions;
+  let { locale, timeZone } = dateTimeFormatOptions;
 
   // TODO : Construct a locale string based on the userLocale’s default calendar and number
   const { localeLangScript, localeReg, localeCalendar, localeNumber } = localeData(locale);
@@ -50,7 +48,7 @@ export default function App(): JSX.Element {
       TIMEZONES.slice(-1)[0].value;
   }
 
-  const [calendar, setCalendar] = useState<CalendarSettings>({
+  const [calendar, setCalendar] = useState<CalendarProps>({
     locale,
     is12Hours: lang12Hours.some(({ value }: Data): boolean => value === localeLangScript),
     timeZone,

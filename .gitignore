@@ -29,6 +29,9 @@ package-lock.json
 .firebaserc
 firebase.json
 
-/toolbar-prototype/
+# ESLint
+.eslintcache
+
+toolbar-prototype
 
 favicon_io.zip
